@@ -5,27 +5,52 @@
  */
 package glazing;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 /**
  *
  * @author andre
  */
 public class Visit {
+
+    public visitStates getState() {
+        return state;
+    }
+
+    public void setState(visitStates state) {
+        this.state = state;
+    }
     //ATTRIBUTES
+    public enum visitStates{
+        scheduled, occurring, postponed, canceled, done
+    }
+    
     private Client client;
     private Employee[] employee;
     private Vehicle vehicle;
     private String subject;
     private String comments;
     private Project project;
+    
+    private LocalDateTime date;
+    private Duration expectedVisitDuration;
+    private Duration occurredVisitDuration;
+    
+    private visitStates state;
+    
+    
 
     //CONSTRUCTOR
-    public Visit(Client client, Employee[] employee, Vehicle vehicle) {
+    public Visit(Client client, Employee[] employee, Vehicle vehicle, LocalDateTime date, Duration expectedVisitDuration) {
         this.client = client;
         this.employee = employee;
         this.vehicle = vehicle;
+        this.date = date;
+        this.expectedVisitDuration = expectedVisitDuration;
+        this.state = visitStates.scheduled;
     }
-    
-    
+
     //GETTERS AND SETTERS
     public Client getClient() {
         return client;
@@ -75,12 +100,29 @@ public class Visit {
         this.project = project;
     }
 
-    
-    
-    
-    
-    
-    
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public Duration getExpectedVisitDuration() {
+        return expectedVisitDuration;
+    }
+
+    public void setExpectedVisitDuration(Duration expectedVisitDuration) {
+        this.expectedVisitDuration = expectedVisitDuration;
+    }
+
+    public Duration getOccurredVisitDuration() {
+        return occurredVisitDuration;
+    }
+
+    public void setOccurredVisitDuration(Duration occurredVisitDuration) {
+        this.occurredVisitDuration = occurredVisitDuration;
+    }
     
     
 }

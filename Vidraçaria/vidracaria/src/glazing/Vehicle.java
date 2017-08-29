@@ -10,8 +10,11 @@ package glazing;
  * @author andre
  */
 public class Vehicle {
-
     //ATTRIBUTES
+    public enum vehicleTypes{
+        pickup, miniVan, van, truck,
+    }
+    
     private vehicleTypes type;
     private String vehicleRegistrationPlate;
     private String color;
@@ -58,8 +61,4 @@ public class Vehicle {
     public void setChassisNumber(String chassisNumber) {
         this.chassisNumber = chassisNumber;
     }
-    public enum vehicleTypes{
-        pickup, miniVan, van, truck,
-    }
-   
 }

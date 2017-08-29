@@ -11,7 +11,7 @@ package glazing;
  * @author andre
  */
 public class Project {
-    //ATRIBUTES
+    //ATTRIBUTES
     private int projectId;
     private String projectName;
     private String projectDescription;

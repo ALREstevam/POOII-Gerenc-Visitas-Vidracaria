@@ -16,6 +16,25 @@ public class Store {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Client cli = new Client("A", "B", Client.clientTypes.person, "D");
+        
+        Controller ctrl = new Controller();
+        ctrl.add(cli);
+       
+        
+        ctrl.listClients();
+        
+        Client cli1 = new Client("c", "B", Client.clientTypes.person, "D");
+        System.out.println(ctrl.remove(cli1));
+        System.out.println(ctrl.remove(cli));
+        
+        ctrl.listClients();
+        
+       
+       
+        
+        
     }
     
 }
