@@ -1,15 +1,16 @@
 package persons;
 
-import visit.Visit;
+import timeHlp.Agenda;
 import visit.Vehicle;
 
 public class Driver extends Employee {
-
+    private timeHlp.Agenda agenda;
     private int driverLicenseType;
 
     public Driver(int driverLicenseType, int personalNumber, int registration, String name, String email, String contact) {
         super(personalNumber, registration, name, email, contact);
         this.driverLicenseType = driverLicenseType;
+        this.agenda = new Agenda(5000, 10);
     }
 
     public int getDriverLicenseType() {
@@ -32,5 +33,15 @@ public class Driver extends Employee {
                 break;
         }
     }
+
+    public timeHlp.Agenda getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(timeHlp.Agenda agenda) {
+        this.agenda = agenda;
+    }
+    
+    
 
 }

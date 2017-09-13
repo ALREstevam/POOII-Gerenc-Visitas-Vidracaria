@@ -5,7 +5,6 @@ public abstract class Person {
 	private String name;
 	private String email;
 	private String contact;
-        private timeHlp.TimeAllocationHelper ;
 
     public Person(String name, String email, String contact) {
         this.name = name;

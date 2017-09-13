@@ -1,5 +1,7 @@
 package visit;
 
+import timeHlp.Agenda;
+
 public class Vehicle {
     public enum licenseTypes{A, B, C, D}
 
@@ -7,7 +9,23 @@ public class Vehicle {
 	private int type;
 	private String registration;
 	private String info;
+        private Agenda agenda;
 
+    public Vehicle(int licenseNeeded, String registration) {
+        this.licenseNeeded = licenseNeeded;
+        this.registration = registration;
+        this.agenda = new Agenda(30, 10);
+    }
+    
+    
+    public Agenda getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+    
     public int getLicenseNeeded() {
         return this.licenseNeeded;
     }
@@ -52,7 +70,4 @@ public class Vehicle {
     public void setInfo(String info) {
         this.info = info;
     }
-    
-    
-    
 }

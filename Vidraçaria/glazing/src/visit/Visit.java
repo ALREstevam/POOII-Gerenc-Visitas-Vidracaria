@@ -17,6 +17,21 @@ public class Visit {
     private Client client;
     private Vehicle vehicle;
 
+    public Visit(Date start, Date finish, String name, List<Driver> visitor, Client client, Vehicle vehicle) {
+        this.start = start;
+        this.finish = finish;
+        this.name = name;
+        this.visitor = visitor;
+        this.client = client;
+        this.vehicle = vehicle;
+    }
+
+    public Visit(String name) {
+        this.name = name;
+    }
+    
+    
+
     public Date getStart() {
         return start;
     }
