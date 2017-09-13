@@ -1,18 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package glazing;
+package control;
 
 import java.util.ArrayList;
 import java.util.List;
+import persons.Employee;
+import persons.Client;
+import visit.Visit;
+import visit.Vehicle;
+import visit.Project;
 
-/**
- *
- * @author andre
- */
 public class Controller {
+
     private final List<Client> clients;
     private final List<Employee> employees;
     private final List<Project> projects;
@@ -126,5 +123,5 @@ public class Controller {
      */
     public boolean remove(Visit visit){
         return this.visits.remove(visit);
-    }    
+    }   
 }
