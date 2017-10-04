@@ -1,8 +1,9 @@
 package persons;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Administrator extends Employee {
+public class Administrator extends Employee implements Serializable{
 
     private String type;
 

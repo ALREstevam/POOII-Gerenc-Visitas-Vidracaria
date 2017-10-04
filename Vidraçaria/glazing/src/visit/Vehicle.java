@@ -1,29 +1,31 @@
 package visit;
 
-import timeHlp.Agenda;
+import java.io.Serializable;
+import java.util.List;
+import my.time.agenda.AgendaAllocator;
 
-public class Vehicle {
+public class Vehicle implements Serializable, my.time.Schedulable{
     public enum licenseTypes{A, B, C, D}
 
 	private int licenseNeeded;
 	private int type;
 	private String registration;
 	private String info;
-        private Agenda agenda;
+        private List<AgendaAllocator<Vehicle>> agendas;
 
     public Vehicle(int licenseNeeded, String registration) {
         this.licenseNeeded = licenseNeeded;
         this.registration = registration;
-        this.agenda = new Agenda(30, 10);
+        //this.agenda = new Agenda(30, 10);
     }
     
     
-    public Agenda getAgenda() {
-        return agenda;
+    public List<AgendaAllocator<Vehicle>> getAgenda() {
+        return agendas;
     }
 
-    public void setAgenda(Agenda agenda) {
-        this.agenda = agenda;
+    public void setAgenda( List<AgendaAllocator<Vehicle>> agenda) {
+        this.agendas = agenda;
     }
     
     public int getLicenseNeeded() {

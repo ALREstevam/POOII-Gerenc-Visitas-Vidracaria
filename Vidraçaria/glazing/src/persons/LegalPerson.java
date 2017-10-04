@@ -1,6 +1,8 @@
 package persons;
 
-public class LegalPerson extends Client {
+import java.io.Serializable;
+
+public class LegalPerson extends Client implements Serializable{
 
     private int cnpj;
     private int companyType;

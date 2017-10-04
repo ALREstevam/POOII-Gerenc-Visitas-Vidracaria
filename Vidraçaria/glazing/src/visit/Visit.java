@@ -30,8 +30,6 @@ public class Visit {
         this.name = name;
     }
     
-    
-
     public Date getStart() {
         return start;
     }

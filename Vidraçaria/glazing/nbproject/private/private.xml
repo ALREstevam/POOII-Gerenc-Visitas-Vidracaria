@@ -3,14 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="Group 20170111-04:37:20">
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/my/time/agenda/FreeBlocksManager.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/control/Util.java</file>
-            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/timeHlp/Agenda.java</file>
-            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/Assembler.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/my/time/Schedulable.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/my/time/StandardAgendaGenerator.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/Driver.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/Secretary.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/my/time/agenda/AgendaAllocator.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/my/time/helper/DateTimeInterval.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/my/time/helper/TimeStatistics.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/visit/Visit.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/local/persistence/ObjectKeeper.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/my/time/agenda/TimeObj.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/Employee.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/visit/Vehicle.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/Administrator.java</file>
-            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/glazing/Glazing.java</file>
-            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/control/Controller.java</file>
         </group>
     </open-files>
 </project-private>

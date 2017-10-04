@@ -1,8 +1,9 @@
 package persons;
 
+import java.io.Serializable;
 import visit.Visit;
 
-public class Client extends Person {
+public class Client extends Person implements Serializable{
 
     private String address;
         

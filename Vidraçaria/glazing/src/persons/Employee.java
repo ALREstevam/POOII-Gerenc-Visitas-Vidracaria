@@ -1,8 +1,9 @@
 package persons;
 
+import java.io.Serializable;
 import visit.Visit;
 
-public abstract class Employee extends Person {
+public abstract class Employee extends Person implements Serializable{
 
 	private int personalNumber;
 	private int registration;

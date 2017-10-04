@@ -1,8 +1,14 @@
 package control;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import persons.Driver;
 import visit.Vehicle;
+import java.time.Instant;
+import java.time.Month;
+import java.time.temporal.Temporal;
+import java.time.temporal.ChronoUnit;
+import javafx.util.converter.LocalDateTimeStringConverter;
+import my.time.helper.DateTimeInterval;
 
 public class Util {
 
@@ -19,17 +25,18 @@ public class Util {
                 return false;
 	}
 
-	/**
-         * 
-         * @param start
-         * @param finish
-         * @param timeToArrive
-         * @param timeToComeBack
-         * @param additional 
-         * @return The sum of the given times in minutes
-         */
-	public int calcutateTotalTimeOfVisit(Date start, Date finish, Date timeToArrive, Date timeToComeBack, Date additional) {
-                throw new java.lang.UnsupportedOperationException("Not supported yet.");
-	}
+	public DateTimeInterval calcutateTotalTimeOfVisit(LocalDateTime reference, int... minutes) {
+            //DateTimeInterval dtrsp = new DateTimeInterval(reference, reference)
+            
+            int sum = 0;
+            
+            for(int value : minutes){
+                sum += value;
+            }
+            
+            LocalDateTime aDateTime = LocalDateTime.of(reference.get);
+
+            
+        }
 
 }

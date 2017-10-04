@@ -1,16 +1,18 @@
 package persons;
 
-import timeHlp.Agenda;
+import java.io.Serializable;
+import java.util.List;
+import my.time.agenda.AgendaAllocator;
 import visit.Vehicle;
 
-public class Driver extends Employee {
-    private timeHlp.Agenda agenda;
+public class Driver extends Employee implements Serializable, my.time.Schedulable{
+    private List<AgendaAllocator<Employee>> agendas;
     private int driverLicenseType;
 
     public Driver(int driverLicenseType, int personalNumber, int registration, String name, String email, String contact) {
         super(personalNumber, registration, name, email, contact);
         this.driverLicenseType = driverLicenseType;
-        this.agenda = new Agenda(5000, 10);
+        //this.agenda = new Agenda(5000, 10);
     }
 
     public int getDriverLicenseType() {
@@ -34,14 +36,11 @@ public class Driver extends Employee {
         }
     }
 
-    public timeHlp.Agenda getAgenda() {
-        return agenda;
+    public List<AgendaAllocator<Employee>> getAgendas() {
+        return agendas;
     }
 
-    public void setAgenda(timeHlp.Agenda agenda) {
-        this.agenda = agenda;
+    public void setAgendas(List<AgendaAllocator<Employee>> agendas) {
+        this.agendas = agendas;
     }
-    
-    
-
 }

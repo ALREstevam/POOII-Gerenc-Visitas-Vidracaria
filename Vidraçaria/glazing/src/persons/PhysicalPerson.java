@@ -1,6 +1,8 @@
 package persons;
 
-public class PhysicalPerson extends Client {
+import java.io.Serializable;
+
+public class PhysicalPerson extends Client implements Serializable{
 
     private int cpf;
 
