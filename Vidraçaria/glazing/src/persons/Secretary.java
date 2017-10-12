@@ -19,7 +19,7 @@ public class Secretary extends Employee implements Serializable{
 
         }
         
-        return null;
+       
     }
 
 }

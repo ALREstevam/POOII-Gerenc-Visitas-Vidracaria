@@ -34,7 +34,8 @@ public class Util {
                 sum += value;
             }
             
-            LocalDateTime aDateTime = LocalDateTime.of(reference.get);
+            //LocalDateTime aDateTime = LocalDateTime.of(reference.get);
+            return null;
 
             
         }

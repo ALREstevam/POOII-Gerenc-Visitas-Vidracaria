@@ -10,5 +10,5 @@ package my.time;
  * @author andre
  */
 public class StandardAgendaGenerator {
-    s
+    
 }
