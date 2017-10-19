@@ -1,6 +1,8 @@
-package persons;
+package util;
 
 import java.util.List;
+import persons.Client;
+import persons.Employee;
 
 public class ReportGenerator {
 

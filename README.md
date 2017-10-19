@@ -33,4 +33,67 @@ Garantir ao usuário praticidade, agilidade e confiança em agendar e gerenciar 
 5. Permitirá que haja o controle das visitas por meio de estados como: marcada, remarcada, em andamento, desmarcada ou atrasada. Esses rótulos terão como base a data e a hora da visita.
 
 6. Quando requerido poderá fornecer informações para o administrador como tempo médio das visitas tendo como perspectiva determinado funcionário ou cliente por exemplo.
+
+## Árvore de arquivos (18/10/2017)
+
+    ├───control
+    │       Controller
+    │
+    ├───glazing
+    │       Glazing (M)
+    │
+    ├───local
+    │   └───persistence
+    │           LocalPersistence
+    │           LocalPersistenceV2
+    │           ObjectKeeper (I)
+    │
+    ├───my
+    │   ├───exceptions
+    │   │       FileCouldNotBeCreatetException (E)
+    │   │       FileDoesNotExistException (E)
+    │   │       InvalidFileNameStringException (E)
+    │   │       NotAllowedValueException (E)
+    │   │
+    │   └───time
+    │       │   Schedulable (I)
+    │       │   StandardAgendaGenerator
+    │       │
+    │       ├───agenda
+    │       │       AgendaAllocator
+    │       │       ElementPosition
+    │       │       FreeBlocksManager
+    │       │       TimeObj
+    │       │
+    │       └───helper
+    │               DateTimeInterval
+    │               TimeStatistics
+    │
+    ├───persons
+    │       Administrator
+    │       Assembler *
+    │       Client (A)
+    │       Draftsman *
+    │       Driver
+    │       Employee (A)
+    │       LegalPerson
+    │       Person (A)
+    │       PhysicalPerson
+    │       Secretary
+	│
+	├───util
+	│       ReportGenerator
+	│       Util
+    │
+	├───view
+	│
+    └───visit
+            Project
+            Vehicle
+            Visit
 	
+	
+	(E) - Exception
+	(I) - Interface
+	(A) - Abstract
+	(M) - Main
