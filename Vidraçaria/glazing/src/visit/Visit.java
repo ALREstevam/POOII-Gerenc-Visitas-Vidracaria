@@ -1,11 +1,12 @@
 package visit;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import persons.Driver;
 import persons.Client;
 
-public class Visit {
+public class Visit implements Serializable, Cloneable{
 
     private Date start;
     private Date finish;
@@ -100,5 +101,11 @@ public class Visit {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    @Override
+    public Visit clone(){
+        Visit vis = new Visit(start.clone(), finish.clone(), name, visitor.clone(), client.clone(), vehicle.clone());
+        return vis;
     }
 }

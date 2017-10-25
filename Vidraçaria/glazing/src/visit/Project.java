@@ -2,17 +2,20 @@ package visit;
 
 import java.io.Serializable;
 import java.util.List;
+import persons.Client;
 
-public class Project implements Serializable{
+public class Project implements Serializable, Cloneable{
 
     private String title;
     private String description;
     private List<String> files;
+    private Client client;
 
-    public Project(String title, String description, List<String> files) {
+    public Project(String title, String description, List<String> files, Client client) {
         this.title = title;
         this.description = description;
         this.files = files;
+        this.client = client;
     }
 
     public String getTitle() {
@@ -38,6 +41,15 @@ public class Project implements Serializable{
     public void setFiles(List<String> files) {
         this.files = files;
     }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
    
+    
 
 }

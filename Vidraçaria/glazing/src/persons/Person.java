@@ -2,7 +2,7 @@ package persons;
 
 import java.io.Serializable;
 
-public abstract class Person implements Serializable{
+public abstract class Person implements Serializable, Cloneable{
 
 	private String name;
 	private String email;

@@ -1,20 +1,28 @@
 package control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import persons.Employee;
 import persons.Client;
 import visit.Visit;
 import visit.Vehicle;
 import visit.Project;
+import local.persistence.LocalPersistenceV2;
+import my.exceptions.FileCouldNotBeCreatetException;
+import my.exceptions.FileDoesNotExistException;
+import persons.Driver;
 
-public class Controller {
+public class Controller implements Serializable{
 
-    private final List<Client> clients;
-    private final List<Employee> employees;
-    private final List<Project> projects;
-    private final List<Vehicle> vehicles;
-    private final List<Visit> visits;
+    private List<Client> clients;
+    private List<Employee> employees;
+    private List<Project> projects;
+    private List<Vehicle> vehicles;
+    private List<Visit> visits;
     
 
     public Controller() {
@@ -24,6 +32,17 @@ public class Controller {
         this.vehicles = new ArrayList<>();
         this.visits = new ArrayList<>();
     }
+    
+    public Controller(Controller copy) {
+        this();
+        this.clients = copy.clients;
+        this.employees = copy.employees;
+        this.projects = copy.projects;
+        this.vehicles = copy.vehicles;
+        this.visits = copy.visits;
+    }
+    
+    
     
     /**
      * 
@@ -123,5 +142,77 @@ public class Controller {
      */
     public boolean remove(Visit visit){
         return this.visits.remove(visit);
-    }   
+    }  
+
+    public List<Client> getClients() {
+        List<Client> rsp = new ArrayList<>(this.clients.size());
+        Collections.copy(rsp, this.clients);
+        return rsp;
+    }
+
+    public List<Employee> getEmployees() {
+        //ArrayList <Integer> numbersCopy = new ArrayList<Integer>(numbers);
+        
+        ArrayList<Employee> rsp = new ArrayList<Employee>(this.employees.size());
+        //Collections.copy(rsp, this.employees);
+        
+        
+        return rsp;
+    }
+
+    public List<Project> getProjects() {
+        List<Project> rsp = new ArrayList<>(this.projects.size());
+        Collections.copy(rsp, this.projects);
+        return rsp;
+    }
+
+    public List<Vehicle> getVehicles() {
+        List<Vehicle> rsp = new ArrayList<>(this.vehicles.size());
+        Collections.copy(rsp, this.vehicles);
+        return rsp;
+    }
+
+    public List<Visit> getVisits() {
+        List<Visit> rsp = new ArrayList<>(this.visits.size());
+        Collections.copy(rsp, this.visits);
+        return rsp;
+    }
+    
+    public List<Driver> getDrivers(){
+        List<Driver> drivers = new ArrayList<>();
+        
+        for(Employee e : this.employees){
+            if(e instanceof Driver){
+                drivers.add((Driver) e);
+            }
+        }
+        
+        List<Driver> rsp = new ArrayList<>(drivers.size());
+        Collections.copy(rsp, drivers);
+        return rsp;
+    }
+    
+    public boolean persistIt() throws FileCouldNotBeCreatetException{
+        LocalPersistenceV2<Controller> pers = new LocalPersistenceV2<>();
+        return pers.persist(this, "__MainController__");
+    }
+    
+    public static Controller loadIt(){
+        LocalPersistenceV2<Controller> pers = new LocalPersistenceV2<>();
+        Controller aux;
+        try {
+            return pers.load(Controller.class, "__MainController__");//There is a file to be loaded and become a controller object
+        } catch (FileDoesNotExistException ex) {
+            Controller ctrl =  new Controller();//Thre is no file to be loaded, just load a empty controller
+            try {
+                pers.persist(ctrl, "__MainController__");
+            } catch (FileCouldNotBeCreatetException ex1) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex1);
+                System.exit(-1);
+            }
+            return ctrl;
+        }
+    }
+    
+    
 }

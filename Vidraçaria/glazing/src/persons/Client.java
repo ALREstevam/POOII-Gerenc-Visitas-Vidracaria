@@ -3,7 +3,7 @@ package persons;
 import java.io.Serializable;
 import visit.Visit;
 
-public abstract class Client extends Person implements Serializable{
+public abstract class Client extends Person implements Serializable, Cloneable{
 
     private String address;
         

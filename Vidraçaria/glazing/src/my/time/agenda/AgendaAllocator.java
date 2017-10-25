@@ -630,7 +630,10 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
         return this.freeBlocks.getClone();
     }
     
-    
+    /**
+     * Clones the object
+     * @return 
+     */
     public AgendaAllocator getClone(){
         try {
             return (AgendaAllocator<E>) this.clone();
@@ -640,6 +643,10 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
         }
     }
     
+    /**
+     * Clones the object
+     * @return 
+     */
     public List<TimeObj<E>> getTimeObjectClone(){
         List<TimeObj<E>> newList = new ArrayList<>();
         Collections.copy(newList, this.agendaList);

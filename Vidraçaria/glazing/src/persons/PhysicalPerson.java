@@ -2,7 +2,7 @@ package persons;
 
 import java.io.Serializable;
 
-public class PhysicalPerson extends Client implements Serializable{
+public class PhysicalPerson extends Client implements Serializable, Cloneable{
 
     private int cpf;
 

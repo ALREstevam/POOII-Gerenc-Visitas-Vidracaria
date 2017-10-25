@@ -15,6 +15,8 @@ import visit.Vehicle;
 import visit.Visit;
 import my.time.agenda.AgendaAllocator;
 import persons.Administrator;
+import persons.Driver;
+import view.jframes.MainJFrame;
 /**
  *
  * @author andre
@@ -24,8 +26,24 @@ public class Glazing {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        Administrator adm1 = new Administrator("Anyone", 0, 0, "Adamastor1", "e@mail.com", "EmptyStr");
+        
+        Controller ctrl = new Controller(Controller.loadIt());
+        
+        Driver employee = new Driver(2, 123, 125, "Josué", "josu@e.josue", "...");
+        ctrl.append(employee);
+        
+        System.out.println(ctrl);
+        System.out.println(ctrl.getDrivers());
+        System.out.println(ctrl.getEmployees());
+        
+        
+        
+        System.exit(0);
+        
+        MainJFrame iniframe = new MainJFrame(ctrl);
+        iniframe.setVisible(true);
+        
+       /* Administrator adm1 = new Administrator("Anyone", 0, 0, "Adamastor1", "e@mail.com", "EmptyStr");
         Administrator adm2 = new Administrator("Anyone", 0, 0, "Adamastor2", "e@mail.com", "EmptyStr");
         Administrator adm3 = new Administrator("Anyone", 0, 0, "Adamastor3", "e@mail.com", "EmptyStr");
         
@@ -58,6 +76,6 @@ public class Glazing {
         
         for(Administrator adm : admr){
             System.out.println(adm.getName());
-        }
+        }*/
     }
 }

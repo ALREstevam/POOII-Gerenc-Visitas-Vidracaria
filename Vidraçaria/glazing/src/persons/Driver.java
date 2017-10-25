@@ -5,7 +5,7 @@ import java.util.List;
 import my.time.agenda.AgendaAllocator;
 import visit.Vehicle;
 
-public class Driver extends Employee implements Serializable, my.time.Schedulable{
+public class Driver extends Employee implements Serializable, my.time.Schedulable, Cloneable{
     private List<AgendaAllocator<Employee>> agendas;
     private int driverLicenseType;
 
