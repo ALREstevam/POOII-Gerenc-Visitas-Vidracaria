@@ -6,7 +6,7 @@ import my.time.agenda.AgendaAllocator;
 import visit.Vehicle;
 import visit.Visit;
 
-public class Secretary extends Employee implements Serializable{
+public class Secretary extends Employee implements Serializable, Cloneable{
 
     public Secretary(int personalNumber, int registration, String name, String email, String contact) {
         super(personalNumber, registration, name, email, contact);
@@ -20,6 +20,11 @@ public class Secretary extends Employee implements Serializable{
         }
         
        
+    }
+
+    @Override
+    public String describe() {
+        return "SEC" + sep + this.getName() + sep + this.getEmail();
     }
 
 }

@@ -6,10 +6,16 @@
 package my.time;
 
 import java.util.List;
+import my.time.agenda.AgendaAllocator;
+import my.time.helper.NoWorkPattern;
 
 /**
  *
  * @author andre
+ * @param <E>
  */
 public interface Schedulable<E> {
+    public AgendaAllocator<E> getAgenda(int index);
+    public List<AgendaAllocator<E>> getAllAgendas();
+    public NoWorkPattern getNoWorkPattern();
 }

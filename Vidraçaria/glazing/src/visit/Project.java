@@ -3,8 +3,10 @@ package visit;
 import java.io.Serializable;
 import java.util.List;
 import persons.Client;
+import view.comboboxModel.Descriptible;
+import view.tableModel.Arrayable;
 
-public class Project implements Serializable, Cloneable{
+public class Project implements Serializable, Descriptible, Arrayable{
 
     private String title;
     private String description;
@@ -49,7 +51,14 @@ public class Project implements Serializable, Cloneable{
     public void setClient(Client client) {
         this.client = client;
     }
-   
-    
 
+    @Override
+    public String describe() {
+        return this.title + sep + this.client.getName() + sep + this.description;
+    }
+
+    @Override
+    public Object[] attributesToArray(String[] order) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

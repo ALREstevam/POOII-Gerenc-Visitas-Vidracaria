@@ -29,6 +29,7 @@ public class StandardAgendaGenerator {
      * Instantiate a new StandardAgendaGenerator
      * @param patt
      * @param beginDate 
+     * @param agendas 
      */
     public StandardAgendaGenerator(NoWorkPattern patt, LocalDateTime beginDate, int agendas) {
         this.noWorkPattern = patt;
@@ -44,11 +45,11 @@ public class StandardAgendaGenerator {
         List<AgendaAllocator<Visit>> bgLst = new ArrayList<>();
         
         for(int i = 0; i < agendas; i++){
-           /* AgendaAllocator<Visit> agd = new AgendaAllocator<Visit>(minutePerBloc, blocksPerAgenda, beginDate);
+            AgendaAllocator<Visit> agd = new AgendaAllocator<Visit>(minutePerBloc, blocksPerAgenda, beginDate);
         
             for(NoWorkElem elem : this.noWorkPattern.getPatterns()){
                 agd.setDoNotAllocateEveryNBlocks(minutePerBloc, elem.getSpan(), elem.getBlockAmount());
-            }*/
+            }
         }
         
         return bgLst;

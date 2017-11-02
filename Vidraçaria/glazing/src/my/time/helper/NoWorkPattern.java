@@ -7,6 +7,7 @@ package my.time.helper;
 
 import my.time.helper.NoWorkElem;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,9 +26,7 @@ public class NoWorkPattern {
     }
     
     public List<NoWorkElem> getPatterns(){
-        //ArrayList newArrayList = (ArrayList) oldArrayList.clone();
-        //return (List<NoWorkElem>) patterns.clone();
-        return this.patterns;
+        return Collections.unmodifiableList(this.patterns);
     }
     
     public boolean removePattern(int index){

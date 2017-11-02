@@ -1,9 +1,15 @@
 package control;
 
+import com.sun.javafx.UnmodifiableArrayList;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import persons.Employee;
@@ -18,19 +24,26 @@ import persons.Driver;
 
 public class Controller implements Serializable{
 
-    private List<Client> clients;
-    private List<Employee> employees;
-    private List<Project> projects;
-    private List<Vehicle> vehicles;
-    private List<Visit> visits;
+    private Map<String, Client> clients;
+    private Map<String, Employee> employees;
+    private Map<String, Project> projects;
+    private Map<String, Vehicle> vehicles;
+    private Map<String, Visit> visits;
     
+    
+    private transient final ControlHelper<Client> helpCli = new ControlHelper<>();
+    private transient final ControlHelper<Employee> helpEmp = new ControlHelper<>();
+    private transient final ControlHelper<Project> helpProj= new ControlHelper<>();
+    private transient final ControlHelper<Vehicle> hepVeh = new  ControlHelper<>();
+    private transient final ControlHelper<Visit> helpVis = new ControlHelper<>();
+
 
     public Controller() {
-        this.clients = new ArrayList<>();
-        this.employees = new ArrayList<>();
-        this.projects = new ArrayList<>();
-        this.vehicles = new ArrayList<>();
-        this.visits = new ArrayList<>();
+        this.clients = new TreeMap<>();
+        this.employees = new TreeMap<>();
+        this.projects = new TreeMap<>();
+        this.vehicles = new TreeMap<>();
+        this.visits = new TreeMap<>();
     }
     
     public Controller(Controller copy) {
@@ -42,8 +55,6 @@ public class Controller implements Serializable{
         this.visits = copy.visits;
     }
     
-    
-    
     /**
      * 
      * Adds the submitted object to the clients list 
@@ -51,7 +62,7 @@ public class Controller implements Serializable{
      * @see Client
      */
     public void append(Client client){
-        this.clients.add(client);
+        this.helpCli.insert(clients, client);
     }
     
     /**
@@ -61,7 +72,7 @@ public class Controller implements Serializable{
      * @see Employee
      */
     public void append(Employee employee){
-        this.employees.add(employee);
+        this.employees.put(employee.describe(),employee);
     }
     
     /**
@@ -71,7 +82,7 @@ public class Controller implements Serializable{
      * @see Project
      */
     public void append(Project project){
-        this.projects.add(project);
+        this.projects.put(project.describe(),project);
     }
     
     /**
@@ -81,7 +92,7 @@ public class Controller implements Serializable{
      * @see Vehicle
      */
     public void append(Vehicle vehicle){
-        this.vehicles.add(vehicle);
+        this.vehicles.put(vehicle.describe(), vehicle);
     }
     
     /**
@@ -91,7 +102,7 @@ public class Controller implements Serializable{
      * @see Visit
      */
     public void append(Visit visit){
-        this.visits.add(visit);
+        this.visits.put(visit.describe(),visit);
     }
     
     /**
@@ -101,7 +112,7 @@ public class Controller implements Serializable{
      * @see Client
      */
    public boolean remove(Client client){
-        return this.clients.remove(client);
+        return this.clients.remove(client.describe(),client);
     }
     
    /**
@@ -111,7 +122,7 @@ public class Controller implements Serializable{
      * @see Employee
      */
     public boolean remove(Employee employee){
-        return this.employees.remove(employee);
+         return this.employees.remove(employee.describe(), employee);
     }
     
     /**
@@ -121,7 +132,7 @@ public class Controller implements Serializable{
      * @see Project
      */
     public boolean remove(Project project){
-        return this.projects.remove(project);
+        return this.projects.remove(project.describe(), project);
     }
     
     /**
@@ -131,7 +142,7 @@ public class Controller implements Serializable{
      * @see Vehicle
      */
     public boolean remove(Vehicle vehicle){
-        return this.vehicles.remove(vehicle);
+        return this.vehicles.remove(vehicle.describe(), vehicle);
     }
     
     /**
@@ -141,62 +152,88 @@ public class Controller implements Serializable{
      * @see Visit
      */
     public boolean remove(Visit visit){
-        return this.visits.remove(visit);
+        return this.visits.remove(visit.describe(), visit);
     }  
 
-    public List<Client> getClients() {
-        List<Client> rsp = new ArrayList<>(this.clients.size());
-        Collections.copy(rsp, this.clients);
+    /**
+     * Returns a unmodifiableMap of clients
+     * @return 
+     * @see Client
+     */
+    public Map<String, Client> getClients() {
+        Map<String, Client> rsp = Collections.unmodifiableMap(this.clients);
         return rsp;
     }
 
-    public List<Employee> getEmployees() {
-        //ArrayList <Integer> numbersCopy = new ArrayList<Integer>(numbers);
-        
-        ArrayList<Employee> rsp = new ArrayList<Employee>(this.employees.size());
-        //Collections.copy(rsp, this.employees);
-        
-        
+    /**
+     * Returns a unmodifiableMap of
+     * @return 
+     */
+    public Map<String,Employee> getEmployees() {
+        Map<String,Employee> rsp = Collections.unmodifiableMap(this.employees);
         return rsp;
     }
 
-    public List<Project> getProjects() {
-        List<Project> rsp = new ArrayList<>(this.projects.size());
-        Collections.copy(rsp, this.projects);
+    /**
+     * Returns a unmodifiableMap of projects
+     * @return 
+     */
+    public Map<String,Project> getProjects() {
+        Map<String,Project> rsp = Collections.unmodifiableMap(this.projects);
         return rsp;
     }
 
-    public List<Vehicle> getVehicles() {
-        List<Vehicle> rsp = new ArrayList<>(this.vehicles.size());
-        Collections.copy(rsp, this.vehicles);
+    /**
+     * Returns a unmodifiableMap of vehicles
+     * @return 
+     */
+    public Map<String,Vehicle> getVehicles() {
+        Map<String,Vehicle> rsp = Collections.unmodifiableMap(this.vehicles);
         return rsp;
     }
 
-    public List<Visit> getVisits() {
-        List<Visit> rsp = new ArrayList<>(this.visits.size());
-        Collections.copy(rsp, this.visits);
+    /**
+     * Returns a unmodifiableMap of visits
+     * @return 
+     */
+    public Map<String,Visit> getVisits() {
+        Map<String,Visit> rsp = Collections.unmodifiableMap(this.visits);
         return rsp;
     }
     
-    public List<Driver> getDrivers(){
-        List<Driver> drivers = new ArrayList<>();
-        
-        for(Employee e : this.employees){
-            if(e instanceof Driver){
-                drivers.add((Driver) e);
-            }
+    /**
+     * Returns a unmodifiableMap of drivers
+     * @return 
+     */
+    public Map<String,Driver> getDrivers(){
+        Map<String,Driver> drivers = new TreeMap<>();
+       
+       
+        Iterator it = this.employees.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry pair = (Map.Entry)it.next();
+            drivers.put((String)pair.getKey(), (Driver)pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
         }
-        
-        List<Driver> rsp = new ArrayList<>(drivers.size());
-        Collections.copy(rsp, drivers);
+       
+        Map<String, Driver> rsp = Collections.unmodifiableMap(drivers);
         return rsp;
     }
     
+    /**
+     * Persists the controller using default configurations
+     * @return
+     * @throws FileCouldNotBeCreatetException 
+     */
     public boolean persistIt() throws FileCouldNotBeCreatetException{
         LocalPersistenceV2<Controller> pers = new LocalPersistenceV2<>();
         return pers.persist(this, "__MainController__");
     }
     
+    /**
+     * Loads the controller using default configurations
+     * @return 
+     */
     public static Controller loadIt(){
         LocalPersistenceV2<Controller> pers = new LocalPersistenceV2<>();
         Controller aux;
@@ -213,6 +250,4 @@ public class Controller implements Serializable{
             return ctrl;
         }
     }
-    
-    
 }

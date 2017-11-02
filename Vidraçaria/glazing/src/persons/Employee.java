@@ -1,9 +1,9 @@
 package persons;
 
 import java.io.Serializable;
-import visit.Visit;
+import view.comboboxModel.Descriptible;
 
-public abstract class Employee extends Person implements Serializable, Cloneable{
+public abstract class Employee extends Person implements Serializable, Descriptible{
 
 	private int personalNumber;
 	private int registration;

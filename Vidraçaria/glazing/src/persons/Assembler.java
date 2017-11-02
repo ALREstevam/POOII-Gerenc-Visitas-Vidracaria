@@ -13,8 +13,6 @@ public class Assembler extends Driver implements Serializable, Cloneable{
      *
      */
     public void changeVisitStatus(Visit visit /*, visit Status*/) {
-    
-        
         throw new java.lang.UnsupportedOperationException("Not supported yet.");
     }
 

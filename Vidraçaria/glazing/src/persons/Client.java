@@ -1,9 +1,10 @@
 package persons;
 
 import java.io.Serializable;
+import view.comboboxModel.Descriptible;
 import visit.Visit;
 
-public abstract class Client extends Person implements Serializable, Cloneable{
+public abstract class Client extends Person implements Serializable, Descriptible{
 
     private String address;
         
@@ -21,8 +22,8 @@ public abstract class Client extends Person implements Serializable, Cloneable{
         throw new java.lang.UnsupportedOperationException("Not supported yet.");
     }
 
-    
-        
-        
-
+    @Override
+    public String describe() {
+        return getName() + sep + getEmail();
+    }
 }

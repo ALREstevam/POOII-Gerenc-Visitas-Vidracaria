@@ -2,13 +2,13 @@ package persons;
 
 import java.io.Serializable;
 
-public class LegalPerson extends Client implements Serializable{
+public class LegalPerson extends Client implements Serializable, Cloneable{
 
     private int cnpj;
-    private int companyType;
-    private int conpanyDescription;
+    private String companyType;
+    private String conpanyDescription;
 
-    public LegalPerson(int cnpj, int companyType, int conpanyDescription, String address, String name, String email, String contact) {
+    public LegalPerson(int cnpj, String companyType, String conpanyDescription, String address, String name, String email, String contact) {
         super(address, name, email, contact);
         this.cnpj = cnpj;
         this.companyType = companyType;
@@ -23,20 +23,25 @@ public class LegalPerson extends Client implements Serializable{
         this.cnpj = cnpj;
     }
 
-    public int getCompanyType() {
+    public String getCompanyType() {
         return companyType;
     }
 
-    public void setCompanyType(int companyType) {
+    public void setCompanyType(String companyType) {
         this.companyType = companyType;
     }
 
-    public int getConpanyDescription() {
+    public String getConpanyDescription() {
         return conpanyDescription;
     }
 
-    public void setConpanyDescription(int conpanyDescription) {
+    public void setConpanyDescription(String conpanyDescription) {
         this.conpanyDescription = conpanyDescription;
+    }
+
+    @Override
+    public String describe() {
+        return this.getName() + sep + this.getEmail() + sep + this.cnpj;
     }
 
 }

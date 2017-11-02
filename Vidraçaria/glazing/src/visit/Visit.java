@@ -1,12 +1,15 @@
 package visit;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import persons.Driver;
 import persons.Client;
+import view.comboboxModel.Descriptible;
+import view.tableModel.Arrayable;
 
-public class Visit implements Serializable, Cloneable{
+public class Visit implements Serializable, Descriptible, Arrayable{
 
     private Date start;
     private Date finish;
@@ -102,10 +105,15 @@ public class Visit implements Serializable, Cloneable{
     public void setName(String name) {
         this.name = name;
     }
-    
+
     @Override
-    public Visit clone(){
-        Visit vis = new Visit(start.clone(), finish.clone(), name, visitor.clone(), client.clone(), vehicle.clone());
-        return vis;
+    public String describe() {
+        return this.name + sep + this.start + sep + this.finish + this.client.getName() + sep + this.project.getTitle() + sep + this.status;
+    }
+
+    @Override
+    public Object[] attributesToArray(String[] order) {
+        //Object[] rsp = Object[];
+        return null;
     }
 }

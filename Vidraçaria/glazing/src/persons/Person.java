@@ -1,8 +1,9 @@
 package persons;
 
 import java.io.Serializable;
+import view.comboboxModel.Descriptible;
 
-public abstract class Person implements Serializable, Cloneable{
+public abstract class Person implements Serializable, Descriptible{
 
 	private String name;
 	private String email;
