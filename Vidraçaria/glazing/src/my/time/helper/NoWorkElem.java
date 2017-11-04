@@ -11,11 +11,52 @@ package my.time.helper;
  */
 public class NoWorkElem {
     private int blockAmount;
-    private int span;
+    private int spanBetweenBlocks;
+    private int initialSpan;
+    
 
-    public NoWorkElem(int blockAmount, int span) {
+    public NoWorkElem(int blockAmount, int spanBetweenBlocks, int initialSpan) {
         this.blockAmount = blockAmount;
-        this.span = span;
+        this.spanBetweenBlocks = spanBetweenBlocks;
+        this.initialSpan = initialSpan;
+    }
+
+    public NoWorkElem(
+            int days, 
+            int hours, 
+            int minutes, 
+            int spanDays, 
+            int spanHours, 
+            int spanMinutes,
+            int initialSpanDays,
+            int initalSpanHours,
+            int initialSpanMinutes,
+            int minutesPerBlock
+    ) {
+        int totalMinutes = TimeConverter.minutesSum
+        (
+                TimeConverter.daysToMinutes(days), 
+                TimeConverter.hoursToMinutes(hours), 
+                minutes
+        );
+        
+        int totalSpanMinutes = TimeConverter.minutesSum
+        (
+                TimeConverter.daysToMinutes(spanDays), 
+                TimeConverter.hoursToMinutes(spanHours), 
+                spanMinutes
+        );
+        
+        int totalInitialSpanMinutes = TimeConverter.minutesSum
+        (
+                TimeConverter.daysToMinutes(initialSpanDays), 
+                TimeConverter.hoursToMinutes(initalSpanHours), 
+                initialSpanMinutes
+        );
+        
+        this.blockAmount = totalMinutes / minutesPerBlock;
+        this.spanBetweenBlocks = totalSpanMinutes / minutesPerBlock;
+        this.initialSpan = totalInitialSpanMinutes / minutesPerBlock;
     }
 
     public int getBlockAmount() {
@@ -26,12 +67,20 @@ public class NoWorkElem {
         this.blockAmount = blockAmount;
     }
 
-    public int getSpan() {
-        return span;
+    public int getSpanBetweenBlocks() {
+        return spanBetweenBlocks;
     }
 
-    public void setSpan(int span) {
-        this.span = span;
+    public void setSpanBetweenBlocks(int spanBetweenBlocks) {
+        this.spanBetweenBlocks = spanBetweenBlocks;
+    }
+
+    public int getInitialSpan() {
+        return initialSpan;
+    }
+
+    public void setInitialSpan(int initialSpan) {
+        this.initialSpan = initialSpan;
     }
     
     

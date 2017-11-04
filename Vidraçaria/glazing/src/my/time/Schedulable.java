@@ -15,7 +15,6 @@ import my.time.helper.NoWorkPattern;
  * @param <E>
  */
 public interface Schedulable<E> {
-    public AgendaAllocator<E> getAgenda(int index);
-    public List<AgendaAllocator<E>> getAllAgendas();
+    public AgendaAllocator<E> getAgenda();
     public NoWorkPattern getNoWorkPattern();
 }

@@ -48,7 +48,7 @@ public class StandardAgendaGenerator {
             AgendaAllocator<Visit> agd = new AgendaAllocator<Visit>(minutePerBloc, blocksPerAgenda, beginDate);
         
             for(NoWorkElem elem : this.noWorkPattern.getPatterns()){
-                agd.setDoNotAllocateEveryNBlocks(minutePerBloc, elem.getSpan(), elem.getBlockAmount());
+                agd.setDoNotAllocateEveryNBlocks(elem.getInitialSpan(), elem.getSpanBetweenBlocks(), elem.getBlockAmount());
             }
         }
         

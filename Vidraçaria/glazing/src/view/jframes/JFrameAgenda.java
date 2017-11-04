@@ -5,6 +5,8 @@
  */
 package view.jframes;
 
+import java.sql.Time;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,6 +18,9 @@ import java.util.TreeMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
+import javax.swing.text.DateFormatter;
+import my.time.agenda.AgendaAllocator;
+import my.time.helper.TimeConverter;
 import persons.Driver;
 import persons.Employee;
 import view.comboboxModel.GeneralComboboxModel;
@@ -85,6 +90,8 @@ public class JFrameAgenda extends javax.swing.JFrame {
         this.jListDrivers.setModel(dcModelDriver);
         
         
+        
+        this.jFormattedTextDate.setText(TimeConverter.toDateString(LocalDateTime.now()));
     }
 
     /**
@@ -115,9 +122,9 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jFormattedTextDate = new javax.swing.JFormattedTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jFormattedTextFieldTime = new javax.swing.JFormattedTextField();
         jButtonConfirmTime = new javax.swing.JButton();
+        jSpinnerHours1 = new javax.swing.JSpinner();
+        jLabel14 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -189,7 +196,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,41 +237,12 @@ public class JFrameAgenda extends javax.swing.JFrame {
 
         jLabel8.setText("Duração de");
 
-        jSpinnerHours.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinnerHoursStateChanged(evt);
-            }
-        });
-        jSpinnerHours.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jSpinnerHoursKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jSpinnerHoursKeyTyped(evt);
-            }
-        });
-
         jLabel9.setText("horas");
 
-        jLabel10.setText("Data");
+        jLabel10.setText("Data mínima");
 
         jFormattedTextDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         jFormattedTextDate.setText("01/01/2001");
-        jFormattedTextDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextDateActionPerformed(evt);
-            }
-        });
-
-        jLabel12.setText("Horário");
-
-        jFormattedTextFieldTime.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextFieldTime.setText("13:50");
-        jFormattedTextFieldTime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldTimeActionPerformed(evt);
-            }
-        });
 
         jButtonConfirmTime.setText("Confirmar");
         jButtonConfirmTime.addActionListener(new java.awt.event.ActionListener() {
@@ -272,6 +250,8 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 jButtonConfirmTimeActionPerformed(evt);
             }
         });
+
+        jLabel14.setText("minutos");
 
         javax.swing.GroupLayout jPanelDateChooseLayout = new javax.swing.GroupLayout(jPanelDateChoose);
         jPanelDateChoose.setLayout(jPanelDateChooseLayout);
@@ -281,25 +261,22 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelDateChooseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDateChooseLayout.createSequentialGroup()
-                        .addGroup(jPanelDateChooseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelDateChooseLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSpinnerHours, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel9))
-                            .addGroup(jPanelDateChooseLayout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 79, Short.MAX_VALUE))
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinnerHours, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinnerHours1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel14))
                     .addGroup(jPanelDateChooseLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFormattedTextDate, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonConfirmTime)))
-                .addContainerGap())
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         jPanelDateChooseLayout.setVerticalGroup(
             jPanelDateChooseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,17 +285,15 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addGroup(jPanelDateChooseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jSpinnerHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jSpinnerHours1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelDateChooseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jFormattedTextDate, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonConfirmTime))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelDateChooseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jFormattedTextFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPabel1Layout = new javax.swing.GroupLayout(jPabel1);
@@ -326,14 +301,14 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jPabel1Layout.setHorizontalGroup(
             jPabel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPabel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jPanelDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPabel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1))
             .addGroup(jPabel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPabel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jPanelDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPabel1Layout.setVerticalGroup(
             jPabel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,9 +317,9 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(45, 45, 45))
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -472,16 +447,16 @@ public class JFrameAgenda extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -491,26 +466,15 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jFormattedTextFieldTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldTimeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldTimeActionPerformed
-
-    private void jFormattedTextDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextDateActionPerformed
 
     private void jButtonAddVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddVehicleActionPerformed
         int index = this.jListVehicles.getSelectedIndex();
@@ -553,33 +517,16 @@ public class JFrameAgenda extends javax.swing.JFrame {
         this.jLabelProject.setText("Projeto: " + selectedProject.describe());
     }//GEN-LAST:event_jButtonAddProjectActionPerformed
 
-    private void jSpinnerHoursStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerHoursStateChanged
-        setHoursToJLabel(getHoursFromjSpinner());
-    }//GEN-LAST:event_jSpinnerHoursStateChanged
-
-    private void jSpinnerHoursKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinnerHoursKeyTyped
-        setHoursToJLabel(getHoursFromjSpinner());
-    }//GEN-LAST:event_jSpinnerHoursKeyTyped
-
-    private void jSpinnerHoursKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinnerHoursKeyPressed
-        setHoursToJLabel(getHoursFromjSpinner());
-    }//GEN-LAST:event_jSpinnerHoursKeyPressed
-
     private void jButtonConfirmTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmTimeActionPerformed
         String date = jFormattedTextDate.getText();
-        String time = jFormattedTextFieldTime.getText();
         
-        String concatTime = date + " " + time;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-
         try{
-            LocalDateTime dateTime = LocalDateTime.parse(concatTime, formatter);
-            
-            this.jLabeDate.setText("Data: " + concatTime);
-            
+            this.jLabeDate.setText("Data: " + TimeConverter.fromString(date, TimeConverter.dateTypes.date));
         }catch(RuntimeException e){
-            JOptionPane.showMessageDialog(this.jPanelDateChoose,"Algo errado com a data ou horário escolhidos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this.jPanelDateChoose,"Algo errado com a data escolhida.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButtonConfirmTimeActionPerformed
 
@@ -605,7 +552,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         return value <= 0 ? 0 : value;
     }
     
-    private void setHoursToJLabel(int hours){
+    private void setHoursToJLabel(int hours, int minutes){
         String compl = (hours == 1) ? "":"(s)";
         this.jLabelDuration.setText("Duração: " + hours + " hora"+compl);
     }
@@ -620,13 +567,12 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConfirmTime;
     private javax.swing.JButton jButtonValidate;
     private javax.swing.JFormattedTextField jFormattedTextDate;
-    private javax.swing.JFormattedTextField jFormattedTextFieldTime;
     private javax.swing.JLabel jLabeDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -651,24 +597,44 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSpinner jSpinnerHours;
+    private javax.swing.JSpinner jSpinnerHours1;
     // End of variables declaration//GEN-END:variables
 
-    private class testTimeAllocation extends SwingWorker<Void, Void>{
+    private class testTimeAllocation extends SwingWorker<LocalDateTime, Void>{
             
         private List<Driver> selectedDrivers;
         private Vehicle selectedVehicle;
         private LocalDateTime date;
         private int duration;
-        
+        public int rsp;
+        public LocalDateTime rspldt;
+
+        public testTimeAllocation(List<Driver> selectedDrivers, Vehicle selectedVehicle, LocalDateTime date, int duration) {
+            this.selectedDrivers = selectedDrivers;
+            this.selectedVehicle = selectedVehicle;
+            this.date = date;
+            this.duration = duration;
+        }
         
         @Override
-        protected Void doInBackground() throws Exception {
-            
+        protected LocalDateTime doInBackground() throws Exception {
+           List<AgendaAllocator> agendas = new ArrayList<>();
+           agendas.add(selectedVehicle.getAgenda());
+           for(Driver drv : selectedDrivers){
+               agendas.add(drv.getAgenda());
+           }
+           AgendaAllocator sum = AgendaAllocator.sum((AgendaAllocator[]) agendas.toArray());
+           Duration dur = Duration.between(sum.getBeginDate(), date);
+           int block = (int) (dur.toMinutes() / sum.minPerBlock);
+           int fit = sum.findWorstFit(duration / sum.minPerBlock, block, sum.maxPosition());
+           rsp = fit;
+           rspldt = TimeConverter.add(fit * sum.minPerBlock, sum.getBeginDate());
+           
+           return rspldt;
         }
         
         @Override
         public void done(){
-            
         }
     }
 

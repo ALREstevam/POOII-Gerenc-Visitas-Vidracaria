@@ -24,13 +24,13 @@ import my.exceptions.InvalidFileNameStringException;
  * @author andre
  * @param <E>
  */
-public class LocalPersistenceV2<E extends Serializable> implements ObjectKeeper<E>{
-    private static final Logger LOG = Logger.getLogger(LocalPersistenceV2.class.getName());
-    
+public class nLocalPersistence<E extends Serializable> implements ObjectKeeper<E>{
+    private static final Logger LOG = Logger.getLogger(nLocalPersistence.class.getName());
+    private Object lock = new Object();
     /**
      * Constructor of the class
      */
-    public LocalPersistenceV2() {
+    public nLocalPersistence() {
         LOG.setLevel(Level.INFO);
     }
 
@@ -92,7 +92,11 @@ public class LocalPersistenceV2<E extends Serializable> implements ObjectKeeper<
     private boolean serialize(E elem, Path serializedFile) throws FileCouldNotBeCreatetException{
         try {
             ObjectOutputStream os = new ObjectOutputStream(Files.newOutputStream(serializedFile));
-            os.writeObject(elem);
+            
+            synchronized(lock){
+                os.writeObject(elem);
+            }
+           
             return true;
         } catch (IOException ex) {
             LOG.log(Level.SEVERE, "persist ", ex);

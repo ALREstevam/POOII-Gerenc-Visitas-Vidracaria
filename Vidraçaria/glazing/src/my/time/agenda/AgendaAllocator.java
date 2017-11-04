@@ -18,7 +18,7 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
     public enum allocationStrategy {
         BEST_FIT, WORST_FIT
     }
-    private final int minutesPerBlock;
+    public final int minPerBlock;
     private List<TimeObj<E>> agendaList;
     private FreeBlocksManager<E> freeBlocks;
     private LocalDateTime beginDate;
@@ -36,7 +36,7 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
      */
     public AgendaAllocator(int minutesPerBlock, int amountOfBlocks, LocalDateTime beginDate) {
         this.beginDate = beginDate;
-        this.minutesPerBlock = minutesPerBlock;
+        this.minPerBlock = minutesPerBlock;
         this.agendaList = new ArrayList<>(amountOfBlocks);
         this.freeBlocks = new FreeBlocksManager<E>(amountOfBlocks);
 
@@ -54,7 +54,7 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
      */
     public AgendaAllocator(int minutesPerBlock, List<TimeObj<E>> insertList, LocalDateTime beginDate) {
         
-        this.minutesPerBlock = minutesPerBlock;
+        this.minPerBlock = minutesPerBlock;
         this.beginDate = beginDate;
         this.agendaList = new ArrayList<>(insertList.size());
         this.freeBlocks = new FreeBlocksManager<E>(insertList.size());
@@ -71,15 +71,15 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
         LocalDateTime iterDate = this.beginDate;
         
         for (int i = 0; i < amountOfBlocks; i++) {
-            LocalDateTime nextDate = iterDate.plusMinutes(minutesPerBlock);
+            LocalDateTime nextDate = iterDate.plusMinutes(minPerBlock);
             
             boolean isConsumed = false;
             if(iterDate.isBefore(LocalDateTime.now())){
                 isConsumed = true;
             }
             
-            agendaList.add(i, new TimeObj<>(iterDate, iterDate.plusMinutes(minutesPerBlock), TimeObj.timeStatus.NOT_ALLOCATED, isConsumed));
-            iterDate = iterDate.plusMinutes(minutesPerBlock);
+            agendaList.add(i, new TimeObj<>(iterDate, iterDate.plusMinutes(minPerBlock), TimeObj.timeStatus.NOT_ALLOCATED, isConsumed));
+            iterDate = iterDate.plusMinutes(minPerBlock);
         }
         freeBlocks.generateFreeBlocksList(this.agendaList);
     }
@@ -94,7 +94,7 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
         LocalDateTime iterDate = this.beginDate;
        
         for (int i = 0; i < values.size()-1; i++) {
-            LocalDateTime nextDate = iterDate.plusMinutes(minutesPerBlock);
+            LocalDateTime nextDate = iterDate.plusMinutes(minPerBlock);
             
             boolean isConsumed = false;
             if(iterDate.isBefore(LocalDateTime.now())){
@@ -103,13 +103,13 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
             this.agendaList.add(i, 
                     new TimeObj<>(
                             iterDate, 
-                            iterDate.plusMinutes(minutesPerBlock), 
+                            iterDate.plusMinutes(minPerBlock), 
                             values.get(i).getStatus(),
                             values.get(i).getTask(), 
                             isConsumed
                     )
             );
-            iterDate = iterDate.plusMinutes(minutesPerBlock);
+            iterDate = iterDate.plusMinutes(minPerBlock);
         }
         freeBlocks.generateFreeBlocksList(this.agendaList);
     }
@@ -131,11 +131,11 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
             throw new NotAllowedValueException();
         }
         
-        int lastTime = agendas[0].minutesPerBlock;
+        int lastTime = agendas[0].minPerBlock;
         LocalDateTime dt = agendas[0].beginDate;
         
         for(AgendaAllocator elem : agendas){
-            if(elem.minutesPerBlock != lastTime || !elem.beginDate.equals(dt)){
+            if(elem.minPerBlock != lastTime || !elem.beginDate.equals(dt)){
                 throw new NotAllowedValueException();
             }
         }
@@ -215,7 +215,7 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
      * element represents {@code this.blockSizeInMinutes} minutes.
      */
     public int minutesToBlocks(int minutes){
-        return (int)Math.ceil( minutes/this.minutesPerBlock );
+        return (int)Math.ceil(minutes/this.minPerBlock );
     }
 
     /**
@@ -652,4 +652,13 @@ public class AgendaAllocator<E> implements Serializable, Cloneable{
         Collections.copy(newList, this.agendaList);
         return (List<TimeObj<E>> )newList;
     }
+    
+    public int getMinutesPerBlock() {
+        return minPerBlock;
+    }
+
+    public LocalDateTime getBeginDate() {
+        return beginDate;
+    }
+    
 }

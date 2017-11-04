@@ -36,4 +36,15 @@ public class NoWorkPattern {
         }
         return false;
     }
+    
+    static public NoWorkPattern getDefault(int minPerBlock){
+        NoWorkPattern defnwp = new NoWorkPattern();
+        /*
+        defnwp.appendCondition(new NoWorkElem(0, 2, 0, 1, 0, 0, 0, 12, 0, 10));
+        defnwp.appendCondition(new NoWorkElem(0, 12, 0, 0, 6, 0, 0, 0, 0, 10));
+        */
+        defnwp.appendCondition(new NoWorkElem(10, 10, 10));
+        return defnwp;
+    }
+    
 }

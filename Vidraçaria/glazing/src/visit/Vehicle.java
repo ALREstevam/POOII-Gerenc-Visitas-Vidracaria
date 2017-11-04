@@ -7,7 +7,7 @@ import my.time.helper.NoWorkPattern;
 
 public class Vehicle implements Serializable, my.time.Schedulable, view.comboboxModel.Descriptible, view.tableModel.Arrayable {
 
-    private NoWorkPattern myNoWorkPattern;
+    
 
     public enum licenseTypes {
         A, B, C, D
@@ -17,7 +17,8 @@ public class Vehicle implements Serializable, my.time.Schedulable, view.combobox
     private int type;
     private String registration;
     private String info;
-    private List<AgendaAllocator<Vehicle>> agendas;
+    private AgendaAllocator<Vehicle> agenda;
+    private NoWorkPattern myNoWorkPattern;
 
     /**
      * Instantiates a new vechicle
@@ -35,12 +36,8 @@ public class Vehicle implements Serializable, my.time.Schedulable, view.combobox
         this.info = info;
     }
 
-    public List<AgendaAllocator<Vehicle>> getAgenda() {
-        return agendas;
-    }
-
-    public void setAgenda(List<AgendaAllocator<Vehicle>> agenda) {
-        this.agendas = agenda;
+    public void setAgenda(AgendaAllocator<Vehicle> agenda) {
+        this.agenda = agenda;
     }
 
     public int getLicenseNeeded() {
@@ -133,13 +130,8 @@ public class Vehicle implements Serializable, my.time.Schedulable, view.combobox
     }
 
     @Override
-    public AgendaAllocator getAgenda(int index) {
-        return this.agendas.get(index);
-    }
-
-    @Override
-    public List getAllAgendas() {
-        return this.agendas;
+    public AgendaAllocator getAgenda() {
+        return this.agenda;
     }
 
     @Override

@@ -9,7 +9,7 @@ import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
 
 public class Driver extends Employee implements Serializable, my.time.Schedulable, Descriptible, Arrayable{
-    private List<AgendaAllocator<Employee>> agendas;
+    private AgendaAllocator<Employee> agenda;
     private NoWorkPattern myNoWorkPattern;
     private int driverLicenseType;
     
@@ -27,26 +27,18 @@ public class Driver extends Employee implements Serializable, my.time.Schedulabl
     public void setDriverLicenseType(Vehicle.licenseTypes license) {
         switch (license) {
             case A:
-                this.driverLicenseType = 1;
+                this.setDriverLicenseType(1);
                 break;
             case B:
-                this.driverLicenseType = 2;
+                this.setDriverLicenseType(2);
                 break;
             case C:
-                this.driverLicenseType = 3;
+                this.setDriverLicenseType(3);
                 break;
             case D:
-                this.driverLicenseType = 4;
+                this.setDriverLicenseType(4);
                 break;
         }
-    }
-
-    public List<AgendaAllocator<Employee>> getAgendas() {
-        return agendas;
-    }
-
-    public void setAgendas(List<AgendaAllocator<Employee>> agendas) {
-        this.agendas = agendas;
     }
 
     @Override
@@ -65,22 +57,40 @@ public class Driver extends Employee implements Serializable, my.time.Schedulabl
     }
 
     @Override
-    public AgendaAllocator getAgenda(int index) {
-            return this.agendas.get(index);
-    }
-
-    @Override
-    public List getAllAgendas() {
-        return this.agendas;
-    }
-
-    @Override
     public NoWorkPattern getNoWorkPattern() {
-        return this.myNoWorkPattern;
+        return this.getMyNoWorkPattern();
     }
 
     public void setMyNoWorkPattern(NoWorkPattern myNoWorkPattern) {
         this.myNoWorkPattern = myNoWorkPattern;
     }
+
+    @Override
+    public AgendaAllocator getAgenda() {
+        return this.agenda;
+    }
+
+    /**
+     * @param agenda the agenda to set
+     */
+    public void setAgenda(AgendaAllocator<Employee> agenda) {
+        this.agenda = agenda;
+    }
+
+    /**
+     * @return the myNoWorkPattern
+     */
+    public NoWorkPattern getMyNoWorkPattern() {
+        return myNoWorkPattern;
+    }
+
+    /**
+     * @param driverLicenseType the driverLicenseType to set
+     */
+    public void setDriverLicenseType(int driverLicenseType) {
+        this.driverLicenseType = driverLicenseType;
+    }
+    
+    
     
 }

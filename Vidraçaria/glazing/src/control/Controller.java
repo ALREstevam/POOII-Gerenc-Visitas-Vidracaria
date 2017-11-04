@@ -17,7 +17,7 @@ import persons.Client;
 import visit.Visit;
 import visit.Vehicle;
 import visit.Project;
-import local.persistence.LocalPersistenceV2;
+import local.persistence.nLocalPersistence;
 import my.exceptions.FileCouldNotBeCreatetException;
 import my.exceptions.FileDoesNotExistException;
 import persons.Driver;
@@ -226,7 +226,7 @@ public class Controller implements Serializable{
      * @throws FileCouldNotBeCreatetException 
      */
     public boolean persistIt() throws FileCouldNotBeCreatetException{
-        LocalPersistenceV2<Controller> pers = new LocalPersistenceV2<>();
+        nLocalPersistence<Controller> pers = new nLocalPersistence<>();
         return pers.persist(this, "__MainController__");
     }
     
@@ -235,7 +235,7 @@ public class Controller implements Serializable{
      * @return 
      */
     public static Controller loadIt(){
-        LocalPersistenceV2<Controller> pers = new LocalPersistenceV2<>();
+        nLocalPersistence<Controller> pers = new nLocalPersistence<>();
         Controller aux;
         try {
             return pers.load(Controller.class, "__MainController__");//There is a file to be loaded and become a controller object
