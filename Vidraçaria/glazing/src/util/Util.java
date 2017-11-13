@@ -8,7 +8,6 @@ import java.time.Month;
 import java.time.temporal.Temporal;
 import java.time.temporal.ChronoUnit;
 import javafx.util.converter.LocalDateTimeStringConverter;
-import my.time.helper.DateTimeInterval;
 
 public class Util {
 
@@ -24,20 +23,10 @@ public class Util {
                 }
                 return false;
 	}
-
-	public DateTimeInterval calcutateTotalTimeOfVisit(LocalDateTime reference, int... minutes) {
-            //DateTimeInterval dtrsp = new DateTimeInterval(reference, reference)
-            
-            int sum = 0;
-            
-            for(int value : minutes){
-                sum += value;
-            }
-            
-            //LocalDateTime aDateTime = LocalDateTime.of(reference.get);
-            return null;
-
-            
+        
+        
+        public static String portugueesePlurarize(int amount, String str){
+            return (amount == 1)?str:str+"s";
         }
 
 }

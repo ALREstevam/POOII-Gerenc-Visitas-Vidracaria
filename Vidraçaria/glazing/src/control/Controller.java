@@ -24,20 +24,26 @@ import persons.Driver;
 
 public class Controller implements Serializable{
 
+    //Maps
     private Map<String, Client> clients;
     private Map<String, Employee> employees;
     private Map<String, Project> projects;
     private Map<String, Vehicle> vehicles;
     private Map<String, Visit> visits;
     
-    
+    //Control Helpers
     private transient final ControlHelper<Client> helpCli = new ControlHelper<>();
     private transient final ControlHelper<Employee> helpEmp = new ControlHelper<>();
     private transient final ControlHelper<Project> helpProj= new ControlHelper<>();
-    private transient final ControlHelper<Vehicle> hepVeh = new  ControlHelper<>();
+    private transient final ControlHelper<Vehicle> helpVeh = new  ControlHelper<>();
     private transient final ControlHelper<Visit> helpVis = new ControlHelper<>();
+    
+    private long universalId;
 
 
+    /**
+     * Instantiates a new controller
+     */
     public Controller() {
         this.clients = new TreeMap<>();
         this.employees = new TreeMap<>();
@@ -46,6 +52,10 @@ public class Controller implements Serializable{
         this.visits = new TreeMap<>();
     }
     
+    /**
+     * Instantiates a new controller copying the parameters from other one
+     * @param copy 
+     */
     public Controller(Controller copy) {
         this();
         this.clients = copy.clients;
@@ -93,6 +103,7 @@ public class Controller implements Serializable{
      */
     public void append(Vehicle vehicle){
         this.vehicles.put(vehicle.describe(), vehicle);
+        this.universalId++;
     }
     
     /**
@@ -103,6 +114,7 @@ public class Controller implements Serializable{
      */
     public void append(Visit visit){
         this.visits.put(visit.describe(),visit);
+        this.universalId++;
     }
     
     /**
@@ -220,6 +232,58 @@ public class Controller implements Serializable{
         return rsp;
     }
     
+    
+    /**
+     * Updates a Client using the old one's description
+     * @param newCli
+     * @param oldCliDescription
+     * @return 
+     */
+    public boolean update(Client newCli, String oldCliDescription){
+        return helpCli.update(this.clients, oldCliDescription, newCli);
+    }
+    
+    /**
+     * Updates a employee using the old one's description
+     * @param newEmp
+     * @param oldEmpDescription
+     * @return 
+     */
+    public boolean update(Employee newEmp, String oldEmpDescription){
+        return helpEmp.update(this.employees, oldEmpDescription, newEmp);
+    }
+    
+    /**
+     * Updates a Project using the old one's description
+     * @param newProj
+     * @param oldProjDescription
+     * @return 
+     */
+    public boolean update(Project newProj, String oldProjDescription){
+        return helpProj.update(this.projects, oldProjDescription, newProj);
+    }
+    
+    /**
+     * Updates a Vehicle using the old one's description
+     * @param newVeh
+     * @param oldVehDescription
+     * @return 
+     */
+    public boolean update(Vehicle newVeh, String oldVehDescription){
+        return helpVeh.update(this.vehicles, oldVehDescription, newVeh);
+    }
+    
+    /**
+     * Updates a Visit using the old one's description
+     * @param newVis
+     * @param oldVisDescription
+     * @return 
+     */
+    public boolean update(Visit newVis, String oldVisDescription){
+        return helpVis.update(this.visits, oldVisDescription, newVis);
+    }
+    
+    /*===================================================================*/
     /**
      * Persists the controller using default configurations
      * @return

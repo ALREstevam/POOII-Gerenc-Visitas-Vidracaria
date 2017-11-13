@@ -5,28 +5,23 @@
  */
 package view.jframes;
 
-import java.sql.Time;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
-import javax.swing.text.DateFormatter;
-import my.time.agenda.AgendaAllocator;
-import my.time.helper.TimeConverter;
+import agenda.neow.agenda.Agenda;
 import persons.Driver;
-import persons.Employee;
 import view.comboboxModel.GeneralComboboxModel;
-import view.comboboxModel.PersonalComboboxModel;
 import visit.Project;
 import visit.Vehicle;
+import visit.Visit;
+import agenda.neow.util.TimeUtil;
 
 /**
  *
@@ -37,6 +32,15 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private Vehicle selectedVehicle;
     private Project selectedProject;
     private Map<String, Driver> selectedDrivers;
+    private Visit visit;
+    private LocalDate dateChoosen;
+    private int hours = 0;
+    private int minutes = 0;
+    
+    private boolean projectValid = false;
+    private boolean vehicleValid = false;
+    private boolean driverValid = false;
+    private boolean timeValid = false;
     
     //GeneralComboboxModel
     private GeneralComboboxModel<Vehicle> gcModelVehicle;
@@ -50,8 +54,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private Map<String, Project> mpProjects;
     private List<Driver> lstDrivers;
     private Map<String, Driver> mpDrivers;
-    
-    
+   
     /**
      * 
      * @param drv
@@ -91,7 +94,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         
         
         
-        this.jFormattedTextDate.setText(TimeConverter.toDateString(LocalDateTime.now()));
+        this.jFormattedTextDate.setText(TimeUtil.toDateString(LocalDateTime.now()));
     }
 
     /**
@@ -123,7 +126,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jFormattedTextDate = new javax.swing.JFormattedTextField();
         jButtonConfirmTime = new javax.swing.JButton();
-        jSpinnerHours1 = new javax.swing.JSpinner();
+        jSpinnerMinutes = new javax.swing.JSpinner();
         jLabel14 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -267,7 +270,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinnerHours1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSpinnerMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14))
                     .addGroup(jPanelDateChooseLayout.createSequentialGroup()
@@ -286,7 +289,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jSpinnerHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jSpinnerHours1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelDateChooseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -495,6 +498,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         
         DefaultComboBoxModel dcModelSelectedVehicle = gcModelVehicle.getComboBoxModelUsingDescription(lst);
         this.jListSelectedVehicles.setModel(dcModelSelectedVehicle);
+        this.vehicleValid = true;
     }//GEN-LAST:event_jButtonAddVehicleActionPerformed
 
     private void jButtonAddDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddDriverActionPerformed
@@ -507,6 +511,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         this.jListSelectedDrivers.setModel(this.gcModelDriver.getComboBoxModelUsingDescription(new ArrayList<>(selectedDrivers.values())));
         this.lstDrivers.remove(selectedDrv);
         this.jListDrivers.setModel(new GeneralComboboxModel<Driver>().getComboBoxModelUsingDescription(lstDrivers));
+        this.driverValid = true;
     }//GEN-LAST:event_jButtonAddDriverActionPerformed
 
     private void jButtonAddProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddProjectActionPerformed
@@ -515,19 +520,40 @@ public class JFrameAgenda extends javax.swing.JFrame {
         }
         this.selectedProject = this.mpProjects.get(this.jListProject.getSelectedValue());
         this.jLabelProject.setText("Projeto: " + selectedProject.describe());
+        this.projectValid = true;
     }//GEN-LAST:event_jButtonAddProjectActionPerformed
 
     private void jButtonConfirmTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmTimeActionPerformed
         String date = jFormattedTextDate.getText();
-        
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String strHours;
+        String strMintues ;
         
         try{
-            this.jLabeDate.setText("Data: " + TimeConverter.fromString(date, TimeConverter.dateTypes.date));
-        }catch(RuntimeException e){
+            this.dateChoosen = TimeUtil.fromString(date);
+            
+            this.hours = (int) jSpinnerHours.getValue();
+            this.minutes = (int) jSpinnerMinutes.getValue();
+            
+            if(hours <= 0 && minutes <= 0){
+                this.hours = 0;
+                this.minutes = 0;
+                throw new Exception();
+            }else{
+               strHours = jSpinnerHours.getValue().toString();
+               strMintues = jSpinnerMinutes.getValue().toString(); 
+            }
+            
+            this.jLabeDate.setText("Data: " + date);
+            this.jLabelDuration.setText("Duração: " + strHours + " "+ util.Util.portugueesePlurarize(this.hours, "hora") +" e " + strMintues + " " + util.Util.portugueesePlurarize(this.minutes, "minuto"));
+            this.timeValid = true;
+        }catch(Exception e){
             JOptionPane.showMessageDialog(this.jPanelDateChoose,"Algo errado com a data escolhida.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
-            e.printStackTrace();
         }
+        finally{
+        }
+        
+        
+        
     }//GEN-LAST:event_jButtonConfirmTimeActionPerformed
 
     private void jButtonCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCleanActionPerformed
@@ -541,10 +567,23 @@ public class JFrameAgenda extends javax.swing.JFrame {
         this.lstDrivers.addAll(this.selectedDrivers.values());
         this.jListDrivers.setModel(gcModelDriver.getComboBoxModelUsingDescription(this.lstDrivers));
         
+        this.projectValid = false;
+        this.vehicleValid = false;
+        this.driverValid = false;
+        this.timeValid = false;
+    
     }//GEN-LAST:event_jButtonCleanActionPerformed
 
     private void jButtonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidateActionPerformed
-        // TODO add your handling code here:
+        if(!(this.projectValid && this.vehicleValid && this.driverValid && this.timeValid)){
+            System.out.println(!this.projectValid && this.vehicleValid && this.driverValid && this.timeValid);
+            JOptionPane.showMessageDialog(this.jButtonValidate,"Alguns dados não foram corretamente completados","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this.jButtonValidate,
+                    "Os dados foram validados.\nBuscando horário de alocação...",
+                    "Tentando alocar",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonValidateActionPerformed
 
     private Integer getHoursFromjSpinner(){
@@ -597,19 +636,19 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSpinner jSpinnerHours;
-    private javax.swing.JSpinner jSpinnerHours1;
+    private javax.swing.JSpinner jSpinnerMinutes;
     // End of variables declaration//GEN-END:variables
 
-    private class testTimeAllocation extends SwingWorker<LocalDateTime, Void>{
+    private class testTimeAllocation extends SwingWorker<SwingWorkerAnswer, Void>{
             
         private List<Driver> selectedDrivers;
         private Vehicle selectedVehicle;
-        private LocalDateTime date;
+        private LocalDate date;
         private int duration;
         public int rsp;
         public LocalDateTime rspldt;
 
-        public testTimeAllocation(List<Driver> selectedDrivers, Vehicle selectedVehicle, LocalDateTime date, int duration) {
+        public testTimeAllocation(List<Driver> selectedDrivers, Vehicle selectedVehicle, LocalDate date, int duration) {
             this.selectedDrivers = selectedDrivers;
             this.selectedVehicle = selectedVehicle;
             this.date = date;
@@ -617,8 +656,9 @@ public class JFrameAgenda extends javax.swing.JFrame {
         }
         
         @Override
-        protected LocalDateTime doInBackground() throws Exception {
-           List<AgendaAllocator> agendas = new ArrayList<>();
+        protected SwingWorkerAnswer doInBackground() throws Exception {
+            /*
+                       List<AgendaAllocator> agendas = new ArrayList<>();
            agendas.add(selectedVehicle.getAgenda());
            for(Driver drv : selectedDrivers){
                agendas.add(drv.getAgenda());
@@ -627,15 +667,31 @@ public class JFrameAgenda extends javax.swing.JFrame {
            Duration dur = Duration.between(sum.getBeginDate(), date);
            int block = (int) (dur.toMinutes() / sum.minPerBlock);
            int fit = sum.findWorstFit(duration / sum.minPerBlock, block, sum.maxPosition());
-           rsp = fit;
            rspldt = TimeConverter.add(fit * sum.minPerBlock, sum.getBeginDate());
            
-           return rspldt;
+           SwingWorkerAnswer rsp = new SwingWorkerAnswer(rspldt, fit, block);
+           return rsp;
+            */
+            
+            return null;
         }
         
         @Override
         public void done(){
         }
+    }
+    
+    private class SwingWorkerAnswer{
+        LocalDateTime canBeAllocatedTo;
+        Integer blockFit;
+        Integer blocks;
+
+        public SwingWorkerAnswer(LocalDateTime canBeAllocatedTo, Integer blockFit, Integer blocks) {
+            this.canBeAllocatedTo = canBeAllocatedTo;
+            this.blockFit = blockFit;
+            this.blocks = blocks;
+        }
+        
     }
 
 

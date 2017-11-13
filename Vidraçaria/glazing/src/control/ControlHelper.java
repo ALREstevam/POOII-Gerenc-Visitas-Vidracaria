@@ -33,4 +33,16 @@ public class ControlHelper<E extends Descriptible>{
         return rsp;
     }
     
+    public boolean update(Map m, String oldDescription, E newElem){
+        if(m.containsKey(oldDescription)){
+            m.remove(oldDescription);
+            m.put(newElem.describe(), newElem);
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean update(Map m, E oldElem, E newElem){
+        return this.update(m, oldElem.describe(), newElem);
+    }
 }

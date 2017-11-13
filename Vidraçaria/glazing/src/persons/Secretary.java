@@ -2,9 +2,9 @@ package persons;
 
 import java.io.Serializable;
 import java.util.List;
-import my.time.agenda.AgendaAllocator;
 import visit.Vehicle;
 import visit.Visit;
+import agenda.neow.agenda.Agenda;
 
 public class Secretary extends Employee implements Serializable, Cloneable{
 
@@ -13,13 +13,7 @@ public class Secretary extends Employee implements Serializable, Cloneable{
     }
 
     public void markVisit(List<Driver> drivers, List<Vehicle> vehicles){
-        List<AgendaAllocator> agds;
-        //AgendaAllocator.sum(agendas)
-        for(Driver drv : drivers){
 
-        }
-        
-       
     }
 
     @Override

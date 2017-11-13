@@ -1,22 +1,20 @@
 package persons;
 
 import java.io.Serializable;
-import java.util.List;
-import my.time.agenda.AgendaAllocator;
-import my.time.helper.NoWorkPattern;
+import agenda.neow.agenda.Agenda;
 import visit.Vehicle;
 import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
 
-public class Driver extends Employee implements Serializable, my.time.Schedulable, Descriptible, Arrayable{
-    private AgendaAllocator<Employee> agenda;
-    private NoWorkPattern myNoWorkPattern;
+public class Driver extends Employee implements Serializable, Descriptible, Arrayable{
+    private Agenda agd;
     private int driverLicenseType;
     
 
-    public Driver(int driverLicenseType, int personalNumber, int registration, String name, String email, String contact) {
+    public Driver(int driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(personalNumber, registration, name, email, contact);
         this.driverLicenseType = driverLicenseType;
+        this.agd = agd;
         //this.agenda = new Agenda(5000, 10);
     }
 
@@ -54,34 +52,6 @@ public class Driver extends Employee implements Serializable, my.time.Schedulabl
     @Override
     public String toString() {
         return this.describe();
-    }
-
-    @Override
-    public NoWorkPattern getNoWorkPattern() {
-        return this.getMyNoWorkPattern();
-    }
-
-    public void setMyNoWorkPattern(NoWorkPattern myNoWorkPattern) {
-        this.myNoWorkPattern = myNoWorkPattern;
-    }
-
-    @Override
-    public AgendaAllocator getAgenda() {
-        return this.agenda;
-    }
-
-    /**
-     * @param agenda the agenda to set
-     */
-    public void setAgenda(AgendaAllocator<Employee> agenda) {
-        this.agenda = agenda;
-    }
-
-    /**
-     * @return the myNoWorkPattern
-     */
-    public NoWorkPattern getMyNoWorkPattern() {
-        return myNoWorkPattern;
     }
 
     /**

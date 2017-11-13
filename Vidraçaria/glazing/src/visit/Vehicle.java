@@ -2,13 +2,9 @@ package visit;
 
 import java.io.Serializable;
 import java.util.List;
-import my.time.agenda.AgendaAllocator;
-import my.time.helper.NoWorkPattern;
+import agenda.neow.agenda.Agenda;
 
-public class Vehicle implements Serializable, my.time.Schedulable, view.comboboxModel.Descriptible, view.tableModel.Arrayable {
-
-    
-
+public class Vehicle implements Serializable, view.comboboxModel.Descriptible, view.tableModel.Arrayable {
     public enum licenseTypes {
         A, B, C, D
     }
@@ -17,8 +13,7 @@ public class Vehicle implements Serializable, my.time.Schedulable, view.combobox
     private int type;
     private String registration;
     private String info;
-    private AgendaAllocator<Vehicle> agenda;
-    private NoWorkPattern myNoWorkPattern;
+    private Agenda agd;
 
     /**
      * Instantiates a new vechicle
@@ -29,15 +24,11 @@ public class Vehicle implements Serializable, my.time.Schedulable, view.combobox
      * @param registration vehicle's plate in the Brazilian standard
      * @param info
      */
-    public Vehicle(int licenseNeeded, int type, String registration, String info) {
+    public Vehicle(int licenseNeeded, int type, String registration, String info, Agenda agd) {
         this.licenseNeeded = licenseNeeded;
         this.type = type;
         this.registration = registration;
         this.info = info;
-    }
-
-    public void setAgenda(AgendaAllocator<Vehicle> agenda) {
-        this.agenda = agenda;
     }
 
     public int getLicenseNeeded() {
@@ -125,21 +116,6 @@ public class Vehicle implements Serializable, my.time.Schedulable, view.combobox
             }
             rspCount++;
         }
-
         return rsp;
-    }
-
-    @Override
-    public AgendaAllocator getAgenda() {
-        return this.agenda;
-    }
-
-    @Override
-    public NoWorkPattern getNoWorkPattern() {
-        return this.myNoWorkPattern;
-    }
-
-    public void setMyNoWorkPattern(NoWorkPattern myNoWorkPattern) {
-        this.myNoWorkPattern = myNoWorkPattern;
     }
 }
