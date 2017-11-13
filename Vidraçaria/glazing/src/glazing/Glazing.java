@@ -43,8 +43,11 @@ public class Glazing {
         
         NoWorkPattern nwp = new NoWorkPattern();
         
+        
         nwp.appendPatternEveryDayWithFromTo(LocalTime.of(18, 0), LocalTime.of(6, 0));
         nwp.appendPatternEveryDayWithFromTo(LocalTime.of(0, 1), LocalTime.of(23, 59), WeekDays.WeekDaysEnum.SUNDAY);
+        
+        
         
         Agenda agd = new Agenda(nwp);
         

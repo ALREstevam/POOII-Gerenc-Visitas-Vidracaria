@@ -4,9 +4,17 @@
  * and open the template in the editor.
  */
 package view.jpanels;
+import control.Controller;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import view.tableModel.GeneralTableModel;
 import javax.swing.table.*;
-
+import view.tableModel.GeneralTableModel;
+import visit.Vehicle;
+import view.comboboxModel.GeneralComboboxModel;
 
 
 
@@ -15,16 +23,32 @@ import javax.swing.table.*;
  * @author andre
  */
 public class JPanelVehicle extends javax.swing.JPanel {
-
+    private Map<String, Vehicle> vehiclesMp;
+    private List<Vehicle> vehiclesLst;
+    private GeneralTableModel<Vehicle> vehTb;
+    private Controller ctrl;
+    
     /**
      * Creates new form JPanelVehicle
      */
-    public JPanelVehicle() {
+    public JPanelVehicle(Controller ctrl) {
+        this.ctrl = ctrl;
+        this.vehiclesMp = ctrl.getVehicles();
+        this.vehiclesLst = new ArrayList<>(this.vehiclesMp.values());
         
+        String[] columns = new String[4];
         
+        columns[0] = "info";
+        columns[1] = "tipo";
+        columns[2] = "placa";
+        columns[3] = "carteira";
         
+        this.vehTb =  new GeneralTableModel<Vehicle>(columns, vehiclesLst);
+       
         
         initComponents();
+        this.jTable1.setModel(vehTb);
+        
     }
 
     /**
@@ -55,15 +79,20 @@ public class JPanelVehicle extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        jTable1.setColumnSelectionAllowed(true);
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable1MousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setText("Criar e alterar");
@@ -162,6 +191,11 @@ public class JPanelVehicle extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jList1);
 
         jButton1.setText("Deletar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -225,6 +259,42 @@ public class JPanelVehicle extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
+        // TODO add your handling code here:
+        
+        int selected = this.jTable1.getSelectedRow();
+        Vehicle v = this.vehiclesLst.get(selected);
+        
+        if(v == null){
+            return;
+        }
+        
+        List<Vehicle> lstSelected = new ArrayList<>();
+        lstSelected.add(v);
+        
+        this.jList1.setModel(new GeneralComboboxModel<Vehicle>().getComboBoxModelUsingDescription(lstSelected));
+        
+    }//GEN-LAST:event_jTable1MousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        String description = this.jList1.getSelectedValue();
+        
+        if(description == null){
+            return;
+        }
+        
+        
+        Vehicle vehicleToDelete = this.vehiclesMp.get(description);
+        
+        if(vehicleToDelete == null){
+            return;
+        }
+        
+        this.ctrl.remove(vehicleToDelete);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

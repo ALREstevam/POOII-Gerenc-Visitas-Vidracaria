@@ -80,7 +80,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
         this.gcModelProject = new GeneralComboboxModel<>();
         this.gcModelDriver = new GeneralComboboxModel<>();
         
-        
         //Instatiate general 
         DefaultComboBoxModel dcModelVehicle = gcModelVehicle.getComboBoxModelUsingDescription(lstVehicles);
         DefaultComboBoxModel dcModelProject = gcModelProject.getComboBoxModelUsingDescription(lstProjects);
@@ -91,8 +90,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
         this.jListVehicles.setModel(dcModelVehicle);
         this.jListProject.setModel(dcModelProject);
         this.jListDrivers.setModel(dcModelDriver);
-        
-        
         
         this.jFormattedTextDate.setText(TimeUtil.toDateString(LocalDateTime.now()));
     }

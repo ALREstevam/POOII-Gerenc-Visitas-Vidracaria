@@ -168,7 +168,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
         JDialog childWindow = new JDialog();
-        childWindow.add(new JPanelVehicle());
+        childWindow.add(new JPanelVehicle(ctrl));
         childWindow.pack();
         childWindow.setModal(true);
         childWindow.setVisible(true);
