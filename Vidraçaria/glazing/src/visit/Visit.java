@@ -116,4 +116,9 @@ public class Visit implements Serializable, Descriptible, Arrayable{
         //Object[] rsp = Object[];
         return null;
     }
+
+    @Override
+    public void setValue(String variable, Object value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

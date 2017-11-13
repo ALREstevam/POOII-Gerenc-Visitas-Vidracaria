@@ -60,6 +60,11 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
     public void setDriverLicenseType(int driverLicenseType) {
         this.driverLicenseType = driverLicenseType;
     }
+
+    @Override
+    public void setValue(String variable, Object value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     
