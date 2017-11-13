@@ -5,6 +5,7 @@
  */
 package agenda.circular;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -18,7 +19,7 @@ import java.util.ListIterator;
  * @param <E> The object type that the list will hold
  * @see ArrayList
  */
-public class CircularList<E> implements List<E>, Iterable<E>{
+public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     private final List<E> innerList;
     
     /**
@@ -145,6 +146,8 @@ public class CircularList<E> implements List<E>, Iterable<E>{
     public E remove(int index) {
          return this.innerList.remove(this.circularPosToArrayPos(index));
     }
+    
+    
     
     @Override
     public int indexOf(Object o) {
