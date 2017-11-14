@@ -18,10 +18,7 @@ public class Util {
          * @return {@code true} if the driver has the needed license to drive the vehicle
          */
 	public boolean canDriveVehicle(Driver driver, Vehicle vehicle) {
-		if(driver.getDriverLicenseType() >= vehicle.getLicenseNeeded()){
-                    return true;
-                }
-                return false;
+		return false;
 	}
         
         

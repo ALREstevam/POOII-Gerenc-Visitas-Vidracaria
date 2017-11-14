@@ -61,4 +61,9 @@ public class Project implements Serializable, Descriptible, Arrayable{
     public Object[] attributesToArray(String[] order) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Object setValue(String variable, Object value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

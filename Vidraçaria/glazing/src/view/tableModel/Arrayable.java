@@ -17,4 +17,6 @@ public interface Arrayable {
      * @return 
      */
     public Object[] attributesToArray(String[] order);
+    public Object setValue(String variable, Object value);
+    
 }
