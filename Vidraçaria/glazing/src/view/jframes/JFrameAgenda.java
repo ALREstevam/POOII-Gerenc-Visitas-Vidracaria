@@ -16,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import agenda.neow.agenda.Agenda;
+import agenda.neow.agenda.TimeAnswer;
 import persons.Driver;
 import view.comboboxModel.GeneralComboboxModel;
 import visit.Project;
@@ -127,6 +128,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jLabelAllocatedTo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabelProject = new javax.swing.JLabel();
@@ -318,6 +320,8 @@ public class JFrameAgenda extends javax.swing.JFrame {
 
         jLabel13.setText("Status:");
 
+        jLabelAllocatedTo.setText("--");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -331,9 +335,12 @@ public class JFrameAgenda extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton6)
-                            .addComponent(jLabel11)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelAllocatedTo))
                             .addComponent(jLabel13))
-                        .addGap(0, 665, Short.MAX_VALUE))))
+                        .addGap(0, 621, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,7 +350,9 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabelAllocatedTo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6)
                 .addContainerGap(45, Short.MAX_VALUE))
@@ -525,7 +534,12 @@ public class JFrameAgenda extends javax.swing.JFrame {
                     "Os dados foram validados.\nBuscando horário de alocação...",
                     "Tentando alocar",
                     JOptionPane.INFORMATION_MESSAGE);
+            
+            TimeAllocation t = new TimeAllocation(new ArrayList<Driver>(this.selectedDrivers.values()), this.selectedVehicle, hours, minutes);
+            t.execute();
         }
+        
+        
     }//GEN-LAST:event_jButtonValidateActionPerformed
 
     private void jButtonConfirmTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmTimeActionPerformed
@@ -551,7 +565,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
         }
         finally{
         }
-
     }//GEN-LAST:event_jButtonConfirmTimeActionPerformed
 
     private Integer getHoursFromjSpinner(){
@@ -582,6 +595,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelAllocatedTo;
     private javax.swing.JLabel jLabelDuration;
     private javax.swing.JLabel jLabelProject;
     private javax.swing.JList<String> jListDrivers;
@@ -613,40 +627,25 @@ public class JFrameAgenda extends javax.swing.JFrame {
         public int rsp;
         public LocalDateTime rspldt;
 
-        public TimeAllocation(List<Driver> selectedDrivers, Vehicle selectedVehicle, LocalDate date, int duration) {
+        public TimeAllocation(List<Driver> selectedDrivers, Vehicle selectedVehicle, int hours, int minutes) {
             this.selectedDrivers = selectedDrivers;
             this.selectedVehicle = selectedVehicle;
-            this.date = date;
             this.duration = duration;
         }
         
         @Override
         protected SwingWorkerAnswer doInBackground() throws Exception {
-            /*
-                       List<AgendaAllocator> agendas = new ArrayList<>();
-           agendas.add(selectedVehicle.getAgenda());
-           for(Driver drv : selectedDrivers){
-               agendas.add(drv.getAgenda());
-           }
-           AgendaAllocator sum = AgendaAllocator.sum((AgendaAllocator[]) agendas.toArray());
-           Duration dur = Duration.between(sum.getBeginDate(), date);
-           int block = (int) (dur.toMinutes() / sum.minPerBlock);
-           int fit = sum.findWorstFit(duration / sum.minPerBlock, block, sum.maxPosition());
-           rspldt = TimeConverter.add(fit * sum.minPerBlock, sum.getBeginDate());
-           
-           SwingWorkerAnswer rsp = new SwingWorkerAnswer(rspldt, fit, block);
-           return rsp;
-            */
-            
             List<Agenda> agendas  = new ArrayList<>();
             agendas.add(selectedVehicle.getAgd());
             for(Driver drv : selectedDrivers){
                 agendas.add(drv.getAgd());
             }
             
+            int blocks = TimeUtil.blocksIn(Agenda.MIN_PER_BLOCK, TimeUtil.toMinutes(hours, minutes));
+            
             Agenda sumAgds = Agenda.sum((Agenda[])agendas.toArray());
-             
-          
+            TimeAnswer tma = sumAgds.whenIsAvaliable(blocks);
+            jLabelAllocatedTo.setText(TimeUtil.toCompleteString(tma.time));
             return null;
         }
         
@@ -667,8 +666,4 @@ public class JFrameAgenda extends javax.swing.JFrame {
         }
         
     }
-
-
-
-
 }
