@@ -27,8 +27,8 @@ public class TimeUtil {
     /**
      * Gives how many minutes there are in the given amount of hours
      *
-     * @param hours
-     * @return
+     * @param hours an int representing hours
+     * @return an int representing minutes
      */
     static public int hoursToMinutes(int hours) {
         return hours / 60;
@@ -37,8 +37,8 @@ public class TimeUtil {
     /**
      * Gives how many minutes there are in the given amount of days
      *
-     * @param days
-     * @return
+     * @param days an int representing days
+     * @return an int representing minutes
      */
     static public int daysToMinutes(int days) {
         return days / 24 / 60;
@@ -47,8 +47,8 @@ public class TimeUtil {
     /**
      * Sums minutes
      *
-     * @param minuteElem
-     * @return
+     * @param minuteElem an int (indicating minutes)
+     * @return an amount of minutes
      */
     static public int minutesSum(Integer... minuteElem) {
         int sum = 0;
@@ -60,9 +60,9 @@ public class TimeUtil {
     
     /**
      * Returns the difference of two dates in minutes
-     * @param endDate
-     * @param startDate
-     * @return 
+     * @param endDate a date
+     * @param startDate a date
+     * @return an long representing minutes
      */
     static public long differenceToMinutes(LocalDateTime endDate, LocalDateTime startDate){
         return Duration.between(startDate, endDate).toMinutes();
@@ -70,9 +70,9 @@ public class TimeUtil {
     
     /**
      * Returns the difference of two times in minutes
-     * @param startTime
-     * @param endTime
-     * @return 
+     * @param startTime a date
+     * @param endTime a date
+     * @return a date
      */
     static public LocalTime difference(LocalTime startTime, LocalTime endTime){
         int hours = 0;
@@ -87,9 +87,9 @@ public class TimeUtil {
     
     /**
      * Counts how many blocks a certain amount of time (in minutes) contains
-     * @param minutesPerBlock
-     * @param minutes
-     * @return 
+     * @param minutesPerBlock the amount of minutes in one block
+     * @param minutes a amount of minutes
+     * @return an int
      */
     static public int blocksIn(int minutesPerBlock, int minutes){
         return minutes / minutesPerBlock; 
@@ -108,7 +108,7 @@ public class TimeUtil {
      *
      * @param minutes minutes to add
      * @param beforeTime the original date
-     * @return
+     * @return a date
      */
     public static LocalDateTime add(int minutes, LocalDateTime beforeTime) {
         final long ONE_MINUTE_IN_MILLIS = 60000;//millisecs
@@ -121,8 +121,8 @@ public class TimeUtil {
     /**
      * Converts a LocalDate object to a Date object
      *
-     * @param localDate
-     * @return
+     * @param localDate a date
+     * @return a date
      */
     public static Date asDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
@@ -131,8 +131,8 @@ public class TimeUtil {
     /**
      * Converts a LocalDateTime object to an Date object
      *
-     * @param localDateTime
-     * @return
+     * @param localDateTime a date
+     * @return a date
      */
     public static Date asDate(LocalDateTime localDateTime) {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
@@ -140,9 +140,8 @@ public class TimeUtil {
 
     /**
      * Converts a Date object to an LocalDate object
-     *
-     * @param date
-     * @return
+     * @param date a date
+     * @return a date
      */
     public static LocalDate asLocalDate(Date date) {
         return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();

@@ -2,9 +2,9 @@ package persons;
 
 import java.io.Serializable;
 import agenda.neow.agenda.Agenda;
-import visit.Vehicle;
 import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
+import visit.Vehicle;
 
 public class Driver extends Employee implements Serializable, Descriptible, Arrayable{
     private Agenda agd;

@@ -18,7 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 public class GeneralComboboxModel<E extends Descriptible> {
     /**
      * Generates a DefaultComboboxModel using the toString() operation to do so
-     * @param elemList
+     * @param elemList a list of elements
      * @return  a ComboBoxMode
      */
     public DefaultComboBoxModel getComboBoxModelUsingToString(List<E> elemList){

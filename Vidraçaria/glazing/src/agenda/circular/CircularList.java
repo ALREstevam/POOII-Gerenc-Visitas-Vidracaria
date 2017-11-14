@@ -85,7 +85,7 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     
     /**
      * Obtain the value of the head
-     * @return 
+     * @return the value of the head
      */
     public int getHead(){
         return head;
@@ -95,7 +95,7 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     * Converts a position in the original list to the matching position in 
     * the circular list
     * @param arrayPos a array index
-    * @return 
+    * @return a position
     */
     public int arrayPosToCircularPos(int arrayPos){
         if(arrayPos < 0){
@@ -107,8 +107,8 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     /**
      * Converts a position in the circular list to the matching position in 
      * the original list
-     * @param circularPos
-     * @return 
+     * @param circularPos a position
+     * @return a position
      */
     public int circularPosToArrayPos(int circularPos){
         if(this.innerList.isEmpty()){
@@ -226,7 +226,7 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     
     /**
      * Returns a String that describes the list as it is in the original list
-     * @return 
+     * @return  a string representing the list
      */
     public String toString2() {
         String rsp = "";

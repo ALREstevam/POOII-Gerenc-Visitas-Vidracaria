@@ -68,7 +68,7 @@ public final class LocalPersistence<E extends Serializable>{
     /**
      * Persists the given elemnt
      * @param elem an object
-     * @throws my.exceptions.FileCouldNotBeCreatetException
+     * @throws my.exceptions.FileCouldNotBeCreatetException if the file could not be creared
      */
     public void persist(E elem) throws FileCouldNotBeCreatetException{
         try {
