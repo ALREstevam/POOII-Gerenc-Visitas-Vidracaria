@@ -404,7 +404,8 @@ public class JPanelDraftsman extends javax.swing.JPanel {
             String contact = this.jTextField3.getText();
             String  pnb = this.jFormattedTextField3.getText();
             String  registration = this.jFormattedTextField4.getText();
-            String licenseType = this.jTextField4.getText();
+            String licenseT = this.jTextField4.getText();
+            Draftsman.licenseTypes licenseType = Draftsman.licenseTypes.getFromName(licenseT);
             
 
             int nb = 0, reg = 0;
@@ -415,7 +416,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
             } catch (NumberFormatException e) {
                 System.out.println("Numero com formato errado!");
             }
-            int license = 0;
+           /* int license = 0;
             
             switch (licenseType) {
             case "A":
@@ -431,16 +432,16 @@ public class JPanelDraftsman extends javax.swing.JPanel {
                 license=4;
                 break;
         }
-
+*/
             if(name == null || email == null || contact == null || pnb == null || registration == null ||
-                licenseType.equals("")
+                licenseT.equals("")
             ){
                 throw new Exception();
             }
 
             NoWorkPattern nwp = new NoWorkPattern();
             Agenda agd = new Agenda(nwp);
-            Draftsman drf = new Draftsman(license, nb, reg, name, email, contact, agd);
+            Draftsman drf = new Draftsman(licenseType, nb, reg, name, email, contact, agd);
             ctrl.append(drf);
             this.updateTable();
         }catch(Exception e){
