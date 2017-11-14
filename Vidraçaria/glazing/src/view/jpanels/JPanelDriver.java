@@ -5,6 +5,8 @@
  */
 package view.jpanels;
 
+import agenda.neow.agenda.Agenda;
+import agenda.neow.nowork.NoWorkPattern;
 import control.Controller;
 import java.util.ArrayList;
 import java.util.List;
@@ -396,26 +398,51 @@ public class JPanelDriver extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         try{
-            String plate = this.jFormattedTextField1.getText();
-            String strVehicleLicense = this.jComboBoxLicense.getSelectedItem().toString();
-            String info = this.jTextPane1.getText();
-            String strVehicleType = this.jComboBoxType.getSelectedItem().toString();
-            Vehicle.licenseTypes licenseType = Vehicle.licenseTypes.getFromName(strVehicleLicense);
-            Vehicle.vehicleTypes vehicleType = Vehicle.vehicleTypes.getFromName(strVehicleType);
+            String name = this.jTextField1.getText();
+            String email = this.jTextField2.getText();
+            String contact = this.jTextField3.getText();
+            String pnumber = this.jFormattedTextField3.getText();
+            String registration = this.jFormattedTextField4.getText();
+            String licenseType = this.jTextField4.getText();
+            
 
-            if(vehicleType == null || licenseType == null || plate == null || strVehicleLicense == null || strVehicleType == null ||
-                plate.equals("") || strVehicleLicense.equals("") || strVehicleType.equals("")
-            ){
+            int nb = 0, reg = 0;
+            try {
+            nb = Integer.parseInt(pnumber); 
+            reg = Integer.parseInt(registration);
+        
+            } catch (NumberFormatException e) {
+                System.out.println("Numero com formato errado!");
+            }
+            int license = 0;
+            
+            switch (licenseType) {
+            case "A":
+                license=1;
+                break;
+            case "B":
+                license=2;
+                break;
+            case "C":
+                license=3;
+                break;
+            case "D":
+                license=4;
+                break;
+        }
+            
+            if(name == null || email == null || contact == null || pnumber == null || licenseType == null ||
+                registration.equals("")){
                 throw new Exception();
             }
 
             NoWorkPattern nwp = new NoWorkPattern();
             Agenda agd = new Agenda(nwp);
-            Vehicle veh = new Vehicle(licenseType, vehicleType, plate, info, agd);
-            ctrl.append(veh);
+            Driver dr = new Driver(license, nb, reg, name, email, contact, agd);
+            ctrl.append(dr);
             this.updateTable();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_jButton4ActionPerformed
