@@ -48,7 +48,7 @@ public class TimeBlock implements Serializable{
         
         /**
          * Gets the value of the current enum
-         * @return 
+         * @return a value
          */
         public int getNum(){
             return this.value;
@@ -56,7 +56,7 @@ public class TimeBlock implements Serializable{
         
         /**
          * Sums n enums, returning a enum representing the 
-         * @param other
+         * @param other enums
          * @return a enum marked as FREE if all enums are FREE. NOT_ALLOCATE if the most enums are NOT_ALLOCATE. ALLOCATED if the most enums are ALLOCATED
          */
         public static StatusEnum sum(StatusEnum... other){
@@ -88,9 +88,9 @@ public class TimeBlock implements Serializable{
 
     /**
      * Instantiates a time block setting all the attributes
-     * @param task
-     * @param status
-     * @param day 
+     * @param task a task
+     * @param status a status
+     * @param day a day
      */
     public TimeBlock(Visit task, StatusEnum status, WeekDays.WeekDaysEnum day) {
         this.task = task;
@@ -100,8 +100,8 @@ public class TimeBlock implements Serializable{
 
     /**
      * Instantiates a time block marking it as ALLOCATED
-     * @param task
-     * @param day 
+     * @param task a task
+     * @param day a day
      */
     public TimeBlock(Visit task, WeekDays.WeekDaysEnum day) {
         this.task = task;
@@ -111,7 +111,7 @@ public class TimeBlock implements Serializable{
     
     /**
      * Instantiates a time block marking it as FREE
-     * @param day 
+     * @param day a day
      */
     public TimeBlock(WeekDays.WeekDaysEnum day){
         this.task = null;
@@ -121,7 +121,7 @@ public class TimeBlock implements Serializable{
     
     /**
      * Gets the task
-     * @return 
+     * @return a Visit
      */
     public Visit getTask() {
         return task;
@@ -129,7 +129,7 @@ public class TimeBlock implements Serializable{
 
     /**
      * Sets the task
-     * @param task 
+     * @param task a Visit
      */
     public void setTask(Visit task) {
         this.task = task;
@@ -137,7 +137,7 @@ public class TimeBlock implements Serializable{
 
     /**
      * Gets the status
-     * @return 
+     * @return a Status
      */
     public StatusEnum getStatus() {
         return status;
@@ -145,7 +145,7 @@ public class TimeBlock implements Serializable{
 
     /**
      * Sets the status
-     * @param status 
+     * @param status a status
      */
     public void setStatus(StatusEnum status) {
         this.status = status;
@@ -153,7 +153,7 @@ public class TimeBlock implements Serializable{
 
     /**
      * Gets the weekday
-     * @return 
+     * @return a week day
      */
     public WeekDays.WeekDaysEnum getWeekDay() {
         return day;

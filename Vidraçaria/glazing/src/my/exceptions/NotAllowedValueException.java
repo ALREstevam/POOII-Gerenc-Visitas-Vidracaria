@@ -16,7 +16,7 @@ public class NotAllowedValueException extends IllegalArgumentException{
    
     /**
      * Returns the message of the exception
-     * @return 
+     * @return a message
      */
     @Override
     public String getMessage(){

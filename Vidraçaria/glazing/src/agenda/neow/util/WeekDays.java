@@ -41,7 +41,7 @@ public class WeekDays {
         
         /**
          * Returns true if the day is a weekend
-         * @return 
+         * @return  a boolean
          */
         public boolean isWeekend(){
             return this.weekend;
@@ -49,7 +49,7 @@ public class WeekDays {
         
         /**
          * Gets the number of the day
-         * @return 
+         * @return a weekday
          */
         public int getNum(){
             return this.num;
@@ -57,8 +57,8 @@ public class WeekDays {
         
         /**
          * Gets the nmber of the day from the given enum
-         * @param e
-         * @return 
+         * @param e a weekday
+         * @return  an int
          */
         public static int getNum(WeekDaysEnum e){
             return e.num;
@@ -66,8 +66,8 @@ public class WeekDays {
         
         /**
          * Returns true if the given enum is a weekend day
-         * @param e
-         * @return 
+         * @param e an weekday
+         * @return a boolean
          */
         public static boolean isWeekend(WeekDaysEnum e){
             return e.weekend;
@@ -75,7 +75,7 @@ public class WeekDays {
 
         /**
          * Gets the shorthand name for the day in english
-         * @return 
+         * @return a short name
          */
         public String getShortNameEn() {
             return shortNameEn;
@@ -83,7 +83,7 @@ public class WeekDays {
 
         /**
          * Gets the shorthand anme for de day in portugueese
-         * @return 
+         * @return a short name
          */
         public String getShortNamePt() {
             return shortNamePt;
@@ -101,7 +101,7 @@ public class WeekDays {
     
     /**
      * Returns a WeekDaysEnum object based on the given number
-     * @param num
+     * @param num a number
      * @return if a unknown numer was given
      */
     public static WeekDaysEnum FactoryWeekdays(int num){
@@ -115,7 +115,7 @@ public class WeekDays {
    
     /**
      * Returns a WeekDaysEnum object based on the given name (full name or shorthand in english or portugueese)
-     * @param name
+     * @param name the name
      * @return null if a unknown name was given
      */
     public static WeekDaysEnum FactoryWeekdays(String name){

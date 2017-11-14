@@ -71,7 +71,7 @@ public class NoWorkPattern implements AllocatorConsts, Serializable{
 
     /**
      * Gets the pattern set as a unmodifiableSet object
-     * @return 
+     * @return an set of patterns
      */
     public Set<NoWorkElement> getPatterns() {
         return Collections.unmodifiableSet(patterns);
@@ -87,7 +87,7 @@ public class NoWorkPattern implements AllocatorConsts, Serializable{
     /**
      * Merges n patterns
      * @param patterns a list of patterns to merge
-     * @return 
+     * @return a noworkpattern
      */
     public static NoWorkPattern merge(NoWorkPattern... patterns){
         NoWorkPattern rsp = new NoWorkPattern();

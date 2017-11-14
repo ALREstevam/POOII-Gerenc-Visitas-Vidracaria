@@ -55,9 +55,7 @@ public class PersonalComboboxModel<E extends Descriptible> extends AbstractListM
    
     /**
      * Generates a DefaultComboboxModel using the describe() operation to do so
-     * @param elemList
-     * @param separator a String that should be between two arguments
-     * @return 
+     * @param elemList a elem list
      */
     public void add(List<E> elemList){
         this.elemList = elemList;

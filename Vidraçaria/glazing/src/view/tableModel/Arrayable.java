@@ -14,7 +14,7 @@ public interface Arrayable {
      * Gets all arguments of a object as a Object array, the order of the arguments
      * into the array is specified by the array of Strings 'order'
      * @param order the order of the arguments into the Object array
-     * @return 
+     * @return a object array
      */
     public Object[] attributesToArray(String[] order);
     public Object setValue(String variable, Object value);

@@ -6,6 +6,8 @@ import agenda.neow.agenda.Agenda;
 
 public class Vehicle implements Serializable, view.comboboxModel.Descriptible, view.tableModel.Arrayable {
 
+   
+
     public enum licenseTypes {
         A, B, C, D;
 
@@ -41,11 +43,11 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
     /**
      * Instantiates a new vechicle
      *
-     * @param licenseNeeded the license that the person driving the vehicle must
-     * have to do so (in the Brazilian standard)
-     * @param type
-     * @param registration vehicle's plate in the Brazilian standard
-     * @param info
+     * @param licence the license that the person driving the vehicle must have to do so (in the Brazilian standard)
+     * @param vehType an type of vehicle
+     * @param registeation vehicle's plate in the Brazilian standard
+     * @param agd an agenda
+     * @param info an information field
      */
     public Vehicle(licenseTypes licence, vehicleTypes vehType, String registeation, String info, Agenda agd) {
         this.licence = licence;
@@ -62,7 +64,7 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
     /**
      * A string representing the vehicle's plate in the Brazilian standard
      *
-     * @return
+     * @return a registration
      */
     public String getRegistration() {
         return this.registration;
@@ -71,7 +73,7 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
     /**
      * A string representing the vehicle's plate in the Brazilian standard
      *
-     * @return
+     * @param registration a registration
      */
     public void setRegistration(String registration) {
         this.registration = registration;
@@ -139,4 +141,16 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
         return this;
     }
 
+     public licenseTypes getLicence() {
+        return licence;
+    }
+
+    public vehicleTypes getVehType() {
+        return vehType;
+    }
+
+    public Agenda getAgd() {
+        return agd;
+    }
+    
 }

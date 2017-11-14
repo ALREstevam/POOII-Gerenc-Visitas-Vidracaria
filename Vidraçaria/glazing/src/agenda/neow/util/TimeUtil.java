@@ -151,8 +151,8 @@ public class TimeUtil {
     /**
      * Converts a Date object to an LocalDateTime object
      *
-     * @param date
-     * @return
+     * @param date a date
+     * @return a string
      */
     public static LocalDateTime asLocalDateTime(Date date) {
         return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
@@ -160,8 +160,8 @@ public class TimeUtil {
 
     /**
      * Gets a LocalDateTime object and returns a String of it in the format "dd/MM/yyyy HH:mm"
-     * @param dt
-     * @return 
+     * @param dt a date
+     * @return a string
      */
     public static String toCompleteString(LocalDateTime dt) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -170,8 +170,8 @@ public class TimeUtil {
 
     /**
      * Gets a LocalDateTime object and returns a String of it in the format "dd/MM/yyyy"
-     * @param dt
-     * @return 
+     * @param dt a date
+     * @return a string
      */
     public static String toDateString(LocalDateTime dt) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -181,8 +181,8 @@ public class TimeUtil {
     
     /**
      * Gets a LocalDateTime object and returns a String of it in the format "HH:mm"
-     * @param dt
-     * @return 
+     * @param dt a date
+     * @return a string
      */
     public static String toTimeString(LocalDateTime dt) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -191,8 +191,8 @@ public class TimeUtil {
 
     /**
      * Gets a LocalDate object and returns a String of it in the format "dd/MM/yyyy"
-     * @param dt
-     * @return 
+     * @param dt a date
+     * @return  a string
      */
     public static String toString(LocalDate dt) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -201,8 +201,8 @@ public class TimeUtil {
 
     /**
      * Gets a String object and returns a LocalDate object of it using the format "dd/MM/yyyy"
-     * @param source
-     * @return 
+     * @param source a string
+     * @return an localdate
      */
     public static LocalDate fromString(String source) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

@@ -22,7 +22,7 @@ import my.exceptions.InvalidFileNameStringException;
 /**
  *
  * @author andre
- * @param <E>
+ * @param <E> a type
  */
 public class nLocalPersistence<E extends Serializable> implements ObjectKeeper<E>{
     private static final Logger LOG = Logger.getLogger(nLocalPersistence.class.getName());
@@ -37,10 +37,10 @@ public class nLocalPersistence<E extends Serializable> implements ObjectKeeper<E
     /**
      * Persiste a element of type E in a filhe in a file where the name depends 
      * on the class of the object and a given String
-     * @param elem
-     * @param name
-     * @return
-     * @throws FileCouldNotBeCreatetException 
+     * @param elem an element
+     * @param name a name
+     * @return a boolean
+     * @throws FileCouldNotBeCreatetException if the file could not be created
      */
     @Override
     public boolean persist(E elem, String name) throws FileCouldNotBeCreatetException{
@@ -51,10 +51,10 @@ public class nLocalPersistence<E extends Serializable> implements ObjectKeeper<E
     
     /**
      * Loads a object from a file using its class and name to generate the filename 
-     * @param classOf
-     * @param name
-     * @return
-     * @throws FileDoesNotExistException 
+     * @param classOf the class of the file
+     * @param name the name of the file
+     * @return an object
+     * @throws FileDoesNotExistException if the file does not exists
      */
     @Override
     public E load(Class classOf, String name) throws FileDoesNotExistException{
@@ -106,9 +106,9 @@ public class nLocalPersistence<E extends Serializable> implements ObjectKeeper<E
     
      /**
      * Creates a filename based on a class and a given string
-     * @param classOf
-     * @param objectName
-     * @return 
+     * @param classOf the class of the object
+     * @param objectName the name of the object
+     * @return the filename
      */
     public static String fNameIt(Class classOf, String objectName){
         String nObjectName = objectName;

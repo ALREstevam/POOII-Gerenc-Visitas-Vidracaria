@@ -54,7 +54,7 @@ public class Controller implements Serializable{
     
     /**
      * Instantiates a new controller copying the parameters from other one
-     * @param copy 
+     * @param copy a controller
      */
     public Controller(Controller copy) {
         this();
@@ -169,7 +169,7 @@ public class Controller implements Serializable{
 
     /**
      * Returns a unmodifiableMap of clients
-     * @return 
+     * @return a client map
      * @see Client
      */
     public Map<String, Client> getClients() {
@@ -179,7 +179,7 @@ public class Controller implements Serializable{
 
     /**
      * Returns a unmodifiableMap of
-     * @return 
+     * @return  a map of employees
      */
     public Map<String,Employee> getEmployees() {
         Map<String,Employee> rsp = Collections.unmodifiableMap(this.employees);
@@ -188,7 +188,7 @@ public class Controller implements Serializable{
 
     /**
      * Returns a unmodifiableMap of projects
-     * @return 
+     * @return a project map
      */
     public Map<String,Project> getProjects() {
         Map<String,Project> rsp = Collections.unmodifiableMap(this.projects);
@@ -197,7 +197,7 @@ public class Controller implements Serializable{
 
     /**
      * Returns a unmodifiableMap of vehicles
-     * @return 
+     * @return a vehicle map
      */
     public Map<String,Vehicle> getVehicles() {
         Map<String,Vehicle> rsp = Collections.unmodifiableMap(this.vehicles);
@@ -206,7 +206,7 @@ public class Controller implements Serializable{
 
     /**
      * Returns a unmodifiableMap of visits
-     * @return 
+     * @return a visit map
      */
     public Map<String,Visit> getVisits() {
         Map<String,Visit> rsp = Collections.unmodifiableMap(this.visits);
@@ -215,7 +215,7 @@ public class Controller implements Serializable{
     
     /**
      * Returns a unmodifiableMap of drivers
-     * @return 
+     * @return a drivers map
      */
     public Map<String,Driver> getDrivers(){
         Map<String,Driver> drivers = new TreeMap<>();
@@ -235,9 +235,9 @@ public class Controller implements Serializable{
     
     /**
      * Updates a Client using the old one's description
-     * @param newCli
-     * @param oldCliDescription
-     * @return 
+     * @param newCli a client
+     * @param oldCliDescription a description
+     * @return a boolean
      */
     public boolean update(Client newCli, String oldCliDescription){
         return helpCli.update(this.clients, oldCliDescription, newCli);
@@ -245,9 +245,9 @@ public class Controller implements Serializable{
     
     /**
      * Updates a employee using the old one's description
-     * @param newEmp
-     * @param oldEmpDescription
-     * @return 
+     * @param newEmp a employee 
+     * @param oldEmpDescription a description
+     * @return a boolean
      */
     public boolean update(Employee newEmp, String oldEmpDescription){
         return helpEmp.update(this.employees, oldEmpDescription, newEmp);
@@ -255,9 +255,9 @@ public class Controller implements Serializable{
     
     /**
      * Updates a Project using the old one's description
-     * @param newProj
-     * @param oldProjDescription
-     * @return 
+     * @param newProj a project
+     * @param oldProjDescription a description
+     * @return a boolean
      */
     public boolean update(Project newProj, String oldProjDescription){
         return helpProj.update(this.projects, oldProjDescription, newProj);
@@ -265,9 +265,9 @@ public class Controller implements Serializable{
     
     /**
      * Updates a Vehicle using the old one's description
-     * @param newVeh
-     * @param oldVehDescription
-     * @return 
+     * @param newVeh a vehicle
+     * @param oldVehDescription a description
+     * @return a boolean
      */
     public boolean update(Vehicle newVeh, String oldVehDescription){
         return helpVeh.update(this.vehicles, oldVehDescription, newVeh);
@@ -275,9 +275,9 @@ public class Controller implements Serializable{
     
     /**
      * Updates a Visit using the old one's description
-     * @param newVis
-     * @param oldVisDescription
-     * @return 
+     * @param newVis a visit
+     * @param oldVisDescription a description
+     * @return a boolean
      */
     public boolean update(Visit newVis, String oldVisDescription){
         return helpVis.update(this.visits, oldVisDescription, newVis);
@@ -286,8 +286,8 @@ public class Controller implements Serializable{
     /*===================================================================*/
     /**
      * Persists the controller using default configurations
-     * @return
-     * @throws FileCouldNotBeCreatetException 
+     * @return a boolean
+     * @throws FileCouldNotBeCreatetException if the file could not be created
      */
     public boolean persistIt() throws FileCouldNotBeCreatetException{
         nLocalPersistence<Controller> pers = new nLocalPersistence<>();
@@ -296,7 +296,7 @@ public class Controller implements Serializable{
     
     /**
      * Loads the controller using default configurations
-     * @return 
+     * @return a controller
      */
     public static Controller loadIt(){
         nLocalPersistence<Controller> pers = new nLocalPersistence<>();

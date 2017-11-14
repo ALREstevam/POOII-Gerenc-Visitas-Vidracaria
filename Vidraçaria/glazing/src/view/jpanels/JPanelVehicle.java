@@ -35,6 +35,7 @@ public class JPanelVehicle extends javax.swing.JPanel {
     
     /**
      * Creates new form JPanelVehicle
+     * @param ctrl a controller
      */
     public JPanelVehicle(Controller ctrl) {
         this.ctrl = ctrl;

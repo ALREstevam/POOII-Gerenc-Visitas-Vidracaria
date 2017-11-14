@@ -131,8 +131,8 @@ public class Agenda implements AgendaDefaults, Serializable{
     
     /**
      * Sums agendas (to find free blocks in common)
-     * @param agds
-     * @return 
+     * @param agds agendas
+     * @return the sum of the agendas
      */
     public static Agenda sum(Agenda... agds){
         NoWorkPattern[] patterns = new NoWorkPattern[agds.length];
