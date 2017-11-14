@@ -380,6 +380,17 @@ public class Controller implements Serializable{
     }
 
     public Map<String, Assembler> getAssembler() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Map<String,Assembler> ass = new TreeMap<>();
+       
+       
+        Iterator it = this.employees.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry pair = (Map.Entry)it.next();
+            ass.put((String)pair.getKey(), (Assembler)pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+       
+        Map<String, Assembler> rsp = Collections.unmodifiableMap(ass);
+        return rsp;
     }
 }
