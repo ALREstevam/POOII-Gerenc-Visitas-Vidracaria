@@ -28,9 +28,9 @@ import view.comboboxModel.GeneralComboboxModel;
  * @author Pedro
  */
 public class JPanelSecretary extends javax.swing.JPanel {
-private Map<String, Secretary> secretaryMp;
+    private Map<String, Secretary> secretaryMp;
     private List<Secretary> secretaryLst;
-    private GeneralTableModel<Secretary> vehTb;
+    private GeneralTableModel<Secretary> secTb;
     private Controller ctrl;
     private List<String> descriptions;
     
@@ -400,7 +400,7 @@ private Map<String, Secretary> secretaryMp;
         List<Secretary> lstSelected = new ArrayList<>();
         lstSelected.add(s);
 
-        this.jList1.setModel(new GeneralComboboxModel<Vehicle>().getComboBoxModelUsingDescription(lstSelected));
+        this.jList1.setModel(new GeneralComboboxModel<Secretary>().getComboBoxModelUsingDescription(lstSelected));
 
     }//GEN-LAST:event_jTable1MousePressed
 
@@ -410,14 +410,14 @@ private Map<String, Secretary> secretaryMp;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         for(int i = 0; i < this.secTb.getRowCount(); i++){
-            Secretary newSecretary = this.vehTb.getObjectAt(i);
+            Secretary newSecretary = this.secTb.getObjectAt(i);
 
             String description = this.descriptions.get(i);
             if(!newSecretary.describe().equals(description)){
                 this.ctrl.update(newSecretary, description);
             }
         }
-        this.SecretaryMp = ctrl.getsecretary();
+        this.secretaryMp = ctrl.getSecretary();
         this.secretaryLst = new ArrayList<>(secretaryMp.values());
         this.updateDescriptions();
         JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -433,23 +433,29 @@ private Map<String, Secretary> secretaryMp;
         // TODO add your handling code here:
 
         try{
-            String plate = this.jFormattedTextField1.getText();
-            String strVehicleLicense = this.jComboBoxLicense.getSelectedItem().toString();
-            String info = this.jTextPane1.getText();
-            String strVehicleType = this.jComboBoxType.getSelectedItem().toString();
-            Vehicle.licenseTypes licenseType = Vehicle.licenseTypes.getFromName(strVehicleLicense);
-            Vehicle.vehicleTypes vehicleType = Vehicle.vehicleTypes.getFromName(strVehicleType);
+            String name = this.jTextField1.getText();
+            String email = this.jTextField2.getText();
+            String contact = this.jTextField3.getText();
+            String personalnb = this.jFormattedTextField3.getText();
+            String registration = this.jFormattedTextField4.getText();
 
-            if(vehicleType == null || licenseType == null || plate == null || strVehicleLicense == null || strVehicleType == null ||
-                plate.equals("") || strVehicleLicense.equals("") || strVehicleType.equals("")
-            ){
+            int nb = 0, reg = 0;
+            try {
+            nb = Integer.parseInt(personalnb); 
+            reg = Integer.parseInt(registration);
+        
+            } catch (NumberFormatException e) {
+                System.out.println("Numero com formato errado!");
+            }         
+
+            if(name == null || email == null || contact == null || personalnb == null || registration == null){
                 throw new Exception();
             }
 
             NoWorkPattern nwp = new NoWorkPattern();
             Agenda agd = new Agenda(nwp);
-            Vehicle veh = new Vehicle(licenseType, vehicleType, plate, info, agd);
-            ctrl.append(veh);
+            Secretary sec = new Secretary(licenseType, vehicleType, plate, info, agd);
+            ctrl.append(sec);
             this.updateTable();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
