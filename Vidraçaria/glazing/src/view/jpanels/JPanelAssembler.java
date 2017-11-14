@@ -71,7 +71,7 @@ public class JPanelAssembler extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<String>();
         jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -159,6 +159,7 @@ public class JPanelAssembler extends javax.swing.JPanel {
             }
         });
 
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#######"))));
         jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextField3ActionPerformed(evt);
@@ -393,6 +394,31 @@ public class JPanelAssembler extends javax.swing.JPanel {
             String registration = this.jFormattedTextField4.getText();
             String license = this.jTextField4.getText();
 
+            int nb = 0, reg = 0;
+            try {
+            nb = Integer.parseInt(personalnb); 
+            reg = Integer.parseInt(registration);
+        
+            } catch (NumberFormatException e) {
+                System.out.println("Numero com formato errado!");
+            }
+            int licenseType = 0;
+            
+            switch (license) {
+            case "A":
+                licenseType=1;
+                break;
+            case "B":
+                licenseType=2;
+                break;
+            case "C":
+                licenseType=3;
+                break;
+            case "D":
+                licenseType=4;
+                break;
+        }
+            
             if(name == null || email == null || contact == null || personalnb == null || license == null ||
                 registration.equals("")){
                 throw new Exception();
@@ -400,11 +426,11 @@ public class JPanelAssembler extends javax.swing.JPanel {
 
             NoWorkPattern nwp = new NoWorkPattern();
             Agenda agd = new Agenda(nwp);
-            Vehicle veh = new Vehicle(licenseType, vehicleType, plate, info, agd);
-            ctrl.append(veh);
+            Assembler ass = new Assembler(licenseType, nb, reg, name, email, contact, agd);
+            ctrl.append(ass);
             this.updateTable();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+          //  JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -432,18 +458,18 @@ public class JPanelAssembler extends javax.swing.JPanel {
         String description = this.jList1.getSelectedValue();
 
         if(description == null){
-            JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
+         //   JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Vehicle vehicleToDelete = this.vehiclesMp.get(description);
+        Assembler assToDelete = this.assMp.get(description);
 
-        if(vehicleToDelete == null){
-            JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+        if(assToDelete == null){
+            //JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        this.ctrl.remove(vehicleToDelete);
+        this.ctrl.remove(assToDelete);
         this.updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -482,4 +508,8 @@ public class JPanelAssembler extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    private void updateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
