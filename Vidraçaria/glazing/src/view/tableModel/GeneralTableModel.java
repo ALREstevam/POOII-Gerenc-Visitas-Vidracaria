@@ -4,29 +4,36 @@
  * and open the template in the editor.
  */
 package view.tableModel;
+import control.Controller;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import persons.Client;
+import persons.Employee;
 import view.comboboxModel.Descriptible;
+import visit.Project;
+import visit.Vehicle;
+import visit.Visit;
 
 /**
  * This class creates a GeneralTableModel for any object that implements the 
  * Arrayable interface
  * @author andre
  * @param <E> 
- * @param <Descriptible> 
  */
-public class GeneralTableModel<E extends Arrayable, Descriptible> extends AbstractTableModel{
+public class GeneralTableModel<E extends Arrayable> extends AbstractTableModel{
     private final String[] columns;
     private final List<E> list;
+    private final Controller ctrl;
 
     /**
      * Contructor
      * @param columns a array of Strings specifing the header of the table
      * @param list a list of objects where each one represents a line of the table
      */
-    public GeneralTableModel(String[] columns, List<E> list) {
+    public GeneralTableModel(String[] columns, List<E> list, Controller ctrl) {
         this.columns = columns;
         this.list = list;
+        this.ctrl = ctrl;
     }
     
     @Override
@@ -61,9 +68,13 @@ public class GeneralTableModel<E extends Arrayable, Descriptible> extends Abstra
     
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columIndex){
-        String description = this.list.get(rowIndex).describe();
         this.list.get(rowIndex).setValue(this.columns[columIndex], aValue);
         fireTableCellUpdated(rowIndex, columIndex);
+    }
+    
+    @Override
+    public String getColumnName(int col) {
+        return this.columns[col];
     }
     
     public E getObjectAt(int row){

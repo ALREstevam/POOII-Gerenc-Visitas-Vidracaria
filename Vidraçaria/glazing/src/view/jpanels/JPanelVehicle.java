@@ -30,6 +30,7 @@ public class JPanelVehicle extends javax.swing.JPanel {
     private List<Vehicle> vehiclesLst;
     private GeneralTableModel<Vehicle> vehTb;
     private Controller ctrl;
+    private List<String> descriptions;
     
     /**
      * Creates new form JPanelVehicle
@@ -37,7 +38,7 @@ public class JPanelVehicle extends javax.swing.JPanel {
     public JPanelVehicle(Controller ctrl) {
         this.ctrl = ctrl;
         this.vehiclesMp = ctrl.getVehicles();
-        
+        this.updateDescriptions();
         initComponents();
         this.updateTable();
     }
@@ -94,7 +95,7 @@ public class JPanelVehicle extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel2.setText("Criar e alterar");
+        jLabel2.setText("Consultar e alterar");
 
         jButton3.setText("Confirmar alteração");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -113,15 +114,14 @@ public class JPanelVehicle extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton3)))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,11 +225,9 @@ public class JPanelVehicle extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
-                .addContainerGap(253, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,10 +235,10 @@ public class JPanelVehicle extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -255,7 +253,7 @@ public class JPanelVehicle extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 90, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
@@ -299,13 +297,18 @@ public class JPanelVehicle extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        /*
         System.out.println("-------------");
+        System.out.println("VALUES");
         for(Vehicle v : this.vehiclesMp.values()){
             System.out.println(v.describe());
         }
-        
-        
+        System.out.println("KEYS");
+        for ( String key : vehiclesMp.keySet() ) {
+            System.out.println( key );
+        }
+        System.out.println("-------------");
+        */
         
         this.jList1.setSelectedIndex(0);
         String description = this.jList1.getSelectedValue();
@@ -360,31 +363,33 @@ public class JPanelVehicle extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            
-            this.jList1.setSelectedIndex(0);
-            
-            System.out.println();
-        }
     }//GEN-LAST:event_jTable1KeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        
         for(int i = 0; i < this.vehTb.getRowCount(); i++){
             Vehicle newVehicle = this.vehTb.getObjectAt(i);
-            String description = this.vehiclesLst.get(i).describe();
             
+            String description = this.descriptions.get(i);
+            System.out.println(newVehicle.describe() +  " x "  + description);
+            System.out.println("*");
             if(!newVehicle.describe().equals(description)){
+                System.out.println("#");
                 this.ctrl.update(newVehicle, description);
             }
         }
         this.vehiclesMp = ctrl.getVehicles();
         this.vehiclesLst = new ArrayList<>(vehiclesMp.values());
-        
+        this.updateDescriptions();
         JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
         
     }//GEN-LAST:event_jButton3ActionPerformed
+    
+    private void updateDescriptions(){
+        this.descriptions = new ArrayList<>();
+        for(Vehicle v : this.vehiclesMp.values()){
+            this.descriptions.add(v.describe());
+        }
+    }
     
     private void updateTable(){
         String[] columns = new String[4];
@@ -395,8 +400,9 @@ public class JPanelVehicle extends javax.swing.JPanel {
         columns[3] = "carteira";
         
         this.vehiclesLst = new ArrayList<>(this.vehiclesMp.values());
-        this.vehTb =  new GeneralTableModel<Vehicle>(columns, vehiclesLst);
+        this.vehTb =  new GeneralTableModel<Vehicle>(columns, vehiclesLst, ctrl);
         this.jTable1.setModel(vehTb);
+        //this.jTable1.
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

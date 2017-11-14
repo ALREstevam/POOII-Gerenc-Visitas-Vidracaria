@@ -63,7 +63,7 @@ public class Project implements Serializable, Descriptible, Arrayable{
     }
 
     @Override
-    public void setValue(String variable, Object value) {
+    public Object setValue(String variable, Object value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

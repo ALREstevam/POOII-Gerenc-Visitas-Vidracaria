@@ -119,7 +119,7 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
     }
 
     @Override
-    public void setValue(String variable, Object value) {
+    public Object setValue(String variable, Object value) {
         switch (variable) {
             case "info":
                 this.info = (String) value;
@@ -136,6 +136,7 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
             default:
                 break;
         }
+        return this;
     }
 
 }
