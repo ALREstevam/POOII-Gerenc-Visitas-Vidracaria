@@ -356,4 +356,11 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTablePPerson;
     // End of variables declaration//GEN-END:variables
+
+    private void updateDescriptions() {
+        this.descriptions = new ArrayList<>();
+        for(PhysicalPerson pp : this.ppersonMp.values()){
+            this.descriptions.add(pp.describe());
+        }
+    }
 }

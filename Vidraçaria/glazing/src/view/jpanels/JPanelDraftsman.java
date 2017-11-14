@@ -543,4 +543,12 @@ public class JPanelDraftsman extends javax.swing.JPanel {
         this.draftmTb =  new GeneralTableModel<Draftsman>(columns, draftmLst, ctrl);
         this.jTable1.setModel(draftmTb);
         //this.jTable1.
-    }}
+    }
+
+    private void updateDescriptions() {
+        this.descriptions = new ArrayList<>();
+        for(Draftsman df : this.draftmMp.values()){
+            this.descriptions.add(df.describe());
+        }
+    }
+}

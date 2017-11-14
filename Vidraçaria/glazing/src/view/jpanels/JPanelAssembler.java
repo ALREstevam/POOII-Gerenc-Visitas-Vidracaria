@@ -527,4 +527,11 @@ public class JPanelAssembler extends javax.swing.JPanel {
         this.jTable1.setModel(assTb);
         //this.jTable1.
     }
+
+    private void updateDescriptions() {
+        this.descriptions = new ArrayList<>();
+        for(Assembler a : this.assMp.values()){
+            this.descriptions.add(a.describe());
+        }
+    }
 }

@@ -502,4 +502,11 @@ public class JPanelDriver extends javax.swing.JPanel {
         this.jTable1.setModel(drvTb);
         //this.jTable1.
     }
+
+    private void updateDescriptions() {
+        this.descriptions = new ArrayList<>();
+        for(Driver d : this.drvMp.values()){
+            this.descriptions.add(d.describe());
+        }
+    }
 }

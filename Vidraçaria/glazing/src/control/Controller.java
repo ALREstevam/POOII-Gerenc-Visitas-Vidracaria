@@ -20,6 +20,7 @@ import visit.Project;
 import local.persistence.nLocalPersistence;
 import my.exceptions.FileCouldNotBeCreatetException;
 import my.exceptions.FileDoesNotExistException;
+import persons.Administrator;
 import persons.Assembler;
 import persons.Draftsman;
 import persons.Driver;
@@ -375,8 +376,19 @@ public class Controller implements Serializable{
         return rsp;
     }
 
-    public Map<String, Driver> getDriver() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Map<String, Administrator> getAdministrator() {
+        Map<String,Administrator> adm = new TreeMap<>();
+       
+       
+        Iterator it = this.employees.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry pair = (Map.Entry)it.next();
+            adm.put((String)pair.getKey(), (Administrator)pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+       
+        Map<String, Administrator> rsp = Collections.unmodifiableMap(adm);
+        return rsp;
     }
 
     public Map<String, Assembler> getAssembler() {
@@ -391,6 +403,21 @@ public class Controller implements Serializable{
         }
        
         Map<String, Assembler> rsp = Collections.unmodifiableMap(ass);
+        return rsp;
+    }
+
+    public Map<String, Driver> getDriver() {
+        Map<String,Driver> drv = new TreeMap<>();
+       
+       
+        Iterator it = this.employees.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry pair = (Map.Entry)it.next();
+            drv.put((String)pair.getKey(), (Driver)pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+       
+        Map<String, Driver> rsp = Collections.unmodifiableMap(drv);
         return rsp;
     }
 }

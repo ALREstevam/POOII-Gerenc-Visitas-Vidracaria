@@ -296,4 +296,11 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    private void updateDescriptions() {
+        this.descriptions = new ArrayList<>();
+        for(LegalPerson l : this.lpersonMp.values()){
+            this.descriptions.add(l.describe());
+        }
+    }
 }
