@@ -248,10 +248,10 @@ public class Visit implements Serializable, Descriptible, Arrayable{
                 break;
                 
             case "start data":
-                TimeUtil.fromCompleteString();
+                TimeUtil.fromCompleteString((String) value);
                 break;
             case "finish data":
-                TimeUtil.fromCompleteString();
+                TimeUtil.fromCompleteString((String) value);
                 break;
 
             default:

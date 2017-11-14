@@ -207,4 +207,10 @@ public class TimeUtil {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(source,formatter);
     }
+    public static LocalDateTime fromCompleteString(String source) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return LocalDateTime.parse(source,formatter);
+    }
+    
+    
 }
