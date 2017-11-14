@@ -45,7 +45,7 @@ public final class LocalPersistence<E extends Serializable>{
      * Allows an object to be loaded or saved without mentioning its name 
      * (a default name will be used).
      * Caution: this will only map one file for class type
-     * @param classOf 
+     * @param classOf the class of the object
      */
     public LocalPersistence(Class classOf) {
         this(classOf, "UndefinedName");
@@ -67,8 +67,8 @@ public final class LocalPersistence<E extends Serializable>{
     
     /**
      * Persists the given elemnt
-     * @param elem
-     * @throws my.exceptions.FileCouldNotBeCreatetException
+     * @param elem an object
+     * @throws my.exceptions.FileCouldNotBeCreatetException if the file could not be creared
      */
     public void persist(E elem) throws FileCouldNotBeCreatetException{
         try {
@@ -86,8 +86,8 @@ public final class LocalPersistence<E extends Serializable>{
 
     /**
      * Loads a element
-     * @return 
-     * @throws my.exceptions.FileDoesNotExistException 
+     * @return a object
+     * @throws my.exceptions.FileDoesNotExistException  if the file does not exist
      */
     public E load() throws FileDoesNotExistException{
         if (Files.exists(serializedFile)) {
@@ -100,9 +100,9 @@ public final class LocalPersistence<E extends Serializable>{
     
     /**
      * Creates a filename based on a class and a given string
-     * @param classOf
-     * @param objectName
-     * @return 
+     * @param classOf the class of rhe object
+     * @param objectName the name of the object
+     * @return a name for the file
      */
     public static String toFilename(Class classOf, String objectName){
         String editedName = "["+classOf+"]_["+objectName+"]";
@@ -133,7 +133,7 @@ public final class LocalPersistence<E extends Serializable>{
 
     /**
      * Returns the serialized file
-     * @return 
+     * @return a Path
      */
     public Path getSerializedFile() {
         return serializedFile;
@@ -141,7 +141,7 @@ public final class LocalPersistence<E extends Serializable>{
 
     /**
      * Returns the filename
-     * @return 
+     * @return  the filename
      */
     public String getFilename() {
         return filename;

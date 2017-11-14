@@ -25,6 +25,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private Controller ctrl;
     /**
      * Creates new form MainJFrame
+     * @param ctrl a controller
      */
     public MainJFrame(Controller ctrl) {
         this.ctrl = ctrl;

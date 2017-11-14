@@ -18,7 +18,7 @@ import visit.Visit;
  * This class creates a GeneralTableModel for any object that implements the 
  * Arrayable interface
  * @author andre
- * @param <E> 
+ * @param <E> a type
  */
 public class GeneralTableModel<E extends Arrayable> extends AbstractTableModel{
     private final String[] columns;
@@ -29,6 +29,7 @@ public class GeneralTableModel<E extends Arrayable> extends AbstractTableModel{
      * Contructor
      * @param columns a array of Strings specifing the header of the table
      * @param list a list of objects where each one represents a line of the table
+     * @param ctrl a controller
      */
     public GeneralTableModel(String[] columns, List<E> list, Controller ctrl) {
         this.columns = columns;

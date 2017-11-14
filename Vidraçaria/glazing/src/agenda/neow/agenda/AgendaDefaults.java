@@ -10,7 +10,6 @@ import visit.Visit;
 /**
  *
  * @author andre
- * @param <E>
  */
 public interface AgendaDefaults extends AllocatorConsts{
     
@@ -18,7 +17,7 @@ public interface AgendaDefaults extends AllocatorConsts{
      * Returns a <code>TimeAnswer</code> object indicating when the amount of
      * blocks will be avaliable in the current agenda
      * @param blocks amount of free blocks to find
-     * @return 
+     * @return a time answer
      */
     public TimeAnswer whenIsAvaliable(int blocks);
     

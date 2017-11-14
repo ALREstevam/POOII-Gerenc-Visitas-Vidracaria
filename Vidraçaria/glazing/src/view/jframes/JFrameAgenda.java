@@ -57,9 +57,9 @@ public class JFrameAgenda extends javax.swing.JFrame {
    
     /**
      * 
-     * @param drv
-     * @param veh
-     * @param proj 
+     * @param drv a driver
+     * @param veh a vehicle
+     * @param proj a project
      */
     public JFrameAgenda(Map<String, Driver> drv, Map<String,Vehicle> veh, Map<String,Project> proj) {
         //Initialize selected
@@ -90,8 +90,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
         this.jListVehicles.setModel(dcModelVehicle);
         this.jListProject.setModel(dcModelProject);
         this.jListDrivers.setModel(dcModelDriver);
-        
-        this.jFormattedTextDate.setText(TimeUtil.toDateString(LocalDateTime.now()));
     }
 
     /**
@@ -120,8 +118,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jSpinnerHours = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jFormattedTextDate = new javax.swing.JFormattedTextField();
         jButtonConfirmTime = new javax.swing.JButton();
         jSpinnerMinutes = new javax.swing.JSpinner();
         jLabel14 = new javax.swing.JLabel();
@@ -141,7 +137,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jButtonClean = new javax.swing.JButton();
         jButtonValidate = new javax.swing.JButton();
         jLabelDuration = new javax.swing.JLabel();
-        jLabeDate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,11 +234,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
 
         jLabel9.setText("horas");
 
-        jLabel10.setText("Data mínima");
-
-        jFormattedTextDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        jFormattedTextDate.setText("01/01/2001");
-
         jButtonConfirmTime.setText("Confirmar");
         jButtonConfirmTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,10 +261,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14))
                     .addGroup(jPanelDateChooseLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextDate, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(173, 173, 173)
                         .addComponent(jButtonConfirmTime)))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
@@ -289,10 +276,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
                     .addComponent(jSpinnerMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelDateChooseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jFormattedTextDate, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonConfirmTime))
+                .addComponent(jButtonConfirmTime)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -392,8 +376,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
 
         jLabelDuration.setText("Duração:");
 
-        jLabeDate.setText("Data:");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -413,8 +395,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
                                 .addComponent(jButtonClean)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonValidate))
-                            .addComponent(jLabelDuration)
-                            .addComponent(jLabeDate))
+                            .addComponent(jLabelDuration))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -427,9 +408,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addComponent(jLabelProject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelDuration)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabeDate)
-                .addGap(34, 34, 34)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -520,45 +499,11 @@ public class JFrameAgenda extends javax.swing.JFrame {
         this.projectValid = true;
     }//GEN-LAST:event_jButtonAddProjectActionPerformed
 
-    private void jButtonConfirmTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmTimeActionPerformed
-        String date = jFormattedTextDate.getText();
-        String strHours;
-        String strMintues ;
-        
-        try{
-            this.dateChoosen = TimeUtil.fromString(date);
-            
-            this.hours = (int) jSpinnerHours.getValue();
-            this.minutes = (int) jSpinnerMinutes.getValue();
-            
-            if(hours <= 0 && minutes <= 0){
-                this.hours = 0;
-                this.minutes = 0;
-                throw new Exception();
-            }else{
-               strHours = jSpinnerHours.getValue().toString();
-               strMintues = jSpinnerMinutes.getValue().toString(); 
-            }
-            
-            this.jLabeDate.setText("Data: " + date);
-            this.jLabelDuration.setText("Duração: " + strHours + " "+ util.Util.portugueesePlurarize(this.hours, "hora") +" e " + strMintues + " " + util.Util.portugueesePlurarize(this.minutes, "minuto"));
-            this.timeValid = true;
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this.jPanelDateChoose,"Algo errado com a data escolhida.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
-        }
-        finally{
-        }
-        
-        
-        
-    }//GEN-LAST:event_jButtonConfirmTimeActionPerformed
-
     private void jButtonCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCleanActionPerformed
         DefaultComboBoxModel emptyVehicle = gcModelVehicle.getComboBoxModelUsingDescription(new ArrayList<>());
         DefaultComboBoxModel emptyDriver = gcModelDriver.getComboBoxModelUsingDescription(new ArrayList<>());
         this.jListSelectedVehicles.setModel(emptyVehicle);
         this.jListSelectedDrivers.setModel(emptyDriver);
-        this.jLabeDate.setText("Data:");
         this.jLabelDuration.setText("Duração:");
         this.jLabelProject.setText("Projeto:");
         this.lstDrivers.addAll(this.selectedDrivers.values());
@@ -583,6 +528,32 @@ public class JFrameAgenda extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonValidateActionPerformed
 
+    private void jButtonConfirmTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmTimeActionPerformed
+        String strHours;
+        String strMintues ;
+        try{
+            this.hours = (int) jSpinnerHours.getValue();
+            this.minutes = (int) jSpinnerMinutes.getValue();
+
+            if(hours <= 0 && minutes <= 0){
+                this.hours = 0;
+                this.minutes = 0;
+                throw new Exception();
+            }else{
+                strHours = jSpinnerHours.getValue().toString();
+                strMintues = jSpinnerMinutes.getValue().toString();
+            }
+
+            this.jLabelDuration.setText("Duração: " + strHours + " "+ util.Util.portugueesePlurarize(this.hours, "hora") +" e " + strMintues + " " + util.Util.portugueesePlurarize(this.minutes, "minuto"));
+            this.timeValid = true;
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this.jPanelDateChoose,"Algo errado com a data escolhida.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+        }
+        finally{
+        }
+
+    }//GEN-LAST:event_jButtonConfirmTimeActionPerformed
+
     private Integer getHoursFromjSpinner(){
         Integer value = (Integer) this.jSpinnerHours.getValue();
         return value <= 0 ? 0 : value;
@@ -602,10 +573,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private javax.swing.JButton jButtonClean;
     private javax.swing.JButton jButtonConfirmTime;
     private javax.swing.JButton jButtonValidate;
-    private javax.swing.JFormattedTextField jFormattedTextDate;
-    private javax.swing.JLabel jLabeDate;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -636,7 +604,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinnerMinutes;
     // End of variables declaration//GEN-END:variables
 
-    private class testTimeAllocation extends SwingWorker<SwingWorkerAnswer, Void>{
+    private class TimeAllocation extends SwingWorker<SwingWorkerAnswer, Void>{
             
         private List<Driver> selectedDrivers;
         private Vehicle selectedVehicle;
@@ -645,7 +613,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         public int rsp;
         public LocalDateTime rspldt;
 
-        public testTimeAllocation(List<Driver> selectedDrivers, Vehicle selectedVehicle, LocalDate date, int duration) {
+        public TimeAllocation(List<Driver> selectedDrivers, Vehicle selectedVehicle, LocalDate date, int duration) {
             this.selectedDrivers = selectedDrivers;
             this.selectedVehicle = selectedVehicle;
             this.date = date;
@@ -670,6 +638,15 @@ public class JFrameAgenda extends javax.swing.JFrame {
            return rsp;
             */
             
+            List<Agenda> agendas  = new ArrayList<>();
+            agendas.add(selectedVehicle.getAgd());
+            for(Driver drv : selectedDrivers){
+                agendas.add(drv.getAgd());
+            }
+            
+            Agenda sumAgds = Agenda.sum((Agenda[])agendas.toArray());
+             
+          
             return null;
         }
         

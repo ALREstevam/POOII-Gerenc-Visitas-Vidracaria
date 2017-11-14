@@ -12,7 +12,6 @@ package view.comboboxModel;
 public interface Descriptible {
     /**
      * Requires a description of the object arguments as a String
-     * @return 
      */
     public static final String sep = " | ";
     public String describe();

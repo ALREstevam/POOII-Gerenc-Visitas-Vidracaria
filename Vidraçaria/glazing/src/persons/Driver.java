@@ -2,9 +2,9 @@ package persons;
 
 import java.io.Serializable;
 import agenda.neow.agenda.Agenda;
-import visit.Vehicle;
 import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
+import visit.Vehicle;
 
 public class Driver extends Employee implements Serializable, Descriptible, Arrayable{
     private Agenda agd;
@@ -60,10 +60,16 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
     public void setDriverLicenseType(int driverLicenseType) {
         this.driverLicenseType = driverLicenseType;
     }
+    
+    
 
     @Override
     public Object setValue(String variable, Object value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Agenda getAgd() {
+        return agd;
     }
     
     

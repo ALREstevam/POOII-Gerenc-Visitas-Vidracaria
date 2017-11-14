@@ -25,7 +25,7 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     /**
      * A offest mark, describes the index into the original list where the circular
      * list begins and ends
-     * If a list has 10 elements and the header is 5, execute <code>.get(0)<code> 
+     * If a list has 10 elements and the header is 5, execute <code>.get(0)</code>
      * shall return the fifth element (the element at the index pointed by the header)
      */
     private int head;
@@ -41,15 +41,15 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     
     /**
      * Advances the head of the list in one unit
-     * @return 
+     * @return the new header
      */
     public int advanceHead(){
         return this.advanceHead(1);
     }
     
     /**
-     * Baacks off the head of the list in one unit
-     * @return 
+     * Backs off the head of the list in one unit
+     * @return the new header
      */
     public int backOffHead(){
         return this.backOffHead(1);
@@ -58,7 +58,7 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     /**
      * Advance the head of the list
      * @param amount amount of units to advance
-     * @return 
+     * @return the new header
      */
     public int advanceHead(int amount){
         this.head = (this.head + amount) % this.innerList.size();
@@ -68,7 +68,7 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     /**
      * Backs off the head of the list
      * @param amount amount of units to back off
-     * @return 
+     * @return the new header
      */
     public int backOffHead(int amount){
         this.head = (this.head - amount) % this.innerList.size();
@@ -85,7 +85,7 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     
     /**
      * Obtain the value of the head
-     * @return 
+     * @return the value of the head
      */
     public int getHead(){
         return head;
@@ -95,7 +95,7 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     * Converts a position in the original list to the matching position in 
     * the circular list
     * @param arrayPos a array index
-    * @return 
+    * @return a position
     */
     public int arrayPosToCircularPos(int arrayPos){
         if(arrayPos < 0){
@@ -107,8 +107,8 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     /**
      * Converts a position in the circular list to the matching position in 
      * the original list
-     * @param circularPos
-     * @return 
+     * @param circularPos a position
+     * @return a position
      */
     public int circularPosToArrayPos(int circularPos){
         if(this.innerList.isEmpty()){
@@ -226,7 +226,7 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     
     /**
      * Returns a String that describes the list as it is in the original list
-     * @return 
+     * @return  a string representing the list
      */
     public String toString2() {
         String rsp = "";

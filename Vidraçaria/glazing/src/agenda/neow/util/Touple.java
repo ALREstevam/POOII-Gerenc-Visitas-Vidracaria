@@ -25,8 +25,8 @@ public class Touple<I, J> implements Serializable{
 
     /**
      * Constructing and setting the touple attributes
-     * @param a
-     * @param b 
+     * @param a the first
+     * @param b the second
      */
     public Touple(I a, J b) {
         this.a = a;
@@ -35,7 +35,7 @@ public class Touple<I, J> implements Serializable{
 
     /**
      * Getts the first attribute
-     * @return 
+     * @return an object
      */
     public I getA() {
         return a;
@@ -43,7 +43,7 @@ public class Touple<I, J> implements Serializable{
 
     /**
      * Sets the first attribute
-     * @param a 
+     * @param a an object
      */
     public void setA(I a) {
         this.a = a;
@@ -51,7 +51,7 @@ public class Touple<I, J> implements Serializable{
 
     /**
      * Gets the second attribute
-     * @return 
+     * @return an object
      */
     public J getB() {
         return b;
@@ -59,7 +59,7 @@ public class Touple<I, J> implements Serializable{
 
     /**
      * Sets the second attibute
-     * @param b 
+     * @param b the other
      */
     public void setB(J b) {
         this.b = b;
