@@ -39,8 +39,12 @@ private Map<String, Secretary> secretaryMp;
      * Creates new form JPanelSecretary
      * @param ctrl a controller
      */
-    public JPanelSecretary() {
+    public JPanelSecretary(Controller ctrl) {
+        this.ctrl = ctrl;
+        this.secretaryMp = ctrl.getSecretary();
+        this.updateDescriptions();
         initComponents();
+        this.updateTable();
     }
 
     /**
@@ -387,14 +391,14 @@ private Map<String, Secretary> secretaryMp;
         // TODO add your handling code here:
 
         int selected = this.jTable1.getSelectedRow();
-        Vehicle v = this.vehiclesLst.get(selected);
+        Secretary s = this.secretaryLst.get(selected);
 
-        if(v == null){
+        if(s == null){
             return;
         }
 
-        List<Vehicle> lstSelected = new ArrayList<>();
-        lstSelected.add(v);
+        List<Secretary> lstSelected = new ArrayList<>();
+        lstSelected.add(s);
 
         this.jList1.setModel(new GeneralComboboxModel<Vehicle>().getComboBoxModelUsingDescription(lstSelected));
 
@@ -405,47 +409,23 @@ private Map<String, Secretary> secretaryMp;
     }//GEN-LAST:event_jTable1KeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for(int i = 0; i < this.vehTb.getRowCount(); i++){
-            Vehicle newVehicle = this.vehTb.getObjectAt(i);
+        for(int i = 0; i < this.secTb.getRowCount(); i++){
+            Secretary newSecretary = this.vehTb.getObjectAt(i);
 
             String description = this.descriptions.get(i);
-            if(!newVehicle.describe().equals(description)){
-                this.ctrl.update(newVehicle, description);
+            if(!newSecretary.describe().equals(description)){
+                this.ctrl.update(newSecretary, description);
             }
         }
-        this.vehiclesMp = ctrl.getVehicles();
-        this.vehiclesLst = new ArrayList<>(vehiclesMp.values());
+        this.SecretaryMp = ctrl.getsecretary();
+        this.secretaryLst = new ArrayList<>(secretaryMp.values());
         this.updateDescriptions();
         JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-
-        try{
-            String plate = this.jFormattedTextField1.getText();
-            String strVehicleLicense = this.jComboBoxLicense.getSelectedItem().toString();
-            String info = this.jTextPane1.getText();
-            String strVehicleType = this.jComboBoxType.getSelectedItem().toString();
-            Vehicle.licenseTypes licenseType = Vehicle.licenseTypes.getFromName(strVehicleLicense);
-            Vehicle.vehicleTypes vehicleType = Vehicle.vehicleTypes.getFromName(strVehicleType);
-
-            if(vehicleType == null || licenseType == null || plate == null || strVehicleLicense == null || strVehicleType == null ||
-                plate.equals("") || strVehicleLicense.equals("") || strVehicleType.equals("")
-            ){
-                throw new Exception();
-            }
-
-            NoWorkPattern nwp = new NoWorkPattern();
-            Agenda agd = new Agenda(nwp);
-            Vehicle veh = new Vehicle(licenseType, vehicleType, plate, info, agd);
-            ctrl.append(veh);
-            this.updateTable();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+//
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -559,4 +539,12 @@ private Map<String, Secretary> secretaryMp;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void updateDescriptions() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void updateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

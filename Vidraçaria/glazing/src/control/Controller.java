@@ -21,6 +21,7 @@ import local.persistence.nLocalPersistence;
 import my.exceptions.FileCouldNotBeCreatetException;
 import my.exceptions.FileDoesNotExistException;
 import persons.Driver;
+import persons.Secretary;
 
 public class Controller implements Serializable{
 
@@ -313,5 +314,9 @@ public class Controller implements Serializable{
             }
             return ctrl;
         }
+    }
+
+    public Map<String, Secretary> getSecretary() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
