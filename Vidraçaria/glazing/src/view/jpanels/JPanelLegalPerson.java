@@ -6,6 +6,7 @@
 package view.jpanels;
 
 import control.Controller;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import persons.LegalPerson;
@@ -32,6 +33,21 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    private void updateTable(){
+        String[] columns = new String[7];
+        
+        columns[0] = "cnpj";
+        columns[1] = "name";
+        columns[2] = "type";
+        columns[3] = "description";
+        columns[4] = "contact";
+        columns[5] = "address";
+        columns[6] = "email";
+        
+        this.lpersonLst = new ArrayList<>(this.lpersonMp.values());
+        this.lpersonTb =  new GeneralTableModel<LegalPerson>(columns, lpersonLst, ctrl);
+        this.jTable1.setModel(lpersonTb);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,7 +88,7 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "CNPJ", "Nome", "Tipo", "Descricao", "Contato", "Endereco", "Title 4"
+                "CNPJ", "Nome", "Tipo", "Descricao", "Contato", "Endereco", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
