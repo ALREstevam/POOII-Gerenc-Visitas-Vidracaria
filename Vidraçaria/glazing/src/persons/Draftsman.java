@@ -10,14 +10,4 @@ public class Draftsman extends Driver implements Serializable, Descriptible{
     public Draftsman(int driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(driverLicenseType, personalNumber, registration, name, email, contact, agd);
     }
-
-    /**
-     *
-     */
-    public void appendProjectToVisit(Visit visit) {
-        
-    }
-    
-    
-
 }
