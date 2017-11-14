@@ -46,7 +46,10 @@
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/agenda/neow/nowork/NoWorkPattern.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/visit/Vehicle.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/persons/Client.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/persons/Assembler.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/comboboxModel/Descriptible.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/persons/Administrator.java</file>
         </group>
     </open-files>
 </project-private>

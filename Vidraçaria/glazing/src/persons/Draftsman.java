@@ -6,8 +6,23 @@ import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
 import visit.Visit;
 
+/**
+ * The Draftsman class is derived from the Driver class.
+ * This class represents the Draftsman of the glazing.
+ * @author Pedro
+ */
 public class Draftsman extends Driver implements Serializable, Descriptible, Arrayable{
 
+    /**
+     * This is the class constructor (there is only one), which has 7 parameters
+     * @param driverLicenseType
+     * @param personalNumber
+     * @param registration
+     * @param name
+     * @param email
+     * @param contact
+     * @param agd
+     */
     public Draftsman(licenseTypes driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(driverLicenseType, personalNumber, registration, name, email, contact, agd);
     }

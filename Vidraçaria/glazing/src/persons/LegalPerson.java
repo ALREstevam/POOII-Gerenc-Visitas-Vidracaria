@@ -3,12 +3,27 @@ package persons;
 import java.io.Serializable;
 import view.tableModel.Arrayable;
 
+/**
+ * This is the LegalPerson class, derived from the Client class
+ * @author Pedro
+ */
 public class LegalPerson extends Client implements Serializable, Cloneable, Arrayable{
 
     private int cnpj;
     private String companyType;
     private String conpanyDescription;
 
+    /**
+     * This is the constructor of the LegalPerson class. This constructor
+     * has seven parameters
+     * @param cnpj
+     * @param companyType
+     * @param conpanyDescription
+     * @param address
+     * @param name
+     * @param email
+     * @param contact
+     */
     public LegalPerson(int cnpj, String companyType, String conpanyDescription, String address, String name, String email, String contact) {
         super(address, name, email, contact);
         this.cnpj = cnpj;
@@ -16,26 +31,50 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
         this.conpanyDescription = conpanyDescription;
     }
 
+    /**
+     * This method get the Employee's personalNumber
+     * @return int
+     */
     public int getCnpj() {
         return cnpj;
     }
 
+    /**
+     *
+     * @param cnpj
+     */
     public void setCnpj(int cnpj) {
         this.cnpj = cnpj;
     }
 
+    /**
+     * This method get the LegalPerson's companyType
+     * @return String
+     */
     public String getCompanyType() {
         return companyType;
     }
 
+    /**
+     *
+     * @param companyType
+     */
     public void setCompanyType(String companyType) {
         this.companyType = companyType;
     }
 
+    /**
+     * This method get the LegalPerson's companyDescription
+     * @return String
+     */
     public String getConpanyDescription() {
         return conpanyDescription;
     }
 
+    /**
+     *
+     * @param conpanyDescription
+     */
     public void setConpanyDescription(String conpanyDescription) {
         this.conpanyDescription = conpanyDescription;
     }
