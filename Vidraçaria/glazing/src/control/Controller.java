@@ -22,6 +22,8 @@ import my.exceptions.FileCouldNotBeCreatetException;
 import my.exceptions.FileDoesNotExistException;
 import persons.Draftsman;
 import persons.Driver;
+import persons.LegalPerson;
+import persons.PhysicalPerson;
 import persons.Secretary;
 
 public class Controller implements Serializable{
@@ -339,6 +341,36 @@ public class Controller implements Serializable{
         }
        
         Map<String, Draftsman> rsp = Collections.unmodifiableMap(drafts);
+        return rsp;
+    }
+    
+    public Map<String, LegalPerson> getLegalPerson() {
+        Map<String,LegalPerson> lperson = new TreeMap<>();
+       
+       
+        Iterator it = this.employees.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry pair = (Map.Entry)it.next();
+            lperson.put((String)pair.getKey(), (LegalPerson)pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+       
+        Map<String, LegalPerson> rsp = Collections.unmodifiableMap(lperson);
+        return rsp;
+    }
+    
+    public Map<String, PhysicalPerson> getPhysicalPerson() {
+        Map<String,PhysicalPerson> pperson = new TreeMap<>();
+       
+       
+        Iterator it = this.employees.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry pair = (Map.Entry)it.next();
+            pperson.put((String)pair.getKey(), (PhysicalPerson)pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+       
+        Map<String, PhysicalPerson> rsp = Collections.unmodifiableMap(pperson);
         return rsp;
     }
 }
