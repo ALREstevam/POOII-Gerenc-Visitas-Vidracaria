@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import persons.PhysicalPerson;
-import persons.Secretary;
 import view.tableModel.GeneralTableModel;
 
 
