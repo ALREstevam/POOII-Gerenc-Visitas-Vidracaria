@@ -219,18 +219,22 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
         int rspCount = 0;
         for (String s : order) {
-            switch (s) {
-                case "título:":
-                    rsp[rspCount] = this.getTitle();
-                    break;
-                case "descrição:":
-                    rsp[rspCount] = this.getDescription();
-                    break;
-                case "arquivo:":
-                    rsp[rspCount] = this.getFile();
+                
+                switch (s) {
+                case "name:":
+                    rsp[rspCount] = this.getName();
                     break;
                 case "cliente:":
-                    rsp[rspCount] = this.client.getName();
+                    rsp[rspCount] = this.getClient();
+                    break;
+                case "vehicle":
+                    rsp[rspCount] = this.getVehicle();
+                    break;
+                case "start data":
+                    rsp[rspCount] = this.start;
+                    break;
+                case "finish data":
+                    rsp[rspCount] = this.finish;
                     break;
                 default:
                     rsp[rspCount] = "";
@@ -240,9 +244,29 @@ public class Visit implements Serializable, Descriptible, Arrayable{
         }
         return rsp;
     }
-
+     
     @Override
     public Object setValue(String variable, Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       switch (variable) {
+            case "name":
+                this.setName((String) value);
+                break;
+            case "cliente":
+                this.client((String) value);
+                break;
+            case "vehicle":
+                this.vehicle((String) value);
+                break;    
+            case "start data":
+                this.start.toCompleteString(start);
+                break;
+            case "finish data":
+                this.finish.toCompleteString(finish);
+                break;
+
+            default:
+                break;
+        }
+        return this;
     }
 }
