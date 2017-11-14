@@ -5,12 +5,22 @@
  */
 package view.jpanels;
 
+import control.Controller;
+import java.util.List;
+import java.util.Map;
+import persons.Administrator;
+import view.tableModel.GeneralTableModel;
+
 /**
  *
  * @author Marcus
  */
 public class JPanelAdministrator extends javax.swing.JPanel {
-
+    private Map<String, Administrator> admMp;
+    private List<Administrator> admLst;
+    private GeneralTableModel<Administrator> admTb;
+    private Controller ctrl;
+    private List<String> descriptions;
     /**
      * Creates new form JPanelAdministrator
      */
