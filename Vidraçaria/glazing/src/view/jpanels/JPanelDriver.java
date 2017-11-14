@@ -6,13 +6,23 @@
 package view.jpanels;
 
 import control.Controller;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import persons.Driver;
+import view.comboboxModel.GeneralComboboxModel;
+import view.tableModel.GeneralTableModel;
 
 /**
  *
  * @author Marcus
  */
 public class JPanelDriver extends javax.swing.JPanel {
-
+    private Map<String, Driver> drvMp;
+    private List<Driver> drvLst;
+    private GeneralTableModel<Driver> drvTb;
+    private Controller ctrl;
+    private List<String> descriptions;
     /**
      * Creates new form JPanelDriver
      */
@@ -332,34 +342,34 @@ public class JPanelDriver extends javax.swing.JPanel {
         String description = this.jList1.getSelectedValue();
 
         if(description == null){
-            JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
+           // JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Vehicle vehicleToDelete = this.vehiclesMp.get(description);
+        Driver drvToDelete = this.drvMp.get(description);
 
-        if(vehicleToDelete == null){
-            JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+        if(drvToDelete == null){
+            //JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        this.ctrl.remove(vehicleToDelete);
+        this.ctrl.remove(drvToDelete);
         this.updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for(int i = 0; i < this.vehTb.getRowCount(); i++){
-            Vehicle newVehicle = this.vehTb.getObjectAt(i);
+        for(int i = 0; i < this.drvTb.getRowCount(); i++){
+            Driver newDrv = this.drvTb.getObjectAt(i);
 
             String description = this.descriptions.get(i);
-            if(!newVehicle.describe().equals(description)){
-                this.ctrl.update(newVehicle, description);
+            if(!newDrv.describe().equals(description)){
+                this.ctrl.update(newDrv, description);
             }
         }
-        this.vehiclesMp = ctrl.getVehicles();
-        this.vehiclesLst = new ArrayList<>(vehiclesMp.values());
-        this.updateDescriptions();
-        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        this.drvMp = ctrl.getDrivers();
+        this.drvLst = new ArrayList<>(drvMp.values());
+        //this.updateDescriptions();
+        //JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
@@ -370,16 +380,16 @@ public class JPanelDriver extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         int selected = this.jTable1.getSelectedRow();
-        Vehicle v = this.vehiclesLst.get(selected);
+        Driver d = this.drvLst.get(selected);
 
-        if(v == null){
+        if(d == null){
             return;
         }
 
-        List<Vehicle> lstSelected = new ArrayList<>();
-        lstSelected.add(v);
+        List<Driver> lstSelected = new ArrayList<>();
+        lstSelected.add(d);
 
-        this.jList1.setModel(new GeneralComboboxModel<Vehicle>().getComboBoxModelUsingDescription(lstSelected));
+        this.jList1.setModel(new GeneralComboboxModel<Driver>().getComboBoxModelUsingDescription(lstSelected));
     }//GEN-LAST:event_jTable1MousePressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -448,4 +458,8 @@ public class JPanelDriver extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    private void updateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
