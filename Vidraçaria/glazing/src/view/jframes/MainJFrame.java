@@ -284,7 +284,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         JDialog windowPPerson = new JDialog();
-        windowPPerson.add(new JPanelPhysicalPerson(ctrl));
+        windowPPerson.add(new JPanelPhysicalPerson());
         windowPPerson.pack();
         windowPPerson.setModal(true);
         windowPPerson.setVisible(true);
@@ -293,7 +293,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
         JDialog windowLPerson = new JDialog();
-        windowLPerson.add(new JPanelLegalPerson(ctrl));
+        windowLPerson.add(new JPanelLegalPerson());
         windowLPerson.pack();
         windowLPerson.setModal(true);
         windowLPerson.setVisible(true);
