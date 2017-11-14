@@ -7,12 +7,31 @@ import visit.Visit;
 import agenda.neow.agenda.Agenda;
 import view.tableModel.Arrayable;
 
+/**
+ * This is the Secretary class, derived from the Employee class
+ * @author Pedro
+ */
 public class Secretary extends Employee implements Serializable, Cloneable, Arrayable{
 
+    /**
+     * This is the constructor of the Secretary class. This constructor
+     * has five parameters
+     * @param personalNumber
+     * @param registration
+     * @param name
+     * @param email
+     * @param contact
+     */
     public Secretary(int personalNumber, int registration, String name, String email, String contact) {
         super(personalNumber, registration, name, email, contact);
     }
 
+    /**
+     * This method is responsible for marking the technical visits that 
+     * are made to customers
+     * @param drivers
+     * @param vehicles
+     */
     public void markVisit(List<Driver> drivers, List<Vehicle> vehicles){
 
     }

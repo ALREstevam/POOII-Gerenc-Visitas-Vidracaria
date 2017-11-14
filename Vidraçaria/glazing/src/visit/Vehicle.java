@@ -4,13 +4,54 @@ import java.io.Serializable;
 import java.util.List;
 import agenda.neow.agenda.Agenda;
 
+/**
+ * This is the Vehicle class. 
+ * This class represents the company's vehicles that are used for technical 
+ * visits and delivery of orders 
+ * @author Pedro
+ */
 public class Vehicle implements Serializable, view.comboboxModel.Descriptible, view.tableModel.Arrayable {
 
-   
-
+    /**
+     * This is the enum that contains the possible license types that 
+     * a driver can have
+     */
     public enum licenseTypes {
-        A, B, C, D;
 
+/**
+         * Two or three-wheel motor vehicle driver, with or without side car.
+         * Ex.: Motorcycle, Moped, Moped or Tricycle.
+         */
+        A,
+
+        /**
+         * Driver of vehicles, whose total gross weight does not exceed three
+         * thousand five hundred kilograms or whose stocking does not exceed 08
+         * (eight) seats, excluding that of the driver. Ex: Automobile, pickup
+         * truck, van, utility.
+         */
+        B,
+
+        /**
+         * A driver of vehicles used for the carriage of cargo whose total
+         * gross weight exceeds three thousand five hundred kilograms.
+         * Ex: truck
+         */
+        C,
+
+        /**
+         * Driver of vehicles, used for the transport of passengers, whose
+         * capacity exceeds 08 passengers, excluding the driver.
+         * All vehicles in categories "B" and "C". 
+         * Ex: Mini bus, Bus.
+         */
+        D;
+
+        /**
+         *
+         * @param name
+         * @return
+         */
         public static licenseTypes getFromName(String name) {
             for (licenseTypes type : licenseTypes.values()) {
                 if (type.toString().equals(name)) {
@@ -21,9 +62,32 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
         }
     }
 
+    /**
+     *This is the enum used to store the types of vehicle with which 
+     * the glazing works.
+     */
     public enum vehicleTypes {
-        MOTORCYCLE, CAR, TRUCK;
 
+        /**
+         *It is a type of vehicle used by the company
+         */
+        MOTORCYCLE,
+
+        /**
+         *It is a type of vehicle used by the company
+         */
+        CAR,
+
+        /**
+         *It is a type of vehicle used by the company
+         */
+        TRUCK;
+
+        /**
+         *
+         * @param name
+         * @return
+         */
         public static vehicleTypes getFromName(String name) {
             for (vehicleTypes type : vehicleTypes.values()) {
                 if (type.toString().equals(name)) {
@@ -57,6 +121,10 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
         this.agd = agd;
     }
 
+    /**
+     *
+     * @return
+     */
     public licenseTypes getLicenseNeeded() {
         return this.licence;
     }
@@ -79,10 +147,18 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
         this.registration = registration;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getInfo() {
         return info;
     }
 
+    /**
+     *
+     * @param info
+     */
     public void setInfo(String info) {
         this.info = info;
     }
@@ -141,14 +217,26 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
         return this;
     }
 
-     public licenseTypes getLicence() {
+    /**
+     *
+     * @return
+     */
+    public licenseTypes getLicence() {
         return licence;
     }
 
+    /**
+     *
+     * @return
+     */
     public vehicleTypes getVehType() {
         return vehType;
     }
 
+    /**
+     *
+     * @return
+     */
     public Agenda getAgd() {
         return agd;
     }
