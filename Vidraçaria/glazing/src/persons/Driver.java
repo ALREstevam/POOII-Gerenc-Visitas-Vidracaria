@@ -46,8 +46,37 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
 
     @Override
     public Object[] attributesToArray(String[] order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object[] rsp = new Object[6];
+        int rspCount = 0;
+        for (String s : order) {
+            switch (s) {
+                case "nome:":
+                    rsp[rspCount] = this.getName();
+                    break;
+                case "email:":
+                    rsp[rspCount] = this.getEmail();
+                    break;
+                case "carteira:":
+                    rsp[rspCount] = this.getDriverLicenseType();
+                    break;
+                case "contato:":
+                    rsp[rspCount] = this.getContact();
+                    break;
+                case "registro:":
+                    rsp[rspCount] = this.getRegistration();
+                    break;
+                case "telefone:":
+                    rsp[rspCount] = this.getPersonalNumber();
+                    break;
+                default:
+                    rsp[rspCount] = "";
+                    break;
+            }
+            rspCount++;
+        }
+        return rsp;
     }
+
 
     @Override
     public String toString() {

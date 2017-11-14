@@ -26,4 +26,13 @@ public abstract class Client extends Person implements Serializable, Descriptibl
     public String describe() {
         return getName() + sep + getEmail();
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
 }

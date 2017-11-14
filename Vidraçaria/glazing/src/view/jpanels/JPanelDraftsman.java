@@ -6,6 +6,10 @@
 package view.jpanels;
 
 import control.Controller;
+import java.util.ArrayList;
+import java.util.List;
+import persons.Draftsman;
+import view.comboboxModel.GeneralComboboxModel;
 
 /**
  *
@@ -351,16 +355,16 @@ public class JPanelDraftsman extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         int selected = this.jTable1.getSelectedRow();
-        Vehicle v = this.vehiclesLst.get(selected);
+        Draftsman v = this.draftsmanLst.get(selected);
 
         if(v == null){
             return;
         }
 
-        List<Vehicle> lstSelected = new ArrayList<>();
+        List<Draftsman> lstSelected = new ArrayList<>();
         lstSelected.add(v);
 
-        this.jList1.setModel(new GeneralComboboxModel<Vehicle>().getComboBoxModelUsingDescription(lstSelected));
+        this.jList1.setModel(new GeneralComboboxModel<Draftsman>().getComboBoxModelUsingDescription(lstSelected));
     }//GEN-LAST:event_jTable1MousePressed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
@@ -369,7 +373,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         for(int i = 0; i < this.vehTb.getRowCount(); i++){
-            Vehicle newVehicle = this.vehTb.getObjectAt(i);
+            Draftsman newDraftsman = this.vehTb.getObjectAt(i);
 
             String description = this.descriptions.get(i);
             if(!newVehicle.describe().equals(description)){
