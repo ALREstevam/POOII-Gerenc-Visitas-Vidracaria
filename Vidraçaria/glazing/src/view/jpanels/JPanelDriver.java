@@ -14,6 +14,8 @@ import java.util.Map;
 import persons.Driver;
 import view.comboboxModel.GeneralComboboxModel;
 import view.tableModel.GeneralTableModel;
+import visit.Vehicle;
+import visit.Vehicle.licenseTypes;
 
 /**
  *
@@ -403,8 +405,8 @@ public class JPanelDriver extends javax.swing.JPanel {
             String contact = this.jTextField3.getText();
             String pnumber = this.jFormattedTextField3.getText();
             String registration = this.jFormattedTextField4.getText();
-            String licenseType = this.jTextField4.getText();
-            
+            String licenseT = this.jTextField4.getText();
+            Driver.licenseTypes licenseType = Driver.licenseTypes.getFromName(licenseT);
 
             int nb = 0, reg = 0;
             try {
@@ -414,9 +416,9 @@ public class JPanelDriver extends javax.swing.JPanel {
             } catch (NumberFormatException e) {
                 System.out.println("Numero com formato errado!");
             }
-            int license = 0;
             
-            switch (licenseType) {
+            
+          /*  switch (licenseType) {
             case "A":
                 license=1;
                 break;
@@ -430,15 +432,16 @@ public class JPanelDriver extends javax.swing.JPanel {
                 license=4;
                 break;
         }
-            
+            */
             if(name == null || email == null || contact == null || pnumber == null || licenseType == null ||
                 registration.equals("")){
                 throw new Exception();
             }
-
+            
+            
             NoWorkPattern nwp = new NoWorkPattern();
             Agenda agd = new Agenda(nwp);
-            Driver dr = new Driver(license, nb, reg, name, email, contact, agd);
+            Driver dr = new Driver(licenseType, nb, reg, name, email, contact, agd);
             ctrl.append(dr);
             this.updateTable();
         }catch(Exception e){
