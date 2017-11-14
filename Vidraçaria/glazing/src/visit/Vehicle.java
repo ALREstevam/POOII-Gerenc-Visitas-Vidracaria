@@ -234,8 +234,8 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
     }
 
     /**
-     *
-     * @return
+     ** This method return an object of type Agenda.
+     * @return Agenda
      */
     public Agenda getAgd() {
         return agd;

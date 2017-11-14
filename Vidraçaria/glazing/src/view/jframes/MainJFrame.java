@@ -223,7 +223,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         JDialog windowDraftsman = new JDialog();
-        windowDraftsman.add(new JPanelDraftsman(ctrl));
+        windowDraftsman.add(new JPanelDraftsman());
         windowDraftsman.pack();
         windowDraftsman.setModal(true);
         windowDraftsman.setVisible(true);
@@ -257,7 +257,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         JDialog windowDriver = new JDialog();
-        windowDriver.add(new JPanelDriver(ctrl));
+        windowDriver.add(new JPanelDriver());
         windowDriver.pack();
         windowDriver.setModal(true);
         windowDriver.setVisible(true);
@@ -274,11 +274,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        JDialog windowAssembler = new JDialog();
-        windowAssembler.add(new JPanelAssembler(ctrl));
-        windowAssembler.pack();
-        windowAssembler.setModal(true);
-        windowAssembler.setVisible(true);
+        JDialog windowAss = new JDialog();
+        windowAss.add(new JPanelAssembler());
+        windowAss.pack();
+        windowAss.setModal(true);
+        windowAss.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed

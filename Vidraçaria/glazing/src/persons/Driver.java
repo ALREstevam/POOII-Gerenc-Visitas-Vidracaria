@@ -84,7 +84,7 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
 
     /**
      *
-     * @return
+     * @return 
      */
     public licenseTypes getDriverLicenseType() {
         return driverLicenseType;
@@ -177,7 +177,7 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
     }
 
     /**
-     *
+     ** This method return an object of type Agenda.
      * @return Agenda
      */
     public Agenda getAgd() {

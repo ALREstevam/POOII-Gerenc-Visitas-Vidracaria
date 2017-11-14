@@ -11,6 +11,12 @@ import persons.Client;
 import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
 
+/**
+ * This is the Visit class. 
+ * This class is responsible for the data regarding the technical visit
+ * made to the client.  
+ * @author Pedro
+ */
 public class Visit implements Serializable, Descriptible, Arrayable{
 
     private LocalDateTime start;
@@ -23,6 +29,16 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     private Client client;
     private Vehicle vehicle;
 
+    /**
+     * This is the constructor of the Visit class. This constructor
+     * has six parameters
+     * @param start
+     * @param finish
+     * @param name
+     * @param visitor
+     * @param client
+     * @param vehicle
+     */
     public Visit(LocalDateTime start, LocalDateTime finish, String name, List<Driver> visitor, Client client, Vehicle vehicle) {
         this.start = start;
         this.finish = finish;
@@ -32,78 +48,154 @@ public class Visit implements Serializable, Descriptible, Arrayable{
         this.vehicle = vehicle;
     }
 
+    /**
+     * This method set the Visit's name
+     * @param name
+     */
     public Visit(String name) {
         this.name = name;
     }
     
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getStart() {
         return start;
     }
 
+    /**
+     *
+     * @param start
+     */
     public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getFinish() {
         return finish;
     }
 
+    /**
+     *
+     * @param finish
+     */
     public void setFinish(LocalDateTime finish) {
         this.finish = finish;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getStatus() {
         return status;
     }
 
+    /**
+     *
+     * @param status
+     */
     public void setStatus(int status) {
         this.status = status;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     *
+     * @return
+     */
     public Project getProject() {
         return project;
     }
 
+    /**
+     *
+     * @param project
+     */
     public void setProject(Project project) {
         this.project = project;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Driver> getVisitor() {
         return visitor;
     }
 
+    /**
+     *
+     * @param visitor
+     */
     public void setVisitor(List<Driver> visitor) {
         this.visitor = visitor;
     }
 
+    /**
+     *
+     * @return
+     */
     public Client getClient() {
         return client;
     }
 
+    /**
+     *
+     * @param client
+     */
     public void setClient(Client client) {
         this.client = client;
     }
 
+    /**
+     *
+     * @return
+     */
     public Vehicle getVehicle() {
         return vehicle;
     }
 
+    /**
+     *
+     * @param vehicle
+     */
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
