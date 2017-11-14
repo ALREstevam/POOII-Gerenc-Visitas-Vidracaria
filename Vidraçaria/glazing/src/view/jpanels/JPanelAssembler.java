@@ -392,8 +392,9 @@ public class JPanelAssembler extends javax.swing.JPanel {
             String contact = this.jTextField3.getText();
             String personalnb = this.jFormattedTextField3.getText();
             String registration = this.jFormattedTextField4.getText();
-            String license = this.jTextField4.getText();
-
+            String licenseT = this.jTextField4.getText();
+            Assembler.licenseTypes licenseType = Assembler.licenseTypes.getFromName(licenseT);
+            
             int nb = 0, reg = 0;
             try {
             nb = Integer.parseInt(personalnb); 
@@ -402,6 +403,7 @@ public class JPanelAssembler extends javax.swing.JPanel {
             } catch (NumberFormatException e) {
                 System.out.println("Numero com formato errado!");
             }
+            /*
             int licenseType = 0;
             
             switch (license) {
@@ -418,8 +420,8 @@ public class JPanelAssembler extends javax.swing.JPanel {
                 licenseType=4;
                 break;
         }
-            
-            if(name == null || email == null || contact == null || personalnb == null || license == null ||
+            */
+            if(name == null || email == null || contact == null || personalnb == null || licenseT == null ||
                 registration.equals("")){
                 throw new Exception();
             }
