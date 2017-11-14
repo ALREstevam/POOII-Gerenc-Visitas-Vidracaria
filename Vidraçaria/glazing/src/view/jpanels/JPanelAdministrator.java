@@ -6,6 +6,7 @@
 package view.jpanels;
 
 import control.Controller;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import persons.Administrator;
@@ -28,6 +29,20 @@ public class JPanelAdministrator extends javax.swing.JPanel {
         initComponents();
     }
 
+    private void updateTable(){
+        String[] columns = new String[7];
+        
+        columns[0] = "name";
+        columns[1] = "number";
+        columns[2] = "type";
+        columns[3] = "registration";
+        columns[4] = "email";
+        columns[5] = "contact";
+        
+        this.admLst = new ArrayList<>(this.admMp.values());
+        this.admTb =  new GeneralTableModel<Administrator>(columns, admLst, ctrl);
+        this.jTable1.setModel(admTb);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,15 +78,23 @@ public class JPanelAdministrator extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Numero", "Tipo", "Registro", "Email", "Contato"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
