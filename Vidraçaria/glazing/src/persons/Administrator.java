@@ -3,8 +3,9 @@ package persons;
 import java.io.Serializable;
 import java.util.List;
 import view.comboboxModel.Descriptible;
+import view.tableModel.Arrayable;
 
-public class Administrator extends Employee implements Serializable, Descriptible{
+public class Administrator extends Employee implements Serializable, Descriptible, Arrayable{
 
     private String type;
 
@@ -28,6 +29,44 @@ public class Administrator extends Employee implements Serializable, Descriptibl
     @Override
     public String describe() {
         return "ADM" + sep + this.getName() + sep + this.getEmail();
+    }
+
+    @Override
+    public Object[] attributesToArray(String[] order) {
+        Object[] rsp = new Object[6];
+        int rspCount = 0;
+        for (String s : order) {
+            switch (s) {
+                case "nome:":
+                    rsp[rspCount] = this.getName();
+                    break;
+                case "email:":
+                    rsp[rspCount] = this.getEmail();
+                    break;
+                case "tipo:":
+                    rsp[rspCount] = this.getType();
+                    break;
+                case "contato:":
+                    rsp[rspCount] = this.getContact();
+                    break;
+                case "registro:":
+                    rsp[rspCount] = this.getRegistration();
+                    break;
+                case "telefone:":
+                    rsp[rspCount] = this.getPersonalNumber();
+                    break;
+                default:
+                    rsp[rspCount] = "";
+                    break;
+            }
+            rspCount++;
+        }
+        return rsp;
+    }
+
+    @Override
+    public Object setValue(String variable, Object value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

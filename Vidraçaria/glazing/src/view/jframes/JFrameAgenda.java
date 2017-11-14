@@ -15,13 +15,12 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import agenda.neow.agenda.Agenda;
-import agenda.neow.agenda.TimeAnswer;
 import persons.Driver;
 import view.comboboxModel.GeneralComboboxModel;
 import visit.Project;
 import visit.Vehicle;
 import visit.Visit;
-import agenda.neow.util.TimeUtil;
+import agenda.neow.agenda.TimeAnswer;
 
 /**
  *
@@ -130,7 +129,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButtonAllocate = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jLabelAllocatedTo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabelProject = new javax.swing.JLabel();
@@ -325,8 +323,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
 
         jLabel11.setText("A tarefa pode ser alocada para: ");
 
-        jLabelAllocatedTo.setText("--");
-
+        //jLabelAllocatedTo.setText("--");
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -342,9 +339,13 @@ public class JFrameAgenda extends javax.swing.JFrame {
                             .addComponent(jButtonAllocate)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(167, 167, 167)
-                                .addComponent(jLabelAllocatedTo))
+                                //.addComponent(jLabelAllocatedTo))
                             .addComponent(jLabel11))
                         .addGap(0, 0, Short.MAX_VALUE))))
+                            //.addComponent(jButton6)
+                            .addComponent(jLabel11)
+                        //.addGap(0, 665, Short.MAX_VALUE)))
+                            )
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,7 +355,8 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
                 .addGap(5, 5, 5)
-                .addComponent(jLabelAllocatedTo)
+                //.addComponent(jLabelAllocatedTo)
+                .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAllocate)
                 .addContainerGap(45, Short.MAX_VALUE))
@@ -547,10 +549,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
             catch(Exception e){
                 e.printStackTrace();
             }
-            
         }
-        
-        
     }//GEN-LAST:event_jButtonValidateActionPerformed
 
     private void jButtonConfirmTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmTimeActionPerformed
@@ -578,6 +577,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         }
         finally{
         }
+
     }//GEN-LAST:event_jButtonConfirmTimeActionPerformed
 
     private void jButtonAllocateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllocateActionPerformed
@@ -620,7 +620,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelAllocatedTo;
     private javax.swing.JLabel jLabelDuration;
     private javax.swing.JLabel jLabelProject;
     private javax.swing.JList<String> jListDrivers;
@@ -655,6 +654,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         public FreeTimeSearch(List<Driver> selectedDrivers, Vehicle selectedVehicle, int hours, int minutes) {
             this.selectedDrivers = selectedDrivers;
             this.selectedVehicle = selectedVehicle;
+            this.date = date;
             this.duration = duration;
         }
         
@@ -685,12 +685,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
             }catch(Exception e){
                 e.printStackTrace();
             }
-            
             return null;
-        }
-        
-        @Override
-        public void done(){
         }
     }
     
@@ -719,4 +714,8 @@ public class JFrameAgenda extends javax.swing.JFrame {
         public void done(){
         }
     }
+
+
+
+
 }

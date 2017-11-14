@@ -5,17 +5,35 @@
  */
 package view.jpanels;
 
+import agenda.neow.agenda.Agenda;
+import agenda.neow.nowork.NoWorkPattern;
+import control.Controller;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import persons.Assembler;
+import view.comboboxModel.GeneralComboboxModel;
+import view.tableModel.GeneralTableModel;
+
 /**
  *
  * @author Marcus
  */
 public class JPanelAssembler extends javax.swing.JPanel {
-
+    private Map<String, Assembler> assMp;
+    private List<Assembler> assLst;
+    private GeneralTableModel<Assembler> assTb;
+    private Controller ctrl;
+    private List<String> descriptions;
     /**
      * Creates new form JPanelAssembler
      */
     public JPanelAssembler() {
         initComponents();
+    }
+
+    public JPanelAssembler(Controller ctrl) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -53,7 +71,7 @@ public class JPanelAssembler extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<String>();
         jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -135,28 +153,24 @@ public class JPanelAssembler extends javax.swing.JPanel {
 
         jLabel7.setText("Contato:");
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jFormattedTextField3.setText("jFormattedTextField3");
-
-        jFormattedTextField4.setText("jFormattedTextField4");
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#######"))));
+        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField3ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Personal number:");
 
         jLabel9.setText("Número registro:");
 
         jLabel10.setText("Tipo de licença:");
-
-        jTextField4.setText("jTextField4");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -173,15 +187,18 @@ public class JPanelAssembler extends javax.swing.JPanel {
                     .addComponent(jLabel10)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jFormattedTextField3)
                     .addComponent(jFormattedTextField4)
-                    .addComponent(jButton4)
                     .addComponent(jTextField4)
-                    .addComponent(jTextField3)
                     .addComponent(jTextField2)
-                    .addComponent(jTextField1))
-                .addContainerGap(143, Short.MAX_VALUE))
+                    .addComponent(jTextField3)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(116, 116, 116))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,16 +352,16 @@ public class JPanelAssembler extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         int selected = this.jTable1.getSelectedRow();
-        Vehicle v = this.vehiclesLst.get(selected);
+       Assembler s  = this.assLst.get(selected);
 
-        if(v == null){
+        if(s == null){
             return;
         }
 
-        List<Vehicle> lstSelected = new ArrayList<>();
-        lstSelected.add(v);
+        List<Assembler> lstSelected = new ArrayList<>();
+        lstSelected.add(s);
 
-        this.jList1.setModel(new GeneralComboboxModel<Vehicle>().getComboBoxModelUsingDescription(lstSelected));
+        this.jList1.setModel(new GeneralComboboxModel<Assembler>().getComboBoxModelUsingDescription(lstSelected));
     }//GEN-LAST:event_jTable1MousePressed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
@@ -352,44 +369,68 @@ public class JPanelAssembler extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable1KeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for(int i = 0; i < this.vehTb.getRowCount(); i++){
-            Vehicle newVehicle = this.vehTb.getObjectAt(i);
+        for(int i = 0; i < this.assTb.getRowCount(); i++){
+            Assembler newAssembler = this.assTb.getObjectAt(i);
 
             String description = this.descriptions.get(i);
-            if(!newVehicle.describe().equals(description)){
-                this.ctrl.update(newVehicle, description);
+            if(!newAssembler.describe().equals(description)){
+                this.ctrl.update(newAssembler, description);
             }
         }
-        this.vehiclesMp = ctrl.getVehicles();
-        this.vehiclesLst = new ArrayList<>(vehiclesMp.values());
-        this.updateDescriptions();
-        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
+    //    this.assMp = ctrl.getVehicles();
+      //  this.assLst = new ArrayList<>(assMp.values());
+//        this.updateDescriptions();
+  //      JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
 
         try{
-            String plate = this.jFormattedTextField1.getText();
-            String strVehicleLicense = this.jComboBoxLicense.getSelectedItem().toString();
-            String info = this.jTextPane1.getText();
-            String strVehicleType = this.jComboBoxType.getSelectedItem().toString();
-            Vehicle.licenseTypes licenseType = Vehicle.licenseTypes.getFromName(strVehicleLicense);
-            Vehicle.vehicleTypes vehicleType = Vehicle.vehicleTypes.getFromName(strVehicleType);
+            String name = this.jTextField1.getText();
+            String email = this.jTextField2.getText();
+            String contact = this.jTextField3.getText();
+            String personalnb = this.jFormattedTextField3.getText();
+            String registration = this.jFormattedTextField4.getText();
+            String license = this.jTextField4.getText();
 
-            if(vehicleType == null || licenseType == null || plate == null || strVehicleLicense == null || strVehicleType == null ||
-                plate.equals("") || strVehicleLicense.equals("") || strVehicleType.equals("")
-            ){
+            int nb = 0, reg = 0;
+            try {
+            nb = Integer.parseInt(personalnb); 
+            reg = Integer.parseInt(registration);
+        
+            } catch (NumberFormatException e) {
+                System.out.println("Numero com formato errado!");
+            }
+            int licenseType = 0;
+            
+            switch (license) {
+            case "A":
+                licenseType=1;
+                break;
+            case "B":
+                licenseType=2;
+                break;
+            case "C":
+                licenseType=3;
+                break;
+            case "D":
+                licenseType=4;
+                break;
+        }
+            
+            if(name == null || email == null || contact == null || personalnb == null || license == null ||
+                registration.equals("")){
                 throw new Exception();
             }
 
             NoWorkPattern nwp = new NoWorkPattern();
             Agenda agd = new Agenda(nwp);
-            Vehicle veh = new Vehicle(licenseType, vehicleType, plate, info, agd);
-            ctrl.append(veh);
+            Assembler ass = new Assembler(licenseType, nb, reg, name, email, contact, agd);
+            ctrl.append(ass);
             this.updateTable();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+          //  JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -417,20 +458,24 @@ public class JPanelAssembler extends javax.swing.JPanel {
         String description = this.jList1.getSelectedValue();
 
         if(description == null){
-            JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
+         //   JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Vehicle vehicleToDelete = this.vehiclesMp.get(description);
+        Assembler assToDelete = this.assMp.get(description);
 
-        if(vehicleToDelete == null){
-            JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+        if(assToDelete == null){
+            //JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        this.ctrl.remove(vehicleToDelete);
+        this.ctrl.remove(assToDelete);
         this.updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -463,4 +508,8 @@ public class JPanelAssembler extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    private void updateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

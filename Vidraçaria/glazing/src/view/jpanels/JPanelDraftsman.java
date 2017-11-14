@@ -5,6 +5,12 @@
  */
 package view.jpanels;
 
+import control.Controller;
+import java.util.ArrayList;
+import java.util.List;
+import persons.Draftsman;
+import view.comboboxModel.GeneralComboboxModel;
+
 /**
  *
  * @author Marcus
@@ -16,6 +22,10 @@ public class JPanelDraftsman extends javax.swing.JPanel {
      */
     public JPanelDraftsman() {
         initComponents();
+    }
+
+    public JPanelDraftsman(Controller ctrl) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -118,7 +128,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
                 .addGap(191, 191, 191))
         );
 
-        jLabel1.setText("Projetistas");
+        jLabel1.setText("Desenhista");
 
         jLabel5.setText("Inserir");
 
@@ -135,20 +145,23 @@ public class JPanelDraftsman extends javax.swing.JPanel {
 
         jLabel7.setText("Contato:");
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("jTextField2");
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setText("jTextField3");
-
-        jFormattedTextField3.setText("jFormattedTextField3");
-
-        jFormattedTextField4.setText("jFormattedTextField4");
+        jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField4ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Personal number:");
 
@@ -156,7 +169,11 @@ public class JPanelDraftsman extends javax.swing.JPanel {
 
         jLabel10.setText("Tipo de licença:");
 
-        jTextField4.setText("jTextField4");
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -173,15 +190,18 @@ public class JPanelDraftsman extends javax.swing.JPanel {
                     .addComponent(jLabel10)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jFormattedTextField3)
                     .addComponent(jFormattedTextField4)
-                    .addComponent(jButton4)
                     .addComponent(jTextField4)
-                    .addComponent(jTextField3)
                     .addComponent(jTextField2)
-                    .addComponent(jTextField1))
-                .addContainerGap(143, Short.MAX_VALUE))
+                    .addComponent(jTextField3)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(116, 116, 116))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,16 +355,16 @@ public class JPanelDraftsman extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         int selected = this.jTable1.getSelectedRow();
-        Vehicle v = this.vehiclesLst.get(selected);
+        Draftsman v = this.draftsmanLst.get(selected);
 
         if(v == null){
             return;
         }
 
-        List<Vehicle> lstSelected = new ArrayList<>();
+        List<Draftsman> lstSelected = new ArrayList<>();
         lstSelected.add(v);
 
-        this.jList1.setModel(new GeneralComboboxModel<Vehicle>().getComboBoxModelUsingDescription(lstSelected));
+        this.jList1.setModel(new GeneralComboboxModel<Draftsman>().getComboBoxModelUsingDescription(lstSelected));
     }//GEN-LAST:event_jTable1MousePressed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
@@ -353,7 +373,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         for(int i = 0; i < this.vehTb.getRowCount(); i++){
-            Vehicle newVehicle = this.vehTb.getObjectAt(i);
+            Draftsman newDraftsman = this.vehTb.getObjectAt(i);
 
             String description = this.descriptions.get(i);
             if(!newVehicle.describe().equals(description)){
@@ -431,6 +451,17 @@ public class JPanelDraftsman extends javax.swing.JPanel {
         this.ctrl.remove(vehicleToDelete);
         this.updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField4ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
