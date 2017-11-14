@@ -20,6 +20,7 @@ import visit.Project;
 import local.persistence.nLocalPersistence;
 import my.exceptions.FileCouldNotBeCreatetException;
 import my.exceptions.FileDoesNotExistException;
+import persons.Draftsman;
 import persons.Driver;
 import persons.Secretary;
 
@@ -317,6 +318,10 @@ public class Controller implements Serializable{
     }
 
     public Map<String, Secretary> getSecretary() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Map<String, Draftsman> getDraftsman() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
