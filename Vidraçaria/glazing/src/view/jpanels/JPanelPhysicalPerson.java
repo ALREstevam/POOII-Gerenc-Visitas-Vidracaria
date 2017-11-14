@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import persons.PhysicalPerson;
-import persons.Secretary;
 import view.tableModel.GeneralTableModel;
 
 
