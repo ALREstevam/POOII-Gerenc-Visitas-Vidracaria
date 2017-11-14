@@ -8,6 +8,7 @@ package agenda.neow.agenda;
 import agenda.neow.nowork.NoWorkPattern;
 import agenda.neow.nowork.NoWorkElement;
 import agenda.circular.CircularList;
+import agenda.neow.agenda.TimeBlock.StatusEnum;
 import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -19,6 +20,8 @@ import java.util.TreeSet;
 import agenda.neow.util.TimeUtil;
 import agenda.neow.util.Touple;
 import agenda.neow.util.WeekDays;
+import java.util.ArrayList;
+import java.util.List;
 import visit.Visit;
 /**
  * This class manages a agenda
@@ -154,6 +157,28 @@ public class Agenda implements AgendaDefaults, Serializable{
         return supAgenda;
     }
     
+    
+    
+    public static Agenda sum(List<Agenda> agds){
+        List<NoWorkPattern> patterns = new ArrayList<>(agds.size());
+        for(int i = 0; i < agds.size() -1; i++){
+            patterns.add(agds.get(i).getNoWorkPattern());
+        }
+
+        NoWorkPattern masterNwp = NoWorkPattern.merge(patterns);
+        Agenda supAgenda = new Agenda(masterNwp);
+        
+        for(int i = 0; i < BLOCKS; i++){
+            List<StatusEnum> stts = new ArrayList<>(agds.size());
+            for(int j = 0; j < agds.size(); j++){
+                TimeBlock tElem = agds.get(j).agd.get(i);
+                stts.add(tElem.getStatus());
+            }
+            supAgenda.agd.get(i).setStatus(TimeBlock.StatusEnum.sum(stts));
+        }
+        return supAgenda;
+    }
+    
     /**
      * Initializes the agenda
      */
@@ -276,6 +301,10 @@ public class Agenda implements AgendaDefaults, Serializable{
             rsp += "[" + i + "]: " + agd.get(i).toString() + "\n";
         }
         return rsp;
+    }
+
+    public NoWorkPattern getNoWorkPattern() {
+        return noWorkPattern;
     }
 
     

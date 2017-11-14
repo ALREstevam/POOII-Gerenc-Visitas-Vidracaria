@@ -7,6 +7,7 @@ package agenda.neow.agenda;
 import java.io.Serializable;
 import visit.Visit;
 import agenda.neow.util.WeekDays;
+import java.util.List;
 
 /**
  * This class represents a block of time
@@ -60,6 +61,33 @@ public class TimeBlock implements Serializable{
          * @return a enum marked as FREE if all enums are FREE. NOT_ALLOCATE if the most enums are NOT_ALLOCATE. ALLOCATED if the most enums are ALLOCATED
          */
         public static StatusEnum sum(StatusEnum... other){
+            int sum = 0;
+            int allocated = 0;
+            int notAllocate = 0;
+            
+            for(StatusEnum elem : other){
+               sum += elem.value;
+               if(elem == ALLOCATED){
+                   allocated++;
+               }else if(elem == NOT_ALLOCATE){
+                   notAllocate++;
+               }
+            }
+            if(sum == 0){
+                return StatusEnum.FREE;
+            }else if(allocated >= notAllocate){
+                return StatusEnum.ALLOCATED;
+            }else{
+                return StatusEnum.NOT_ALLOCATE;
+            }
+        }
+        
+        /**
+         * Sums n enums, returning a enum representing the 
+         * @param other enums
+         * @return a enum marked as FREE if all enums are FREE. NOT_ALLOCATE if the most enums are NOT_ALLOCATE. ALLOCATED if the most enums are ALLOCATED
+         */
+        public static StatusEnum sum(List<StatusEnum> other){
             int sum = 0;
             int allocated = 0;
             int notAllocate = 0;

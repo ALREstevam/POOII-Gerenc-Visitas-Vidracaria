@@ -5,7 +5,6 @@
  */
 package view.jframes;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -37,6 +36,10 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private LocalDate dateChoosen;
     private int hours = 0;
     private int minutes = 0;
+    
+    private LocalDateTime allocatedTo = null;
+    private Integer initalBlock = null;
+    private Integer blocksQtd = null;
     
     private boolean projectValid = false;
     private boolean vehicleValid = false;
@@ -125,9 +128,8 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        jButtonAllocate = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabelAllocatedTo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -314,11 +316,14 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("Status");
 
-        jButton6.setText("Alocar");
+        jButtonAllocate.setText("Alocar");
+        jButtonAllocate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAllocateActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("A tarefa pode ser alocada para: ");
-
-        jLabel13.setText("Status:");
 
         jLabelAllocatedTo.setText("--");
 
@@ -331,16 +336,15 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(191, 730, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6)
+                            .addComponent(jButtonAllocate)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(167, 167, 167)
                                 .addComponent(jLabelAllocatedTo))
-                            .addComponent(jLabel13))
-                        .addGap(0, 621, Short.MAX_VALUE))))
+                            .addComponent(jLabel11))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,13 +352,11 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel13)
+                .addComponent(jLabel11)
                 .addGap(5, 5, 5)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabelAllocatedTo))
+                .addComponent(jLabelAllocatedTo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
+                .addComponent(jButtonAllocate)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -483,6 +485,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         
         DefaultComboBoxModel dcModelSelectedVehicle = gcModelVehicle.getComboBoxModelUsingDescription(lst);
         this.jListSelectedVehicles.setModel(dcModelSelectedVehicle);
+        this.selectedVehicle = veh;
         this.vehicleValid = true;
     }//GEN-LAST:event_jButtonAddVehicleActionPerformed
 
@@ -518,6 +521,9 @@ public class JFrameAgenda extends javax.swing.JFrame {
         this.lstDrivers.addAll(this.selectedDrivers.values());
         this.jListDrivers.setModel(gcModelDriver.getComboBoxModelUsingDescription(this.lstDrivers));
         
+        this.selectedVehicle = null;
+        this.selectedDrivers = null;
+        
         this.projectValid = false;
         this.vehicleValid = false;
         this.driverValid = false;
@@ -534,9 +540,14 @@ public class JFrameAgenda extends javax.swing.JFrame {
                     "Os dados foram validados.\nBuscando horário de alocação...",
                     "Tentando alocar",
                     JOptionPane.INFORMATION_MESSAGE);
+            try{
+                FreeTimeSearch t = new FreeTimeSearch(new ArrayList<Driver>(this.selectedDrivers.values()), this.selectedVehicle, hours, minutes);
+                t.execute();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
             
-            TimeAllocation t = new TimeAllocation(new ArrayList<Driver>(this.selectedDrivers.values()), this.selectedVehicle, hours, minutes);
-            t.execute();
         }
         
         
@@ -549,7 +560,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
             this.hours = (int) jSpinnerHours.getValue();
             this.minutes = (int) jSpinnerMinutes.getValue();
 
-            if(hours <= 0 && minutes <= 0){
+            if(hours <= 0 && minutes <= 0 && hours <= 12 && minutes <= 59){
                 this.hours = 0;
                 this.minutes = 0;
                 throw new Exception();
@@ -560,12 +571,27 @@ public class JFrameAgenda extends javax.swing.JFrame {
 
             this.jLabelDuration.setText("Duração: " + strHours + " "+ util.Util.portugueesePlurarize(this.hours, "hora") +" e " + strMintues + " " + util.Util.portugueesePlurarize(this.minutes, "minuto"));
             this.timeValid = true;
+            
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(this.jPanelDateChoose,"Algo errado com a data escolhida.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
         }
         finally{
         }
     }//GEN-LAST:event_jButtonConfirmTimeActionPerformed
+
+    private void jButtonAllocateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllocateActionPerformed
+
+        if(this.allocatedTo != null && this.initalBlock != null && blocksQtd != null && selectedDrivers != null && selectedVehicle != null && this.selectedProject != null){
+            
+            
+        
+        }else{
+            JOptionPane.showMessageDialog(this.jPanelDateChoose,"Não foi possível fazer essa alocação.","Erro ao alocar", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_jButtonAllocateActionPerformed
 
     private Integer getHoursFromjSpinner(){
         Integer value = (Integer) this.jSpinnerHours.getValue();
@@ -579,16 +605,15 @@ public class JFrameAgenda extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButtonAddDriver;
     private javax.swing.JButton jButtonAddProject;
     private javax.swing.JButton jButtonAddVehicle;
+    private javax.swing.JButton jButtonAllocate;
     private javax.swing.JButton jButtonClean;
     private javax.swing.JButton jButtonConfirmTime;
     private javax.swing.JButton jButtonValidate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -618,7 +643,58 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinnerMinutes;
     // End of variables declaration//GEN-END:variables
 
-    private class TimeAllocation extends SwingWorker<SwingWorkerAnswer, Void>{
+    private class FreeTimeSearch extends SwingWorker<Void, Void>{
+            
+        private List<Driver> selectedDrivers;
+        private Vehicle selectedVehicle;
+        private LocalDate date;
+        private int duration;
+        public int rsp;
+        public LocalDateTime rspldt;
+
+        public FreeTimeSearch(List<Driver> selectedDrivers, Vehicle selectedVehicle, int hours, int minutes) {
+            this.selectedDrivers = selectedDrivers;
+            this.selectedVehicle = selectedVehicle;
+            this.duration = duration;
+        }
+        
+        @Override
+        protected Void doInBackground() throws Exception {
+            System.out.println("Serarching...");
+            
+            try{
+                List<Agenda> agendas  = new ArrayList<>();
+                System.out.println(selectedVehicle.describe());
+                agendas.add(selectedVehicle.getAgd());
+
+                for(Driver drv : selectedDrivers){
+                    System.out.println(drv.describe());
+                    agendas.add(drv.getAgd());
+                }
+                int blocks = TimeUtil.blocksIn(Agenda.MIN_PER_BLOCK, TimeUtil.toMinutes(hours, minutes));
+
+                Agenda sumAgds = Agenda.sum(agendas);
+                
+                TimeAnswer tma = sumAgds.whenIsAvaliable(blocks);
+                System.out.println(TimeUtil.toCompleteString(tma.time));
+                jLabelAllocatedTo.setText(TimeUtil.toCompleteString(tma.time));
+                allocatedTo = tma.time;
+                initalBlock = tma.initialBlock;
+                blocksQtd = blocks;
+                
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            
+            return null;
+        }
+        
+        @Override
+        public void done(){
+        }
+    }
+    
+    private class TimeAllocation extends SwingWorker<Void, Void>{
             
         private List<Driver> selectedDrivers;
         private Vehicle selectedVehicle;
@@ -634,36 +710,13 @@ public class JFrameAgenda extends javax.swing.JFrame {
         }
         
         @Override
-        protected SwingWorkerAnswer doInBackground() throws Exception {
-            List<Agenda> agendas  = new ArrayList<>();
-            agendas.add(selectedVehicle.getAgd());
-            for(Driver drv : selectedDrivers){
-                agendas.add(drv.getAgd());
-            }
+        protected Void doInBackground() throws Exception {
             
-            int blocks = TimeUtil.blocksIn(Agenda.MIN_PER_BLOCK, TimeUtil.toMinutes(hours, minutes));
-            
-            Agenda sumAgds = Agenda.sum((Agenda[])agendas.toArray());
-            TimeAnswer tma = sumAgds.whenIsAvaliable(blocks);
-            jLabelAllocatedTo.setText(TimeUtil.toCompleteString(tma.time));
             return null;
         }
         
         @Override
         public void done(){
         }
-    }
-    
-    private class SwingWorkerAnswer{
-        LocalDateTime canBeAllocatedTo;
-        Integer blockFit;
-        Integer blocks;
-
-        public SwingWorkerAnswer(LocalDateTime canBeAllocatedTo, Integer blockFit, Integer blocks) {
-            this.canBeAllocatedTo = canBeAllocatedTo;
-            this.blockFit = blockFit;
-            this.blocks = blocks;
-        }
-        
     }
 }
