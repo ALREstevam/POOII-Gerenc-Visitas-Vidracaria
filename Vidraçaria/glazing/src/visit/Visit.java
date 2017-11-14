@@ -231,10 +231,10 @@ public class Visit implements Serializable, Descriptible, Arrayable{
                     rsp[rspCount] = this.getVehicle();
                     break;
                 case "start data":
-                    rsp[rspCount] = this.start;
+                    rsp[rspCount] = this.getStart().toCompleteString(start);
                     break;
                 case "finish data":
-                    rsp[rspCount] = this.finish;
+                    rsp[rspCount] = this.toCompleteString(finish);
                     break;
                 default:
                     rsp[rspCount] = "";
@@ -258,7 +258,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
                 this.vehicle((String) value);
                 break;    
             case "start data":
-                this.start.toCompleteString(start);
+                this.start.
                 break;
             case "finish data":
                 this.finish.toCompleteString(finish);
