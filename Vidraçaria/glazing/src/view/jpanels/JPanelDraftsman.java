@@ -118,7 +118,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
                 .addGap(191, 191, 191))
         );
 
-        jLabel1.setText("Desenhista");
+        jLabel1.setText("Projetistas");
 
         jLabel5.setText("Inserir");
 
