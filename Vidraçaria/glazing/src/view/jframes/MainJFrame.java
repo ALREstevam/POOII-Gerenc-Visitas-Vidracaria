@@ -14,6 +14,13 @@ import javax.swing.JDialog;
 import my.exceptions.FileCouldNotBeCreatetException;
 import persons.Driver;
 import persons.Employee;
+import view.jpanels.JPanelAdministrator;
+import view.jpanels.JPanelAssembler;
+import view.jpanels.JPanelDraftsman;
+import view.jpanels.JPanelDriver;
+import view.jpanels.JPanelLegalPerson;
+import view.jpanels.JPanelPhysicalPerson;
+import view.jpanels.JPanelSecretary;
 import view.jpanels.JPanelVehicle;
 
 /**
@@ -25,7 +32,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private Controller ctrl;
     /**
      * Creates new form MainJFrame
-     * @param ctrl a controller
      */
     public MainJFrame(Controller ctrl) {
         this.ctrl = ctrl;
@@ -88,6 +94,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenu3.add(jMenuItem1);
 
         jMenuItem2.setText("Montador");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem2);
 
         jMenuItem3.setText("Projetista");
@@ -99,9 +110,19 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenu3.add(jMenuItem3);
 
         jMenuItem4.setText("Motorista");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setText("Secretária");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenu2.add(jMenu3);
@@ -113,9 +134,19 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenu4.setText("Criar e Editar");
 
         jMenuItem6.setText("Pessoa física");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenuItem7.setText("Pessoa jurídica");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem7);
 
         jMenu1.add(jMenu4);
@@ -177,6 +208,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        JDialog windowAdmin = new JDialog();
+        windowAdmin.add(new JPanelAdministrator());
+        windowAdmin.pack();
+        windowAdmin.setModal(true);
+        windowAdmin.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -186,6 +222,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+        JDialog windowDraftsman = new JDialog();
+        windowDraftsman.add(new JPanelDraftsman(ctrl));
+        windowDraftsman.pack();
+        windowDraftsman.setModal(true);
+        windowDraftsman.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -212,6 +253,51 @@ public class MainJFrame extends javax.swing.JFrame {
             Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        JDialog windowDriver = new JDialog();
+        windowDriver.add(new JPanelDriver(ctrl));
+        windowDriver.pack();
+        windowDriver.setModal(true);
+        windowDriver.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        JDialog windowSecretary = new JDialog();
+        windowSecretary.add(new JPanelSecretary(ctrl));
+        windowSecretary.pack();
+        windowSecretary.setModal(true);
+        windowSecretary.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        JDialog windowAssembler = new JDialog();
+        windowAssembler.add(new JPanelAssembler(ctrl));
+        windowAssembler.pack();
+        windowAssembler.setModal(true);
+        windowAssembler.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        JDialog windowPPerson = new JDialog();
+        windowPPerson.add(new JPanelPhysicalPerson(ctrl));
+        windowPPerson.pack();
+        windowPPerson.setModal(true);
+        windowPPerson.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        JDialog windowLPerson = new JDialog();
+        windowLPerson.add(new JPanelLegalPerson(ctrl));
+        windowLPerson.pack();
+        windowLPerson.setModal(true);
+        windowLPerson.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
