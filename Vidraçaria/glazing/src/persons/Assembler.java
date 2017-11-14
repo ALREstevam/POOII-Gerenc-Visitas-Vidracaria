@@ -6,8 +6,22 @@ import agenda.neow.agenda.Agenda;
 import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
 
+/**
+ * This class is an Assembler derived from Driver class
+ * @author Pedro
+ */
 public class Assembler extends Driver implements Serializable, Cloneable, Descriptible, Arrayable{
 
+    /**
+     * This is the constructor of the Assembler class
+     * @param driverLicenseType
+     * @param personalNumber
+     * @param registration
+     * @param name
+     * @param email
+     * @param contact
+     * @param agd
+     */
     public Assembler(licenseTypes driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(driverLicenseType, personalNumber, registration, name, email, contact, agd);
     }

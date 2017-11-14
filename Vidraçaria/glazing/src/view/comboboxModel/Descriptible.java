@@ -14,5 +14,10 @@ public interface Descriptible {
      * Requires a description of the object arguments as a String
      */
     public static final String sep = " | ";
+    /**
+     * Gets the data of the class and creates a string describing it
+     * @return String 
+     */
     public String describe();
 }
+
