@@ -28,12 +28,14 @@ public class JPanelAssembler extends javax.swing.JPanel {
     /**
      * Creates new form JPanelAssembler
      */
-    public JPanelAssembler() {
-        initComponents();
-    }
 
     public JPanelAssembler(Controller ctrl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.ctrl = ctrl;
+       this.assMp = ctrl.getAssembler();
+       this.updateDescriptions();
+       initComponents();
+       this.updateTable();
+        
     }
 
     /**

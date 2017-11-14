@@ -30,12 +30,13 @@ public class JPanelDriver extends javax.swing.JPanel {
     /**
      * Creates new form JPanelDriver
      */
-    public JPanelDriver() {
-        initComponents();
-    }
-
     public JPanelDriver(Controller ctrl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.ctrl = ctrl;
+       this.drvMp = ctrl.getDriver();
+       this.updateDescriptions();
+       initComponents();
+       this.updateTable();
+        
     }
 
     /**

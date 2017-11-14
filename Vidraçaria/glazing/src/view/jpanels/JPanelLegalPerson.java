@@ -25,16 +25,13 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
     /**
      * Creates new form JPanelLegalPerson
      */
-    public JPanelLegalPerson() {
-        initComponents();
-    }
 
     public JPanelLegalPerson(Controller ctrl) {
-        this.ctrl = ctrl;
-       //// this.lpersonMp = ctrl.getVisits()
-       /// this.updateDescriptions();
-        initComponents();
-        this.updateTable();
+       this.ctrl = ctrl;
+       this.lpersonMp = ctrl.getLegalPerson();
+       this.updateDescriptions();
+       initComponents();
+       this.updateTable();
         
     }
 

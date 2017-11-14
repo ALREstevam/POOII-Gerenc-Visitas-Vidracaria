@@ -29,12 +29,13 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
     /**
      * Creates new form JPanelPhysicalPerson
      */
-    public JPanelPhysicalPerson() {
-        initComponents();
-    }
 
     public JPanelPhysicalPerson(Controller ctrl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.ctrl = ctrl;
+        this.ppersonMp = ctrl.getPhysicalPerson();
+        this.updateDescriptions();
+        initComponents();
+        this.updateTable();
     }
 
      /**

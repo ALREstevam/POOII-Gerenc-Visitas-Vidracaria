@@ -29,14 +29,11 @@ public class JPanelDraftsman extends javax.swing.JPanel {
     /**
      * Creates new form JPanelDraftsman
      */
-    public JPanelDraftsman() {
-        initComponents();
-    }
 
     public JPanelDraftsman(Controller ctrl) {
         this.ctrl = ctrl;
         this.draftmMp = ctrl.getDraftsman();
-       // this.updateDescriptions();  Será que precisa??
+        this.updateDescriptions();
         initComponents();
         this.updateTable();
        
