@@ -5,14 +5,26 @@
  */
 package view.jpanels;
 
+import agenda.neow.agenda.Agenda;
+import agenda.neow.nowork.NoWorkPattern;
 import control.Controller;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import persons.Driver;
+import view.comboboxModel.GeneralComboboxModel;
+import view.tableModel.GeneralTableModel;
 
 /**
  *
  * @author Marcus
  */
 public class JPanelDriver extends javax.swing.JPanel {
-
+    private Map<String, Driver> drvMp;
+    private List<Driver> drvLst;
+    private GeneralTableModel<Driver> drvTb;
+    private Controller ctrl;
+    private List<String> descriptions;
     /**
      * Creates new form JPanelDriver
      */
@@ -332,34 +344,34 @@ public class JPanelDriver extends javax.swing.JPanel {
         String description = this.jList1.getSelectedValue();
 
         if(description == null){
-            JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
+           // JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Vehicle vehicleToDelete = this.vehiclesMp.get(description);
+        Driver drvToDelete = this.drvMp.get(description);
 
-        if(vehicleToDelete == null){
-            JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+        if(drvToDelete == null){
+            //JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        this.ctrl.remove(vehicleToDelete);
+        this.ctrl.remove(drvToDelete);
         this.updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for(int i = 0; i < this.vehTb.getRowCount(); i++){
-            Vehicle newVehicle = this.vehTb.getObjectAt(i);
+        for(int i = 0; i < this.drvTb.getRowCount(); i++){
+            Driver newDrv = this.drvTb.getObjectAt(i);
 
             String description = this.descriptions.get(i);
-            if(!newVehicle.describe().equals(description)){
-                this.ctrl.update(newVehicle, description);
+            if(!newDrv.describe().equals(description)){
+                this.ctrl.update(newDrv, description);
             }
         }
-        this.vehiclesMp = ctrl.getVehicles();
-        this.vehiclesLst = new ArrayList<>(vehiclesMp.values());
-        this.updateDescriptions();
-        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        this.drvMp = ctrl.getDrivers();
+        this.drvLst = new ArrayList<>(drvMp.values());
+        //this.updateDescriptions();
+        //JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
@@ -370,42 +382,67 @@ public class JPanelDriver extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         int selected = this.jTable1.getSelectedRow();
-        Vehicle v = this.vehiclesLst.get(selected);
+        Driver d = this.drvLst.get(selected);
 
-        if(v == null){
+        if(d == null){
             return;
         }
 
-        List<Vehicle> lstSelected = new ArrayList<>();
-        lstSelected.add(v);
+        List<Driver> lstSelected = new ArrayList<>();
+        lstSelected.add(d);
 
-        this.jList1.setModel(new GeneralComboboxModel<Vehicle>().getComboBoxModelUsingDescription(lstSelected));
+        this.jList1.setModel(new GeneralComboboxModel<Driver>().getComboBoxModelUsingDescription(lstSelected));
     }//GEN-LAST:event_jTable1MousePressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
 
         try{
-            String plate = this.jFormattedTextField1.getText();
-            String strVehicleLicense = this.jComboBoxLicense.getSelectedItem().toString();
-            String info = this.jTextPane1.getText();
-            String strVehicleType = this.jComboBoxType.getSelectedItem().toString();
-            Vehicle.licenseTypes licenseType = Vehicle.licenseTypes.getFromName(strVehicleLicense);
-            Vehicle.vehicleTypes vehicleType = Vehicle.vehicleTypes.getFromName(strVehicleType);
+            String name = this.jTextField1.getText();
+            String email = this.jTextField2.getText();
+            String contact = this.jTextField3.getText();
+            String pnumber = this.jFormattedTextField3.getText();
+            String registration = this.jFormattedTextField4.getText();
+            String licenseType = this.jTextField4.getText();
+            
 
-            if(vehicleType == null || licenseType == null || plate == null || strVehicleLicense == null || strVehicleType == null ||
-                plate.equals("") || strVehicleLicense.equals("") || strVehicleType.equals("")
-            ){
+            int nb = 0, reg = 0;
+            try {
+            nb = Integer.parseInt(pnumber); 
+            reg = Integer.parseInt(registration);
+        
+            } catch (NumberFormatException e) {
+                System.out.println("Numero com formato errado!");
+            }
+            int license = 0;
+            
+            switch (licenseType) {
+            case "A":
+                license=1;
+                break;
+            case "B":
+                license=2;
+                break;
+            case "C":
+                license=3;
+                break;
+            case "D":
+                license=4;
+                break;
+        }
+            
+            if(name == null || email == null || contact == null || pnumber == null || licenseType == null ||
+                registration.equals("")){
                 throw new Exception();
             }
 
             NoWorkPattern nwp = new NoWorkPattern();
             Agenda agd = new Agenda(nwp);
-            Vehicle veh = new Vehicle(licenseType, vehicleType, plate, info, agd);
-            ctrl.append(veh);
+            Driver dr = new Driver(license, nb, reg, name, email, contact, agd);
+            ctrl.append(dr);
             this.updateTable();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -448,4 +485,8 @@ public class JPanelDriver extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    private void updateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

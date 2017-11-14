@@ -13,6 +13,7 @@ import java.util.Set;
 import agenda.neow.agenda.AllocatorConsts;
 import agenda.neow.util.WeekDays;
 import agenda.neow.util.TimeUtil;
+import java.util.List;
 
 /**
  * This class represents the periods of time where a element should be not available
@@ -68,6 +69,11 @@ public class NoWorkPattern implements AllocatorConsts, Serializable{
         NoWorkElement e = new NoWorkElement(from, TimeUtil.difference(from, to), day);
         this.patterns.add(e);
     }
+    
+    
+    public void appendNwe(NoWorkElement e){
+        this.patterns.add(e);
+    }
 
     /**
      * Gets the pattern set as a unmodifiableSet object
@@ -75,6 +81,14 @@ public class NoWorkPattern implements AllocatorConsts, Serializable{
      */
     public Set<NoWorkElement> getPatterns() {
         return Collections.unmodifiableSet(patterns);
+    }
+    
+    /**
+     * Gets the pattern set as a object
+     * @return an set of patterns
+     */
+    public Set<NoWorkElement> getPatterns2() {
+        return this.patterns;
     }
     
     /**
@@ -92,7 +106,25 @@ public class NoWorkPattern implements AllocatorConsts, Serializable{
     public static NoWorkPattern merge(NoWorkPattern... patterns){
         NoWorkPattern rsp = new NoWorkPattern();
         for(NoWorkPattern nwp : patterns){
-            rsp.patterns.addAll(nwp.getPatterns());
+            for(NoWorkElement nwe : nwp.getPatterns2()){
+                rsp.appendNwe(nwe);
+            }
+            //rsp.patterns.addAll(nwp.getPatterns());
+        }
+        return rsp;
+    }
+    
+    /**
+     * Merges n patterns
+     * @param patterns a list of patterns to merge
+     * @return a noworkpattern
+     */
+    public static NoWorkPattern merge(List<NoWorkPattern> patterns){
+        NoWorkPattern rsp = new NoWorkPattern();
+        for(NoWorkPattern nwp : patterns){
+            for(NoWorkElement nwe : nwp.getPatterns2()){
+                rsp.appendNwe(nwe);
+            }
         }
         return rsp;
     }

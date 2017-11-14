@@ -2,43 +2,58 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelAdministrator.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelLegalPerson.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelDraftsman.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelSecretary.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelAssembler.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelVehicle.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelDriver.java</file>
+            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelPhysicalPerson.java</file>
+        </group>
         <group name="Group 20170111-04:37:20">
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/jframes/JFrameAgenda.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/tableModel/GeneralTableModel.java</file>
-            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/SecretaryCrud.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/jpanels/JPanelPhysicalPerson.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/jpanels/JPanelAdministrator.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/my/exceptions/NotAllowedValueException.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/Secretary.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/local/persistence/nLocalPersistence.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/Draftsman.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/visit/Project.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/jpanels/JPanelVehicle.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/agenda/neow/agenda/Agenda.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/agenda/circular/CircularList.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/control/ControlHelper.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/tableModel/Arrayable.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/my/exceptions/FileDoesNotExistException.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/jpanels/JPanelDriver.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/control/my/objects/Identifiable.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/local/persistence/LocalPersistence.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/jpanels/JPanelDraftsman.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/util/ReportGenerator.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/agenda/neow/util/Touple.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/util/Util.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/Driver.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/jpanels/JPanelAssembler.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/comboboxModel/GeneralComboboxModel.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/glazing/Glazing.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/jpanels/JPanelLegalPerson.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/comboboxModel/PersonalComboboxModel.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/agenda/neow/agenda/AgendaDefaults.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/agenda/neow/agenda/TimeBlock.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/visit/Visit.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/Assembler.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/agenda/neow/util/WeekDays.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/comboboxModel/Descriptible.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/visit/Vehicle.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/persons/Administrator.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/my/exceptions/FileCouldNotBeCreatetException.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/jframes/MainJFrame.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/view/jpanels/JPanelSecretary.java</file>
             <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/control/Controller.java</file>
-        </group>
-        <group>
-            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelLegalPerson.java</file>
-            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelAdministrator.java</file>
-            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jframes/MainJFrame.java</file>
-            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelDraftsman.java</file>
-            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelVehicle.java</file>
-            <file>file:/C:/Users/Marcus/Documents/GitHub/POOII-Gerenc-Visitas-Vidracaria/Vidraçaria/glazing/src/view/jpanels/JPanelPhysicalPerson.java</file>
+            <file>file:/C:/Users/andre/Documents/GitHub/Vidracaria-POO-II/Vidraçaria/glazing/src/agenda/neow/nowork/NoWorkPattern.java</file>
         </group>
     </open-files>
 </project-private>
