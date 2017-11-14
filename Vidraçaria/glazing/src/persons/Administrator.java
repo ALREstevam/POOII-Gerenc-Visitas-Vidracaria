@@ -3,8 +3,9 @@ package persons;
 import java.io.Serializable;
 import java.util.List;
 import view.comboboxModel.Descriptible;
+import view.tableModel.Arrayable;
 
-public class Administrator extends Employee implements Serializable, Descriptible{
+public class Administrator extends Employee implements Serializable, Descriptible, Arrayable{
 
     private String type;
 
@@ -28,6 +29,16 @@ public class Administrator extends Employee implements Serializable, Descriptibl
     @Override
     public String describe() {
         return "ADM" + sep + this.getName() + sep + this.getEmail();
+    }
+
+    @Override
+    public Object[] attributesToArray(String[] order) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object setValue(String variable, Object value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

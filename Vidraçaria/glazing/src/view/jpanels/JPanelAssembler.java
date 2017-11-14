@@ -5,12 +5,25 @@
  */
 package view.jpanels;
 
+import agenda.neow.nowork.NoWorkPattern;
+import control.Controller;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import persons.Assembler;
+import view.comboboxModel.GeneralComboboxModel;
+import view.tableModel.GeneralTableModel;
+
 /**
  *
  * @author Marcus
  */
 public class JPanelAssembler extends javax.swing.JPanel {
-
+    private Map<String, Assembler> assMp;
+    private List<Assembler> assLst;
+    private GeneralTableModel<Assembler> assTb;
+    private Controller ctrl;
+    private List<String> descriptions;
     /**
      * Creates new form JPanelAssembler
      */
@@ -333,16 +346,16 @@ public class JPanelAssembler extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         int selected = this.jTable1.getSelectedRow();
-        Vehicle v = this.vehiclesLst.get(selected);
+       Assembler s  = this.assLst.get(selected);
 
-        if(v == null){
+        if(s == null){
             return;
         }
 
-        List<Vehicle> lstSelected = new ArrayList<>();
-        lstSelected.add(v);
+        List<Assembler> lstSelected = new ArrayList<>();
+        lstSelected.add(s);
 
-        this.jList1.setModel(new GeneralComboboxModel<Vehicle>().getComboBoxModelUsingDescription(lstSelected));
+        this.jList1.setModel(new GeneralComboboxModel<Assembler>().getComboBoxModelUsingDescription(lstSelected));
     }//GEN-LAST:event_jTable1MousePressed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
@@ -350,34 +363,33 @@ public class JPanelAssembler extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable1KeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for(int i = 0; i < this.vehTb.getRowCount(); i++){
-            Vehicle newVehicle = this.vehTb.getObjectAt(i);
+        for(int i = 0; i < this.assTb.getRowCount(); i++){
+            Assembler newAssembler = this.assTb.getObjectAt(i);
 
             String description = this.descriptions.get(i);
-            if(!newVehicle.describe().equals(description)){
-                this.ctrl.update(newVehicle, description);
+            if(!newAssembler.describe().equals(description)){
+                this.ctrl.update(newAssembler, description);
             }
         }
-        this.vehiclesMp = ctrl.getVehicles();
-        this.vehiclesLst = new ArrayList<>(vehiclesMp.values());
-        this.updateDescriptions();
-        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
+    //    this.assMp = ctrl.getVehicles();
+      //  this.assLst = new ArrayList<>(assMp.values());
+//        this.updateDescriptions();
+  //      JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
 
         try{
-            String plate = this.jFormattedTextField1.getText();
-            String strVehicleLicense = this.jComboBoxLicense.getSelectedItem().toString();
-            String info = this.jTextPane1.getText();
-            String strVehicleType = this.jComboBoxType.getSelectedItem().toString();
-            Vehicle.licenseTypes licenseType = Vehicle.licenseTypes.getFromName(strVehicleLicense);
-            Vehicle.vehicleTypes vehicleType = Vehicle.vehicleTypes.getFromName(strVehicleType);
+            String name = this.jTextField1.getText();
+            String email = this.jTextField2.getText();
+            String contact = this.jTextField3.getText();
+            String personalnb = this.jFormattedTextField3.getText();
+            String registration = this.jFormattedTextField4.getText();
+            String license = this.jTextField4.getText();
 
-            if(vehicleType == null || licenseType == null || plate == null || strVehicleLicense == null || strVehicleType == null ||
-                plate.equals("") || strVehicleLicense.equals("") || strVehicleType.equals("")
-            ){
+            if(name == null || email == null || contact == null || personalnb == null || license == null ||
+                registration.equals("")){
                 throw new Exception();
             }
 

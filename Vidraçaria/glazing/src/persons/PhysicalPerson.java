@@ -1,8 +1,9 @@
 package persons;
 
 import java.io.Serializable;
+import view.tableModel.Arrayable;
 
-public class PhysicalPerson extends Client implements Serializable, Cloneable{
+public class PhysicalPerson extends Client implements Serializable, Cloneable, Arrayable{
 
     private int cpf;
 
@@ -16,5 +17,14 @@ public class PhysicalPerson extends Client implements Serializable, Cloneable{
         return getName() + sep + getEmail() + sep + this.cpf;
     }
 
+    @Override
+    public Object[] attributesToArray(String[] order) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object setValue(String variable, Object value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

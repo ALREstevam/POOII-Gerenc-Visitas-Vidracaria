@@ -1,8 +1,9 @@
 package persons;
 
 import java.io.Serializable;
+import view.tableModel.Arrayable;
 
-public class LegalPerson extends Client implements Serializable, Cloneable{
+public class LegalPerson extends Client implements Serializable, Cloneable, Arrayable{
 
     private int cnpj;
     private String companyType;
@@ -42,6 +43,16 @@ public class LegalPerson extends Client implements Serializable, Cloneable{
     @Override
     public String describe() {
         return this.getName() + sep + this.getEmail() + sep + this.cnpj;
+    }
+
+    @Override
+    public Object[] attributesToArray(String[] order) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object setValue(String variable, Object value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

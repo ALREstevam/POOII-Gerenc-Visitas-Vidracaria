@@ -5,6 +5,8 @@
  */
 package view.jpanels;
 
+import control.Controller;
+
 /**
  *
  * @author Marcus
@@ -16,6 +18,10 @@ public class JPanelDraftsman extends javax.swing.JPanel {
      */
     public JPanelDraftsman() {
         initComponents();
+    }
+
+    public JPanelDraftsman(Controller ctrl) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -118,7 +124,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
                 .addGap(191, 191, 191))
         );
 
-        jLabel1.setText("Projetistas");
+        jLabel1.setText("Desenhista");
 
         jLabel5.setText("Inserir");
 

@@ -5,6 +5,8 @@
  */
 package view.jpanels;
 
+import control.Controller;
+
 /**
  *
  * @author Marcus
@@ -16,6 +18,10 @@ public class JPanelDriver extends javax.swing.JPanel {
      */
     public JPanelDriver() {
         initComponents();
+    }
+
+    public JPanelDriver(Controller ctrl) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
