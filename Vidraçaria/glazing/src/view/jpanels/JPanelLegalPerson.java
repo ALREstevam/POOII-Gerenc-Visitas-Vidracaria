@@ -6,13 +6,21 @@
 package view.jpanels;
 
 import control.Controller;
+import java.util.List;
+import java.util.Map;
+import persons.LegalPerson;
+import view.tableModel.GeneralTableModel;
 
 /**
  *
  * @author Marcus
  */
 public class JPanelLegalPerson extends javax.swing.JPanel {
-
+    private Map<String, LegalPerson> lpersonMp;
+    private List<LegalPerson> lpersonLst;
+    private GeneralTableModel<LegalPerson> lpersonTb;
+    private Controller ctrl;
+    private List<String> descriptions;
     /**
      * Creates new form JPanelLegalPerson
      */
