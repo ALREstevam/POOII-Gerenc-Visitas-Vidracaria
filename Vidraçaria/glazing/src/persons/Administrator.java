@@ -66,7 +66,29 @@ public class Administrator extends Employee implements Serializable, Descriptibl
 
     @Override
     public Object setValue(String variable, Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (variable) {
+            case "nome":
+                this.setName((String) value);
+                break;
+            case "email":
+                this.setEmail((String) value);
+                break;
+            case "tipo":
+                this.setType((String) value);
+                break;    
+            case "contato":
+                this.setContact((String) value);
+                break;
+            case "registro":
+                this.setRegistration((int) value);
+                break;
+            case "telefone":
+                this.setPersonalNumber((int) value);
+                break;
+                
+            default:
+                break;
+        }
+        return this;
     }
-
 }

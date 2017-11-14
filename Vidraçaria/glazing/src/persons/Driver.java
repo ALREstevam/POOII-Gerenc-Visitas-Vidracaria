@@ -8,37 +8,34 @@ import visit.Vehicle;
 
 public class Driver extends Employee implements Serializable, Descriptible, Arrayable{
     private Agenda agd;
-    private int driverLicenseType;
+    private licenseTypes driverLicenseType;
+    
+    public enum licenseTypes {
+        A, B, C, D;
+
+        public static licenseTypes getFromName(String name) {
+            for (licenseTypes type : licenseTypes.values()) {
+                if (type.toString().equals(name)) {
+                    return type;
+                }
+            }
+            return licenseTypes.A;
+        }
+    }
     
 
-    public Driver(int driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
+    public Driver(licenseTypes driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(personalNumber, registration, name, email, contact);
         this.driverLicenseType = driverLicenseType;
         this.agd = agd;
         //this.agenda = new Agenda(5000, 10);
     }
 
-    public int getDriverLicenseType() {
+    public licenseTypes getDriverLicenseType() {
         return driverLicenseType;
     }
 
-    public void setDriverLicenseType(Vehicle.licenseTypes license) {
-        switch (license) {
-            case A:
-                this.setDriverLicenseType(1);
-                break;
-            case B:
-                this.setDriverLicenseType(2);
-                break;
-            case C:
-                this.setDriverLicenseType(3);
-                break;
-            case D:
-                this.setDriverLicenseType(4);
-                break;
-        }
-    }
-
+    
     @Override
     public String describe() {
         return "DRV" + sep + this.getName() + sep + this.getEmail();
@@ -57,7 +54,7 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
                     rsp[rspCount] = this.getEmail();
                     break;
                 case "carteira:":
-                    rsp[rspCount] = this.getDriverLicenseType();
+                    rsp[rspCount] = this.getDriverLicenseType().toString();
                     break;
                 case "contato:":
                     rsp[rspCount] = this.getContact();
@@ -86,15 +83,38 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
     /**
      * @param driverLicenseType the driverLicenseType to set
      */
-    public void setDriverLicenseType(int driverLicenseType) {
+    public void setDriverLicenseType(licenseTypes driverLicenseType) {
         this.driverLicenseType = driverLicenseType;
     }
     
     
 
     @Override
-    public Object setValue(String variable, Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public Object setValue(String variable, Object value) {
+        switch (variable) {
+            case "nome":
+                this.setName((String) value);
+                break;
+            case "email":
+                this.setEmail((String) value);
+                break;
+            case "carteira":
+                this.setDriverLicenseType(licenseTypes.getFromName((String) value));
+                break;
+            case "contato":
+                this.setContact((String) value);
+                break;
+            case "registro":
+                this.setRegistration((int) value);
+                break;
+            case "telefone":
+                this.setPersonalNumber((int) value);
+                break;
+                
+            default:
+                break;
+        }
+        return this;
     }
 
     public Agenda getAgd() {

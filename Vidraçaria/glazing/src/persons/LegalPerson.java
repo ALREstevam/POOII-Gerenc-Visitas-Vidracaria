@@ -83,7 +83,31 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
 
     @Override
     public Object setValue(String variable, Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (variable) {
+            case "nome":
+                this.setName((String) value);
+                break;
+            case "email":
+                this.setEmail(((String) value));
+                break;
+            case "contato":
+                this.setContact((String) value);
+                break;
+            case "endereco":
+                this.setAddress(((String) value));
+                break;
+            case "cnpj":
+                this.setCnpj((int) value);
+                break;
+            case "tipo de empresa":
+                this.setCompanyType((String) value);
+                break;
+            case "descrição da empresa":
+                this.setConpanyDescription((String) value);
+                break;
+            default:
+                break;
+        }
+        return this;
     }
-
 }

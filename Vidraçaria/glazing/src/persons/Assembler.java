@@ -8,7 +8,7 @@ import view.tableModel.Arrayable;
 
 public class Assembler extends Driver implements Serializable, Cloneable, Descriptible, Arrayable{
 
-    public Assembler(int driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
+    public Assembler(licenseTypes driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(driverLicenseType, personalNumber, registration, name, email, contact, agd);
     }
     @Override
@@ -42,5 +42,32 @@ public class Assembler extends Driver implements Serializable, Cloneable, Descri
             rspCount++;
         }
         return rsp;
+    }
+    @Override
+        public Object setValue(String variable, Object value) {
+        switch (variable) {
+            case "nome":
+                this.setName((String) value);
+                break;
+            case "email":
+                this.setEmail((String) value);
+                break;
+            case "carteira":
+                this.setDriverLicenseType(licenseTypes.getFromName((String) value));
+                break;
+            case "contato":
+                this.setContact((String) value);
+                break;
+            case "registro":
+                this.setRegistration((int) value);
+                break;
+            case "telefone":
+                this.setPersonalNumber((int) value);
+                break;
+                
+            default:
+                break;
+        }
+        return this;
     }
 }

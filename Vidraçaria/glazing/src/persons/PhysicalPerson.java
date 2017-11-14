@@ -49,9 +49,27 @@ public class PhysicalPerson extends Client implements Serializable, Cloneable, A
 
     @Override
     public Object setValue(String variable, Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (variable) {
+            case "nome":
+                this.setName((String) value);
+                break;
+            case "email":
+                this.setEmail((String) value);
+                break;
+            case "contato":
+                this.setContact((String) value);
+                break;
+            case "endereco":
+                this.setAddress((String) value);
+                break;
+            case "cpf":
+                this.setCpf((int) value);
+                break;
+            default:
+                break;
+        }
+        return this;
     }
-
     public int getCpf() {
         return cpf;
     }

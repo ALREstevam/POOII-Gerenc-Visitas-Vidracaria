@@ -8,7 +8,7 @@ import visit.Visit;
 
 public class Draftsman extends Driver implements Serializable, Descriptible, Arrayable{
 
-    public Draftsman(int driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
+    public Draftsman(licenseTypes driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(driverLicenseType, personalNumber, registration, name, email, contact, agd);
     }
     @Override
@@ -42,5 +42,32 @@ public class Draftsman extends Driver implements Serializable, Descriptible, Arr
             rspCount++;
         }
         return rsp;
+    }
+     @Override
+        public Object setValue(String variable, Object value) {
+        switch (variable) {
+            case "nome":
+                this.setName((String) value);
+                break;
+            case "email":
+                this.setEmail((String) value);
+                break;
+            case "carteira":
+                this.setDriverLicenseType(licenseTypes.getFromName((String) value));
+                break;
+            case "contato":
+                this.setContact((String) value);
+                break;
+            case "registro":
+                this.setRegistration((int) value);
+                break;
+            case "telefone":
+                this.setPersonalNumber((int) value);
+                break;
+                
+            default:
+                break;
+        }
+        return this;
     }
 }

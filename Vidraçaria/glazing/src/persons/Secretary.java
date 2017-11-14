@@ -55,7 +55,25 @@ public class Secretary extends Employee implements Serializable, Cloneable, Arra
 
     @Override
     public Object setValue(String variable, Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-}
+        switch (variable) {
+            case "nome":
+                this.setName((String) value);
+                break;
+            case "email":
+                this.setEmail((String) value);
+                break;
+            case "contato":
+                this.setContact((String) value);
+                break;
+            case "registro":
+                this.setRegistration(((int) value));
+                break;
+            case "numeroPessoa":
+                this.setPersonalNumber(((int) value));
+                break;
+                
+            default:
+                break;
+        }
+        return this;
+    }}

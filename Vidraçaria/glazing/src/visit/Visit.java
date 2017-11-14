@@ -113,8 +113,30 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     @Override
     public Object[] attributesToArray(String[] order) {
-        //Object[] rsp = Object[];
-        return null;
+        Object[] rsp = new Object[4];
+
+        int rspCount = 0;
+        for (String s : order) {
+            switch (s) {
+                case "título:":
+                    rsp[rspCount] = this.getTitle();
+                    break;
+                case "descrição:":
+                    rsp[rspCount] = this.getDescription();
+                    break;
+                case "arquivo:":
+                    rsp[rspCount] = this.getFile();
+                    break;
+                case "cliente:":
+                    rsp[rspCount] = this.client.getName();
+                    break;
+                default:
+                    rsp[rspCount] = "";
+                    break;
+            }
+            rspCount++;
+        }
+        return rsp;
     }
 
     @Override

@@ -10,13 +10,13 @@ public class Project implements Serializable, Descriptible, Arrayable{
 
     private String title;
     private String description;
-    private List<String> files;
+    private String file;
     private Client client;
 
-    public Project(String title, String description, List<String> files, Client client) {
+    public Project(String title, String description, String file, Client client) {
         this.title = title;
         this.description = description;
-        this.files = files;
+        this.file = file;
         this.client = client;
     }
 
@@ -36,12 +36,12 @@ public class Project implements Serializable, Descriptible, Arrayable{
         this.description = description;
     }
 
-    public List<String> getFiles() {
-        return files;
+    public String getFile() {
+        return file;
     }
 
-    public void setFiles(List<String> files) {
-        this.files = files;
+    public void setFile(String file) {
+        this.file = file;
     }
 
     public Client getClient() {
@@ -59,11 +59,49 @@ public class Project implements Serializable, Descriptible, Arrayable{
 
     @Override
     public Object[] attributesToArray(String[] order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object[] rsp = new Object[4];
+
+        int rspCount = 0;
+        for (String s : order) {
+            switch (s) {
+                case "título:":
+                    rsp[rspCount] = this.getTitle();
+                    break;
+                case "descrição:":
+                    rsp[rspCount] = this.getDescription();
+                    break;
+                case "arquivo:":
+                    rsp[rspCount] = this.getFile();
+                    break;
+                case "cliente:":
+                    rsp[rspCount] = this.client.getName();
+                    break;
+                default:
+                    rsp[rspCount] = "";
+                    break;
+            }
+            rspCount++;
+        }
+        return rsp;
     }
 
     @Override
     public Object setValue(String variable, Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (variable) {
+            case "titulo":
+                this.setTitle((String) value);
+                break;
+            case "descricao":
+                this.setDescription((String) value);
+                break;
+            case "arquivo":
+                this.setFile((String) value);
+                break;
+            case "cliente":
+                break;
+            default:
+                break;
+        }
+        return this;
     }
 }
