@@ -5,29 +5,49 @@ import java.util.List;
 import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
 
+/**
+ * This class represents an administrator. This class is derived from Employee. 
+ * @author Pedro
+ */
 public class Administrator extends Employee implements Serializable, Descriptible, Arrayable{
 
     private String type;
 
-    public String requestReport(List<visit.Visit> visits, List<Employee> employees, List<Client> client) {
-        throw new java.lang.UnsupportedOperationException("Not supported yet.");
-    }
 
+    /**
+     * This is the constructor of the administrator class
+     * @param type
+     * @param personalNumber
+     * @param registration
+     * @param name
+     * @param email
+     * @param contact
+     */
     public Administrator(String type, int personalNumber, int registration, String name, String email, String contact) {
         super(personalNumber, registration, name, email, contact);
         this.type = type;
     }
 
+    /**
+     * This method get the Administrator's type
+     * @return String
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * This method set the Administrator's type
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    
     @Override
-    public String describe() {
+    public String describe() { 
+        this.describe();
         return "ADM" + sep + this.getName() + sep + this.getEmail();
     }
 
@@ -64,6 +84,7 @@ public class Administrator extends Employee implements Serializable, Descriptibl
         return rsp;
     }
 
+  
     @Override
     public Object setValue(String variable, Object value) {
         switch (variable) {

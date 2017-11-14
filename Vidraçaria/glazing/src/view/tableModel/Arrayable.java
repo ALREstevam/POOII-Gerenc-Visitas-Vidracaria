@@ -16,7 +16,14 @@ public interface Arrayable {
      * @param order the order of the arguments into the Object array
      * @return a object array
      */
+  
     public Object[] attributesToArray(String[] order);
+    /**
+     * It gets the name and value and returns a reference to the object itself
+     * @param variable
+     * @param value
+     * @return Object
+     */
     public Object setValue(String variable, Object value);
     
 }

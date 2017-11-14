@@ -6,13 +6,54 @@ import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
 import visit.Vehicle;
 
+/**
+ * This is the Driver class, derived from the Employee class
+ * @author Pedro
+ */
 public class Driver extends Employee implements Serializable, Descriptible, Arrayable{
     private Agenda agd;
     private licenseTypes driverLicenseType;
     
+    /**
+     * This is the enum that contains the possible license types that 
+     * a driver can have
+     */
     public enum licenseTypes {
-        A, B, C, D;
 
+        /**
+         * Two or three-wheel motor vehicle driver, with or without side car.
+         * Ex.: Motorcycle, Moped, Moped or Tricycle.
+         */
+        A,
+
+        /**
+         * Driver of vehicles, whose total gross weight does not exceed three
+         * thousand five hundred kilograms or whose stocking does not exceed 08
+         * (eight) seats, excluding that of the driver. Ex: Automobile, pickup
+         * truck, van, utility.
+         */
+        B,
+
+        /**
+         * A driver of vehicles used for the carriage of cargo whose total
+         * gross weight exceeds three thousand five hundred kilograms.
+         * Ex: truck
+         */
+        C,
+
+        /**
+         * Driver of vehicles, used for the transport of passengers, whose
+         * capacity exceeds 08 passengers, excluding the driver.
+         * All vehicles in categories "B" and "C". 
+         * Ex: Mini bus, Bus.
+         */
+        D;
+
+        /**
+         *
+         * @param name
+         * @return
+         */
         public static licenseTypes getFromName(String name) {
             for (licenseTypes type : licenseTypes.values()) {
                 if (type.toString().equals(name)) {
@@ -23,7 +64,17 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
         }
     }
     
-
+    /**
+     * This is the constructor of the Driver class. This constructor
+     * has seven parameters
+     * @param driverLicenseType
+     * @param personalNumber
+     * @param registration
+     * @param name
+     * @param email
+     * @param contact
+     * @param agd
+     */
     public Driver(licenseTypes driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(personalNumber, registration, name, email, contact);
         this.driverLicenseType = driverLicenseType;
@@ -31,6 +82,10 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
         //this.agenda = new Agenda(5000, 10);
     }
 
+    /**
+     *
+     * @return
+     */
     public licenseTypes getDriverLicenseType() {
         return driverLicenseType;
     }
@@ -74,13 +129,17 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
         return rsp;
     }
 
-
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return this.describe();
     }
 
     /**
+     * This method set the Driver's DriverLicenseType
      * @param driverLicenseType the driverLicenseType to set
      */
     public void setDriverLicenseType(licenseTypes driverLicenseType) {
@@ -117,6 +176,10 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
         return this;
     }
 
+    /**
+     *
+     * @return Agenda
+     */
     public Agenda getAgd() {
         return agd;
     }
