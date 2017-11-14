@@ -32,7 +32,7 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
     }
 
     /**
-     * This method get the Employee's personalNumber
+     * This method get the LegalPerson's cnpj
      * @return int
      */
     public int getCnpj() {
@@ -40,7 +40,7 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
     }
 
     /**
-     *
+     * This method set the LegalPerson's cnpj
      * @param cnpj
      */
     public void setCnpj(int cnpj) {
@@ -56,7 +56,7 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
     }
 
     /**
-     *
+     * This method set the LegalPerson's companyType
      * @param companyType
      */
     public void setCompanyType(String companyType) {
@@ -72,7 +72,7 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
     }
 
     /**
-     *
+     * This method set the LegalPerson's companyDescription
      * @param conpanyDescription
      */
     public void setConpanyDescription(String conpanyDescription) {
