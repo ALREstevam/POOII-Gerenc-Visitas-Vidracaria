@@ -224,17 +224,12 @@ public class Visit implements Serializable, Descriptible, Arrayable{
                 case "name:":
                     rsp[rspCount] = this.getName();
                     break;
-                case "cliente:":
-                    rsp[rspCount] = this.getClient();
-                    break;
-                case "vehicle":
-                    rsp[rspCount] = this.getVehicle();
-                    break;
+                    
                 case "start data":
-                    rsp[rspCount] = this.getStart().toCompleteString(start);
+                    rsp[rspCount] = TimeUtil.toCompleteString(this.start);
                     break;
                 case "finish data":
-                    rsp[rspCount] = this.toCompleteString(finish);
+                    rsp[rspCount] =TimeUtil.toCompleteString(this.finish);
                     break;
                 default:
                     rsp[rspCount] = "";
@@ -251,17 +246,12 @@ public class Visit implements Serializable, Descriptible, Arrayable{
             case "name":
                 this.setName((String) value);
                 break;
-            case "cliente":
-                this.client((String) value);
-                break;
-            case "vehicle":
-                this.vehicle((String) value);
-                break;    
+                
             case "start data":
-                this.start.
+                TimeUtil.fromCompleteString();
                 break;
             case "finish data":
-                this.finish.toCompleteString(finish);
+                TimeUtil.fromCompleteString();
                 break;
 
             default:

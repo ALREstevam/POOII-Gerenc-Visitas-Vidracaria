@@ -323,6 +323,9 @@ public class Controller implements Serializable{
         Iterator it = this.employees.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry pair = (Map.Entry)it.next();
+        if(!(pair.getKey()instanceof Secretary)){
+            continue;
+        }
             secs.put((String)pair.getKey(), (Secretary)pair.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }
@@ -338,6 +341,9 @@ public class Controller implements Serializable{
         Iterator it = this.employees.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry pair = (Map.Entry)it.next();
+            if(!(pair.getKey()instanceof Draftsman)){
+            continue;
+        }
             drafts.put((String)pair.getKey(), (Draftsman)pair.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }
@@ -350,9 +356,12 @@ public class Controller implements Serializable{
         Map<String,LegalPerson> lperson = new TreeMap<>();
        
        
-        Iterator it = this.employees.entrySet().iterator();
+        Iterator it = this.clients.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry pair = (Map.Entry)it.next();
+            if(!(pair.getKey()instanceof LegalPerson)){
+            continue;
+        }
             lperson.put((String)pair.getKey(), (LegalPerson)pair.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }
@@ -365,9 +374,12 @@ public class Controller implements Serializable{
         Map<String,PhysicalPerson> pperson = new TreeMap<>();
        
        
-        Iterator it = this.employees.entrySet().iterator();
+        Iterator it = this.clients.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry pair = (Map.Entry)it.next();
+            if(!(pair.getKey()instanceof PhysicalPerson)){
+            continue;
+        }
             pperson.put((String)pair.getKey(), (PhysicalPerson)pair.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }
@@ -383,6 +395,9 @@ public class Controller implements Serializable{
         Iterator it = this.employees.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry pair = (Map.Entry)it.next();
+            if(!(pair.getKey()instanceof Administrator)){
+            continue;
+        }
             adm.put((String)pair.getKey(), (Administrator)pair.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }
@@ -398,6 +413,9 @@ public class Controller implements Serializable{
         Iterator it = this.employees.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry pair = (Map.Entry)it.next();
+            if(!(pair.getKey()instanceof Assembler)){
+            continue;
+        }
             ass.put((String)pair.getKey(), (Assembler)pair.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }
@@ -413,6 +431,9 @@ public class Controller implements Serializable{
         Iterator it = this.employees.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry pair = (Map.Entry)it.next();
+            if(!(pair.getKey()instanceof Driver)){
+            continue;
+        }
             drv.put((String)pair.getKey(), (Driver)pair.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }
