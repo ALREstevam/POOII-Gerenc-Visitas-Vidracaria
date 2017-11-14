@@ -223,7 +223,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         JDialog windowDraftsman = new JDialog();
-        windowDraftsman.add(new JPanelDraftsman());
+        windowDraftsman.add(new JPanelDraftsman(ctrl));
         windowDraftsman.pack();
         windowDraftsman.setModal(true);
         windowDraftsman.setVisible(true);
@@ -257,7 +257,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         JDialog windowDriver = new JDialog();
-        windowDriver.add(new JPanelDriver());
+        windowDriver.add(new JPanelDriver(ctrl));
         windowDriver.pack();
         windowDriver.setModal(true);
         windowDriver.setVisible(true);
@@ -275,7 +275,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         JDialog windowAss = new JDialog();
-        windowAss.add(new JPanelAssembler());
+        windowAss.add(new JPanelAssembler(ctrl));
         windowAss.pack();
         windowAss.setModal(true);
         windowAss.setVisible(true);
@@ -284,7 +284,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         JDialog windowPPerson = new JDialog();
-        windowPPerson.add(new JPanelPhysicalPerson());
+        windowPPerson.add(new JPanelPhysicalPerson(ctrl));
         windowPPerson.pack();
         windowPPerson.setModal(true);
         windowPPerson.setVisible(true);
@@ -293,7 +293,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
         JDialog windowLPerson = new JDialog();
-        windowLPerson.add(new JPanelLegalPerson());
+        windowLPerson.add(new JPanelLegalPerson(ctrl));
         windowLPerson.pack();
         windowLPerson.setModal(true);
         windowLPerson.setVisible(true);
