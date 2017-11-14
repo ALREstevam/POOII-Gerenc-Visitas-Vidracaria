@@ -5,6 +5,7 @@
  */
 package view.jpanels;
 
+import agenda.neow.agenda.Agenda;
 import agenda.neow.nowork.NoWorkPattern;
 import control.Controller;
 import java.util.ArrayList;

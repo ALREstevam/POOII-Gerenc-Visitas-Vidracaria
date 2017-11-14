@@ -191,9 +191,6 @@
               <Format format="###.###.###-##" subtype="-1" type="5"/>
             </Property>
           </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="CPF"/>
-          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JTextField" name="TextName">
           <Properties>
