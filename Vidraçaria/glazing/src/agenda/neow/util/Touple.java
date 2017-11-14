@@ -94,9 +94,18 @@ public class Touple<I, J> implements Serializable{
         return true;
     }
     
+    /**
+     * This method verifies that element A and element B are empty
+     * @return boolean
+     */
+    
     public boolean isEmpty(){
         return a == null && b == null;
     }
+    /**
+     * This method checks whether element A or element B is empty
+     * @return boolean
+     */
     
     public boolean ispartiallyEmpty(){
         return a == null || b == null;

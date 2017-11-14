@@ -9,14 +9,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- *
+ * Class regarding the FileDoesNotExistException exception that
+ * is derived from FileNotFoundException
  * @author andre
  */
 public class FileDoesNotExistException extends FileNotFoundException{
+    /**
+ * Constructor of class
+ */
     public FileDoesNotExistException() {
         super("The file does not exists.");
     }
-    
+    /**
+ * Another constructor of class
+ */
     public FileDoesNotExistException(String message){
         super(message);
     }

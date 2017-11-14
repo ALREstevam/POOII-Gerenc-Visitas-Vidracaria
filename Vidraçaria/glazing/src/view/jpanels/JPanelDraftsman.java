@@ -34,7 +34,12 @@ public class JPanelDraftsman extends javax.swing.JPanel {
     }
 
     public JPanelDraftsman(Controller ctrl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.ctrl = ctrl;
+        this.draftmMp = ctrl.getDraftsman();
+       // this.updateDescriptions();  Será que precisa??
+        initComponents();
+        this.updateTable();
+       
     }
 
     /**

@@ -233,6 +233,12 @@ public class Agenda implements AgendaDefaults, Serializable{
         }
         return null;
     }
+    /**
+     * Method responsible for calculating all blocks that have free positions
+     *@param emptyCount
+     *@param firstNull  
+     *@return Set<Touple<Integer, Integer>>; 
+     */
     
     public Set<Touple<Integer, Integer>> calculateFreeBlocks(){
         Set<Touple<Integer, Integer>> rsp = new HashSet<>();
@@ -303,7 +309,10 @@ public class Agenda implements AgendaDefaults, Serializable{
         }
         return rsp;
     }
-
+    /**
+     * This method get the Agenda's noWorkPattern; 
+     * @return NoWorkPattern
+     */
     public NoWorkPattern getNoWorkPattern() {
         return noWorkPattern;
     }

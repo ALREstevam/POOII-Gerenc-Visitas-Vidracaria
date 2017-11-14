@@ -140,15 +140,12 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
     public void add(int index, E element) {
         this.innerList.add(this.circularPosToArrayPos(index), element);
     }
-    
-    
+       
     @Override
     public E remove(int index) {
          return this.innerList.remove(this.circularPosToArrayPos(index));
     }
-    
-    
-    
+     
     @Override
     public int indexOf(Object o) {
         return this.arrayPosToCircularPos(this.innerList.indexOf(o));
@@ -266,6 +263,11 @@ public class CircularList<E> implements List<E>, Iterable<E>, Serializable{
         throw new UnsupportedOperationException("Not supported."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * Class that is responsible for doing Override of two Iterator methods
+     * @param position;
+     *
+     */
     
     
     private class CircularListIterator<E> implements Iterator<E>{

@@ -69,7 +69,10 @@ public class NoWorkPattern implements AllocatorConsts, Serializable{
         NoWorkElement e = new NoWorkElement(from, TimeUtil.difference(from, to), day);
         this.patterns.add(e);
     }
-    
+    /**
+     * Appends a element to the pattern
+     * @param e
+     */
     
     public void appendNwe(NoWorkElement e){
         this.patterns.add(e);

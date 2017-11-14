@@ -30,7 +30,12 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
     }
 
     public JPanelLegalPerson(Controller ctrl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.ctrl = ctrl;
+       //// this.lpersonMp = ctrl.getVisits()
+       /// this.updateDescriptions();
+        initComponents();
+        this.updateTable();
+        
     }
 
     private void updateTable(){

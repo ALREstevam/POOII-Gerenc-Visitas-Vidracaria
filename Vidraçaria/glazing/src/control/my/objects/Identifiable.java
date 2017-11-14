@@ -6,7 +6,7 @@
 package control.my.objects;
 
 /**
- *
+ * This is an interface
  * @author andre
  */
 public interface Identifiable{

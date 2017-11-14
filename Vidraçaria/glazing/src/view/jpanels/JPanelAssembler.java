@@ -17,7 +17,7 @@ import view.tableModel.GeneralTableModel;
 
 /**
  *
- * @author Marcus
+ * @author Pedro
  */
 public class JPanelAssembler extends javax.swing.JPanel {
     private Map<String, Assembler> assMp;
@@ -377,8 +377,8 @@ public class JPanelAssembler extends javax.swing.JPanel {
                 this.ctrl.update(newAssembler, description);
             }
         }
-    //    this.assMp = ctrl.getVehicles();
-      //  this.assLst = new ArrayList<>(assMp.values());
+       // this.assMp = ctrl.
+        this.assLst = new ArrayList<>(assMp.values());
 //        this.updateDescriptions();
   //      JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed

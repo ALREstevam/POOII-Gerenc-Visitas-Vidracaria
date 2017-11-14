@@ -84,9 +84,9 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
         TRUCK;
 
         /**
-         *
+         *This method takes the type of vehicle, given the name
          * @param name
-         * @return
+         * @return vehicleTypes
          */
         public static vehicleTypes getFromName(String name) {
             for (vehicleTypes type : vehicleTypes.values()) {
@@ -122,8 +122,8 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
     }
 
     /**
-     *
-     * @return
+     * This method obtains the necessary license for the driver
+     * @return licenseTypes
      */
     public licenseTypes getLicenseNeeded() {
         return this.licence;
@@ -148,15 +148,15 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
     }
 
     /**
-     *
-     * @return
+     * This method gets the info
+     * @return String
      */
     public String getInfo() {
         return info;
     }
 
     /**
-     *
+     * This method sets the info
      * @param info
      */
     public void setInfo(String info) {
@@ -219,7 +219,7 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
 
     /**
      *
-     * @return
+     * @return licenseTypes
      */
     public licenseTypes getLicence() {
         return licence;

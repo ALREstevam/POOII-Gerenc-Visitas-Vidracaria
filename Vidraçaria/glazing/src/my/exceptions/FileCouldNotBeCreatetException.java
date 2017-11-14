@@ -6,15 +6,21 @@
 package my.exceptions;
 
 /**
- *
+ * Class regarding the FileCouldNotBeCreatetException exception that
+ * is derived from FileDoesNotExistException
  * @author andre
  */
 public class FileCouldNotBeCreatetException extends FileDoesNotExistException{
-
+/**
+ * Constructor of class
+ */
+    
     public FileCouldNotBeCreatetException() {
         super("The file could not be created.");
     }
-    
+/**
+ * Another constructor of class
+ */    
     public FileCouldNotBeCreatetException(String message) {
         super(message);
     }

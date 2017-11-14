@@ -59,6 +59,15 @@ public final class LocalPersistence<E extends Serializable>{
     public LocalPersistence(){
         this(Object.class, "UndefinedName");
     }
+    /**
+     * Method that can raise the exception 
+     * FileCouldNotBeCreatetException
+     * @param elem
+     * @param objectName
+     * @throws my.exceptions.FileCouldNotBeCreatetException if the file could not be creared
+     * Allows an object to be loaded or saved without mentining its name or its 
+     * class, must be used only for one file in the hole project
+     */
     
     public LocalPersistence(E elem, String objectName) throws FileCouldNotBeCreatetException{
         this(elem.getClass(), objectName);
@@ -79,6 +88,11 @@ public final class LocalPersistence<E extends Serializable>{
             throw new FileCouldNotBeCreatetException();
         }
     }
+    /**
+     * Persists the given elemnt
+     * @param elem an object
+     * @param objName
+     */
     
     public void persist(E elem, String objName){
     

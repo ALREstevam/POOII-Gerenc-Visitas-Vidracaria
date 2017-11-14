@@ -77,7 +77,11 @@ public class GeneralTableModel<E extends Arrayable> extends AbstractTableModel{
     public String getColumnName(int col) {
         return this.columns[col];
     }
-    
+    /**
+    * Gets the tObjectAt using as parameter the line
+    * @param row
+    * @return E
+     */
     public E getObjectAt(int row){
         return this.list.get(row);
     }

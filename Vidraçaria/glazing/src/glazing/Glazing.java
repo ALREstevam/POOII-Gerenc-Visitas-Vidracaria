@@ -16,7 +16,7 @@ import view.jframes.MainJFrame;
 import visit.Project;
 import agenda.neow.agenda.Agenda;
 /**
- *
+ * This class contains the principal Main of the java application
  * @author andre
  */
 public class Glazing {

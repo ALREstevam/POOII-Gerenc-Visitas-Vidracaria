@@ -11,6 +11,7 @@ import control.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import persons.PhysicalPerson;
 import persons.Secretary;
 import view.tableModel.GeneralTableModel;
@@ -18,7 +19,7 @@ import view.tableModel.GeneralTableModel;
 
 /**
  *
- * @author Marcus
+ * @author Pedro
  */
 public class JPanelPhysicalPerson extends javax.swing.JPanel {
     private Map<String, PhysicalPerson> ppersonMp;
@@ -265,6 +266,8 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
 
@@ -315,7 +318,7 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
             ctrl.append(pperson);
             this.updateTable();
         }catch(Exception e){
-            //JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_BtnAddActionPerformed
