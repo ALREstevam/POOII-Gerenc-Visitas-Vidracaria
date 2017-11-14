@@ -19,7 +19,7 @@ import visit.Vehicle.licenseTypes;
 
 /**
  *
- * @author Marcus
+ * @author Pedro
  */
 public class JPanelDriver extends javax.swing.JPanel {
     private Map<String, Driver> drvMp;
@@ -488,6 +488,17 @@ public class JPanelDriver extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void updateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[] columns = new String[6];
+        
+        columns[0] = "nome";
+        columns[1] = "email";
+        columns[2] = "carteira";
+        columns[3] = "contato";
+        columns[4] = "registro";
+        columns[5] = "telefone";
+        this.drvLst = new ArrayList<>(this.drvMp.values());
+        this.drvTb =  new GeneralTableModel<Driver>(columns, drvLst, ctrl);
+        this.jTable1.setModel(drvTb);
+        //this.jTable1.
     }
 }

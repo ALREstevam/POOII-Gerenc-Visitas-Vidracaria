@@ -151,6 +151,11 @@ public class JPanelVehicle extends javax.swing.JPanel {
         jComboBoxLicense.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
         jComboBoxLicense.setToolTipText("");
         jComboBoxLicense.setBorder(javax.swing.BorderFactory.createTitledBorder("Carteira Requerida"));
+        jComboBoxLicense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxLicenseActionPerformed(evt);
+            }
+        });
 
         jComboBoxType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CAR", "MOTORCYCLE", "TRUCK" }));
         jComboBoxType.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de veículo"));
@@ -382,6 +387,10 @@ public class JPanelVehicle extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBoxLicenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLicenseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxLicenseActionPerformed
     
     private void updateDescriptions(){
         this.descriptions = new ArrayList<>();

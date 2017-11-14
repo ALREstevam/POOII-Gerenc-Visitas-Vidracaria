@@ -14,7 +14,7 @@ import view.tableModel.GeneralTableModel;
 
 /**
  *
- * @author Marcus
+ * @author Pedro
  */
 public class JPanelLegalPerson extends javax.swing.JPanel {
     private Map<String, LegalPerson> lpersonMp;
@@ -36,13 +36,13 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
     private void updateTable(){
         String[] columns = new String[7];
         
-        columns[0] = "cnpj";
-        columns[1] = "name";
-        columns[2] = "type";
-        columns[3] = "description";
-        columns[4] = "contact";
-        columns[5] = "address";
-        columns[6] = "email";
+        columns[0] = "nome";
+        columns[1] = "email";
+        columns[2] = "contato";
+        columns[3] = "endereco";
+        columns[4] = "cnpj";
+        columns[5] = "tipo de empresa";
+        columns[6] = "descrição da empresa";
         
         this.lpersonLst = new ArrayList<>(this.lpersonMp.values());
         this.lpersonTb =  new GeneralTableModel<LegalPerson>(columns, lpersonLst, ctrl);

@@ -30,14 +30,14 @@ public class JPanelAdministrator extends javax.swing.JPanel {
     }
 
     private void updateTable(){
-        String[] columns = new String[7];
+        String[] columns = new String[6];
         
-        columns[0] = "name";
-        columns[1] = "number";
-        columns[2] = "type";
-        columns[3] = "registration";
-        columns[4] = "email";
-        columns[5] = "contact";
+        columns[0] = "nome";
+        columns[1] = "email";
+        columns[2] = "tipo";
+        columns[3] = "contato";
+        columns[4] = "registro";
+        columns[5] = "telefone";
         
         this.admLst = new ArrayList<>(this.admMp.values());
         this.admTb =  new GeneralTableModel<Administrator>(columns, admLst, ctrl);

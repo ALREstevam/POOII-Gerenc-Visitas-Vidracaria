@@ -286,10 +286,10 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
         String[] columns = new String[5];
         
         columns[0] = "nome";
-        columns[1] = "cpf";
+        columns[1] = "email";
         columns[2] = "contato";
-        columns[3] = "email";
-        columns[4] = "endereco";
+        columns[3] = "endereco";
+        columns[4] = "cpf";
         
         this.ppersonLst = new ArrayList<>(this.ppersonMp.values());
         this.ppersonTb =  new GeneralTableModel<PhysicalPerson>(columns, ppersonLst, ctrl);

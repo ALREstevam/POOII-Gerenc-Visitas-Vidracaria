@@ -528,6 +528,17 @@ public class JPanelDraftsman extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void updateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-}
+        String[] columns = new String[6];
+        
+        columns[0] = "nome";
+        columns[1] = "email";
+        columns[2] = "carteira";
+        columns[3] = "contato";
+        columns[4] = "registro";
+        columns[5] = "telefone";
+        
+        this.draftmLst = new ArrayList<>(this.draftmMp.values());
+        this.draftmTb =  new GeneralTableModel<Draftsman>(columns, draftmLst, ctrl);
+        this.jTable1.setModel(draftmTb);
+        //this.jTable1.
+    }}

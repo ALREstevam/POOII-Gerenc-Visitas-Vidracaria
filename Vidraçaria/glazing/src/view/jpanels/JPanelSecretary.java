@@ -547,10 +547,24 @@ public class JPanelSecretary extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void updateDescriptions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.descriptions = new ArrayList<>();
+        for(Secretary v : this.secretaryMp.values()){
+            this.descriptions.add(v.describe());
+        }
     }
 
     private void updateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      String[] columns = new String[5];
+        
+        columns[0] = "nome";
+        columns[1] = "email";
+        columns[2] = "contato";
+        columns[3] = "registro";
+        columns[4] = "numeroPessoa";
+        
+        this.secretaryLst = new ArrayList<>(this.secretaryMp.values());
+        this.secTb =  new GeneralTableModel<Secretary>(columns, secretaryLst, ctrl);
+        this.jTable1.setModel(secTb);
+        //this.jTable1.
     }
 }
