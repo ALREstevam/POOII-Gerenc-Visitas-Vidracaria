@@ -313,10 +313,32 @@ public class Controller implements Serializable{
     }
 
     public Map<String, Secretary> getSecretary() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Map<String,Secretary> secs = new TreeMap<>();
+       
+       
+        Iterator it = this.employees.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry pair = (Map.Entry)it.next();
+            secs.put((String)pair.getKey(), (Secretary)pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+       
+        Map<String, Secretary> rsp = Collections.unmodifiableMap(secs);
+        return rsp;
     }
 
     public Map<String, Draftsman> getDraftsman() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Map<String,Draftsman> drafts = new TreeMap<>();
+       
+       
+        Iterator it = this.employees.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry pair = (Map.Entry)it.next();
+            drafts.put((String)pair.getKey(), (Draftsman)pair.getValue());
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+       
+        Map<String, Draftsman> rsp = Collections.unmodifiableMap(drafts);
+        return rsp;
     }
 }
