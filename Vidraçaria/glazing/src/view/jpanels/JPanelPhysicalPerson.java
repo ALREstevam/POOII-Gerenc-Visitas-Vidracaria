@@ -7,15 +7,22 @@ package view.jpanels;
 
 import control.Controller;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import persons.PhysicalPerson;
 import view.tableModel.GeneralTableModel;
-import visit.Vehicle;
+
 
 /**
  *
  * @author Marcus
  */
 public class JPanelPhysicalPerson extends javax.swing.JPanel {
-
+    private Map<String, PhysicalPerson> ppersonMp;
+    private List<PhysicalPerson> ppersonLst;
+    private GeneralTableModel<PhysicalPerson> ppersonTb;
+    private Controller ctrl;
+    private List<String> descriptions;
     /**
      * Creates new form JPanelPhysicalPerson
      */
@@ -262,13 +269,13 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
         }
 
         
-        Vehicle vehicleToDelete = this.vehiclesMp.get(description);
+        PhysicalPerson ppersonToDelete = this.ppersonMp.get(description);
 
-        if(vehicleToDelete == null){
+        if(ppersonToDelete == null){
             return;
         }
 
-        this.ctrl.remove(vehicleToDelete);
+        this.ctrl.remove(ppersonToDelete);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void TextEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextEnderecoActionPerformed
@@ -284,9 +291,9 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
         columns[3] = "email";
         columns[4] = "endereco";
         
-        this.vehiclesLst = new ArrayList<>(this.vehiclesMp.values());
-        this.vehTb =  new GeneralTableModel<Vehicle>(columns, vehiclesLst);
-        this.jTablePPerson.setModel(vehTb);
+        this.ppersonLst = new ArrayList<>(this.ppersonMp.values());
+        this.ppersonTb =  new GeneralTableModel<PhysicalPerson>(columns, ppersonLst);
+        this.jTablePPerson.setModel(ppersonTb);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
