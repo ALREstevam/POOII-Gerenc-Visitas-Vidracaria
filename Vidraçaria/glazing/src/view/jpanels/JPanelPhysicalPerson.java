@@ -5,11 +5,14 @@
  */
 package view.jpanels;
 
+import agenda.neow.agenda.Agenda;
+import agenda.neow.nowork.NoWorkPattern;
 import control.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import persons.PhysicalPerson;
+import persons.Secretary;
 import view.tableModel.GeneralTableModel;
 
 
@@ -138,6 +141,11 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
         });
 
         BtnAdd.setText("Cadastrar");
+        BtnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelAddLayout = new javax.swing.GroupLayout(jPanelAdd);
         jPanelAdd.setLayout(jPanelAddLayout);
@@ -180,8 +188,6 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
                 .addComponent(BtnAdd)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        FormattedTextCpf.getAccessibleContext().setAccessibleName("CPF");
 
         jLabel4.setText("Selecionado");
 
@@ -281,6 +287,38 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
     private void TextEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextEnderecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextEnderecoActionPerformed
+
+    private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
+        // TODO add your handling code here:
+        try{
+            String cpf = this.FormattedTextCpf.getText();
+            String contact = this.FormattedTextContact.getText();
+            String name = this.TextName.getText();
+            String email = this.TextEmail.getText();
+            String address = this.TextEndereco.getText();
+
+            int pCpf = 0;
+            try {
+            pCpf = Integer.parseInt(cpf); 
+                    
+            } catch (NumberFormatException e) {
+                System.out.println("Numero com formato errado!");
+            }         
+
+            if(name == null || email == null || contact == null || cpf == null || address == null){
+                throw new Exception();
+            }
+
+            NoWorkPattern nwp = new NoWorkPattern();
+            Agenda agd = new Agenda(nwp);
+            PhysicalPerson pperson = new PhysicalPerson(pCpf, name, email, contact, address);
+            ctrl.append(pperson);
+            this.updateTable();
+        }catch(Exception e){
+            //JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+    }//GEN-LAST:event_BtnAddActionPerformed
 
     private void updateTable(){
         String[] columns = new String[5];

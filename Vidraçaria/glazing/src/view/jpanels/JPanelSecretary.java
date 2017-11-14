@@ -59,8 +59,8 @@ public class JPanelSecretary extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jComboBoxLicense = new javax.swing.JComboBox<>();
-        jComboBoxType = new javax.swing.JComboBox<>();
+        jComboBoxLicense = new javax.swing.JComboBox<String>();
+        jComboBoxType = new javax.swing.JComboBox<String>();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
@@ -68,11 +68,11 @@ public class JPanelSecretary extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnConfirm = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -86,8 +86,8 @@ public class JPanelSecretary extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        jList1 = new javax.swing.JList<String>();
+        btnRemove = new javax.swing.JButton();
 
         jLabel4.setText("Inserir");
 
@@ -98,11 +98,11 @@ public class JPanelSecretary extends javax.swing.JPanel {
             }
         });
 
-        jComboBoxLicense.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
+        jComboBoxLicense.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "B", "C", "D" }));
         jComboBoxLicense.setToolTipText("");
         jComboBoxLicense.setBorder(javax.swing.BorderFactory.createTitledBorder("Carteira Requerida"));
 
-        jComboBoxType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CAR", "MOTORCYCLE", "TRUCK" }));
+        jComboBoxType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CAR", "MOTORCYCLE", "TRUCK" }));
         jComboBoxType.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de veículo"));
 
         jFormattedTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Placa"));
@@ -182,10 +182,10 @@ public class JPanelSecretary extends javax.swing.JPanel {
 
         jLabel2.setText("Consultar e alterar");
 
-        jButton3.setText("Confirmar alteração");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnConfirm.setText("Confirmar alteração");
+        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnConfirmActionPerformed(evt);
             }
         });
 
@@ -202,7 +202,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton3))
+                        .addComponent(btnConfirm))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -220,16 +220,16 @@ public class JPanelSecretary extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(btnConfirm)
                 .addGap(191, 191, 191))
         );
 
         jLabel5.setText("Inserir");
 
-        jButton4.setText("Cadastrar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Cadastrar");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
@@ -283,7 +283,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
                     .addComponent(jTextField3)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4)
+                            .addComponent(btnAdd)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(53, 53, 53))
@@ -317,7 +317,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
                             .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))))
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(btnAdd)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -325,10 +325,10 @@ public class JPanelSecretary extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jList1);
 
-        jButton1.setText("Deletar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRemove.setText("Deletar");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRemoveActionPerformed(evt);
             }
         });
 
@@ -341,7 +341,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnRemove))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -352,7 +352,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnRemove)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -408,7 +408,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jTable1KeyPressed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         for(int i = 0; i < this.secTb.getRowCount(); i++){
             Secretary newSecretary = this.secTb.getObjectAt(i);
 
@@ -422,14 +422,14 @@ public class JPanelSecretary extends javax.swing.JPanel {
         this.updateDescriptions();
         JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnConfirmActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
 
         try{
@@ -462,13 +462,13 @@ public class JPanelSecretary extends javax.swing.JPanel {
             return;
         }
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
         /*
         System.out.println("-------------");
@@ -500,7 +500,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
 
         this.ctrl.remove(secToDelete);
         this.updateTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -512,10 +512,10 @@ public class JPanelSecretary extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnConfirm;
+    private javax.swing.JButton btnRemove;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBoxLicense;
     private javax.swing.JComboBox<String> jComboBoxType;
     private javax.swing.JFormattedTextField jFormattedTextField1;
