@@ -454,7 +454,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
 
             NoWorkPattern nwp = new NoWorkPattern();
             Agenda agd = new Agenda(nwp);
-            Secretary sec = new Secretary(licenseType, vehicleType, plate, info, agd);
+            Secretary sec = new Secretary(nb, reg, name, email, contact);
             ctrl.append(sec);
             this.updateTable();
         }catch(Exception e){
@@ -491,14 +491,14 @@ public class JPanelSecretary extends javax.swing.JPanel {
             return;
         }
 
-        Vehicle vehicleToDelete = this.vehiclesMp.get(description);
+        Secretary secToDelete = this.secretaryMp.get(description);
 
-        if(vehicleToDelete == null){
+        if(secToDelete == null){
             JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        this.ctrl.remove(vehicleToDelete);
+        this.ctrl.remove(secToDelete);
         this.updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
