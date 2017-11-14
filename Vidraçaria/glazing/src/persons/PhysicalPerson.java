@@ -15,6 +15,5 @@ public class PhysicalPerson extends Client implements Serializable, Cloneable{
     public String describe() {
         return getName() + sep + getEmail() + sep + this.cpf;
     }
-
     
 }
