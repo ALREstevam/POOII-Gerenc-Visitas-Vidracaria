@@ -24,6 +24,7 @@ import agenda.neow.agenda.TimeAnswer;
 import agenda.neow.util.TimeUtil;
 import agenda.neow.agenda.AllocatorConsts;
 import control.Controller;
+import java.lang.reflect.Array;
 
 /**
  *
@@ -594,23 +595,22 @@ public class JFrameAgenda extends javax.swing.JFrame {
         if(this.allocatedTo != null && this.initalBlock != null && blocksQtd != null && selectedDrivers != null && selectedVehicle != null && this.selectedProject != null){
             try{
                 LocalDateTime end = TimeUtil.add(this.blocksQtd * AllocatorConsts.MIN_PER_BLOCK, allocatedTo);
-
-                Visit v = new Visit(this.allocatedTo, end, this.jTextFieldVisitDescription.getText(), lstDrivers, this.selectedProject.getClient(), selectedVehicle);
-
+                Visit v = new Visit(this.allocatedTo, end, this.jTextFieldVisitDescription.getText(), new ArrayList<Driver>(selectedDrivers.values()), this.selectedProject.getClient(), selectedVehicle);
                 System.out.println(v);
-                
+                System.out.println("//" + v.describe());
                 this.selectedVehicle.getAgd().allocate(this.blocksQtd, this.initalBlock, v);
-
+                
                 this.ctrl.append(v);
-
+                
                 for(Driver drv : this.selectedDrivers.values()){
                      this.selectedVehicle.getAgd().allocate(this.blocksQtd, this.initalBlock, v);
                 }
+                JOptionPane.showMessageDialog(this.jPanelDateChoose,"A tarefa foi alocada.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
             }catch(Exception e){
                 e.printStackTrace();
-            }
+            }   JOptionPane.showMessageDialog(this.jPanelDateChoose,"Não foi possível fazer essa alocação.","0 Erro ao alocar", JOptionPane.ERROR_MESSAGE);
         }else{
-            JOptionPane.showMessageDialog(this.jPanelDateChoose,"Não foi possível fazer essa alocação.","Erro ao alocar", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this.jPanelDateChoose,"Não foi possível fazer essa alocação.","1 Erro ao alocar", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAllocateActionPerformed
 

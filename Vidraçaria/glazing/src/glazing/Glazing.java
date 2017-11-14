@@ -51,17 +51,17 @@ public class Glazing {
         
         Agenda agd = new Agenda(nwp);
         
-        drvs[0] = new Driver(2, 123, 125, "Josué", "josu@e.josue", "Rua3", agd);
-        drvs[1] = new Driver(2, 123, 125, "Josefa", "josu@efa", "Rua3", agd);
-        drvs[2] = new Driver(2, 123, 125, "Cleusa", "cleu@sa", "Rua88", agd);
+        drvs[0] = new Driver(Driver.licenseTypes.A, 123, 125, "Josué", "josu@e.josue", "Rua3", agd);
+        drvs[1] = new Driver(Driver.licenseTypes.A, 123, 125, "Josefa", "josu@efa", "Rua3", agd);
+        drvs[2] = new Driver(Driver.licenseTypes.A, 123, 125, "Cleusa", "cleu@sa", "Rua88", agd);
         
         vehs[0] = new Vehicle(Vehicle.licenseTypes.C, Vehicle.vehicleTypes.CAR, "ABC-4567", "infos", agd);
         vehs[1] = new Vehicle(Vehicle.licenseTypes.A, Vehicle.vehicleTypes.MOTORCYCLE, "ABC-1238", "infos", agd);
         vehs[2] = new Vehicle(Vehicle.licenseTypes.D, Vehicle.vehicleTypes.TRUCK, "ABC-3123", "infos", agd);
         
-        prjs[0] = new Project("Prj1", "D-prj1", null, clis[0]);
-        prjs[1] = new Project("Prj2", "D-prj2", null, clis[2]);
-        prjs[2] = new Project("Prj3", "D-prj3", null, clis[0]);
+        prjs[0] = new Project("Prj1", "D-prj1", "", clis[0]);
+        prjs[1] = new Project("Prj2", "D-prj2", "", clis[2]);
+        prjs[2] = new Project("Prj3", "D-prj3", "", clis[0]);
 
         for(Client cli : clis){
             ctrl.append(cli);

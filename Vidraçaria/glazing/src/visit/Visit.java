@@ -1,5 +1,6 @@
 package visit;
 
+import agenda.neow.util.TimeUtil;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -109,7 +110,15 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     @Override
     public String describe() {
-        return this.name + sep + this.start + sep + this.finish + this.client.getName() + sep + this.project.getTitle() + sep + this.status;
+        String cli = (this.getClient().getName() == null)? "null" : this.client.getName();
+        String proj = (this.project == null || this.getProject().getTitle() == null) ? "null" : this.project.getTitle();
+        String rsp = "";
+        rsp = this.name + sep 
+                + TimeUtil.toCompleteString(this.start) + sep
+                + TimeUtil.toCompleteString(this.finish) + sep
+                + proj + sep 
+                + proj;
+        return rsp;
     }
 
     @Override
