@@ -8,6 +8,7 @@ import agenda.neow.agenda.Agenda;
 import agenda.neow.nowork.NoWorkPattern;
 import control.Controller;
 import java.awt.event.KeyEvent;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -370,10 +371,7 @@ public class JPanelVehicle extends javax.swing.JPanel {
             Vehicle newVehicle = this.vehTb.getObjectAt(i);
             
             String description = this.descriptions.get(i);
-            System.out.println(newVehicle.describe() +  " x "  + description);
-            System.out.println("*");
             if(!newVehicle.describe().equals(description)){
-                System.out.println("#");
                 this.ctrl.update(newVehicle, description);
             }
         }
