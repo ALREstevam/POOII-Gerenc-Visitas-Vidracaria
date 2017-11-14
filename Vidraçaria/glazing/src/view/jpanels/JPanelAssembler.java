@@ -135,28 +135,23 @@ public class JPanelAssembler extends javax.swing.JPanel {
 
         jLabel7.setText("Contato:");
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jFormattedTextField3.setText("jFormattedTextField3");
-
-        jFormattedTextField4.setText("jFormattedTextField4");
+        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField3ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Personal number:");
 
         jLabel9.setText("Número registro:");
 
         jLabel10.setText("Tipo de licença:");
-
-        jTextField4.setText("jTextField4");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -173,15 +168,18 @@ public class JPanelAssembler extends javax.swing.JPanel {
                     .addComponent(jLabel10)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jFormattedTextField3)
                     .addComponent(jFormattedTextField4)
-                    .addComponent(jButton4)
                     .addComponent(jTextField4)
-                    .addComponent(jTextField3)
                     .addComponent(jTextField2)
-                    .addComponent(jTextField1))
-                .addContainerGap(143, Short.MAX_VALUE))
+                    .addComponent(jTextField3)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(116, 116, 116))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,6 +429,10 @@ public class JPanelAssembler extends javax.swing.JPanel {
         this.ctrl.remove(vehicleToDelete);
         this.updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

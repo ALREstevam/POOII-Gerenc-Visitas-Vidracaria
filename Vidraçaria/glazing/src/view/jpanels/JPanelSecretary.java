@@ -4,15 +4,40 @@
  * and open the template in the editor.
  */
 package view.jpanels;
+import agenda.neow.agenda.Agenda;
+import agenda.neow.nowork.NoWorkPattern;
+import control.Controller;
+import java.awt.event.KeyEvent;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import javax.swing.JOptionPane;
+import view.tableModel.GeneralTableModel;
+import javax.swing.table.*;
+import persons.Secretary;
+import view.tableModel.GeneralTableModel;
+import visit.Vehicle;
+import view.comboboxModel.GeneralComboboxModel;
+
 
 /**
  *
- * @author Marcus
+ * @author Pedro
  */
 public class JPanelSecretary extends javax.swing.JPanel {
+private Map<String, Secretary> secretaryMp;
+    private List<Secretary> secretaryLst;
+    private GeneralTableModel<Secretary> vehTb;
+    private Controller ctrl;
+    private List<String> descriptions;
+    
 
     /**
      * Creates new form JPanelSecretary
+     * @param ctrl a controller
      */
     public JPanelSecretary() {
         initComponents();
@@ -139,7 +164,6 @@ public class JPanelSecretary extends javax.swing.JPanel {
         ));
         jTable1.setColumnSelectionAllowed(true);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setSelectionMode();
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTable1MousePressed(evt);
@@ -211,20 +235,23 @@ public class JPanelSecretary extends javax.swing.JPanel {
 
         jLabel7.setText("Contato:");
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("jTextField2");
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setText("jTextField3");
-
-        jFormattedTextField3.setText("jFormattedTextField3");
-
-        jFormattedTextField4.setText("jFormattedTextField4");
+        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField3ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Personal number:");
 
@@ -245,14 +272,17 @@ public class JPanelSecretary extends javax.swing.JPanel {
                         .addComponent(jLabel6)
                         .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jFormattedTextField3)
                     .addComponent(jFormattedTextField4)
-                    .addComponent(jButton4)
-                    .addComponent(jTextField1)
                     .addComponent(jTextField2)
-                    .addComponent(jTextField3))
-                .addContainerGap(69, Short.MAX_VALUE))
+                    .addComponent(jTextField3)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(53, 53, 53))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,6 +515,14 @@ public class JPanelSecretary extends javax.swing.JPanel {
         this.ctrl.remove(vehicleToDelete);
         this.updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
