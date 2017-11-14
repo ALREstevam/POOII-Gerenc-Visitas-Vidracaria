@@ -222,13 +222,13 @@ public class Agenda implements AgendaDefaults, Serializable{
         //Technique 1: exact fit
         for(Touple<Integer, Integer> elem : rsp){
             if(elem.getB() == blocks){
-                return new TimeAnswer(null, elem.getA(), elem.getB());
+                return new TimeAnswer(TimeUtil.add(elem.getA() * MIN_PER_BLOCK, this.init), elem.getA(), elem.getB());
             }
         }
         //Technique 1: first fit
         for(Touple<Integer, Integer> elem : rsp){
             if(elem.getB() <= blocks){
-                return new TimeAnswer(null, elem.getA(), elem.getB());
+                return new TimeAnswer(TimeUtil.add(elem.getA() * MIN_PER_BLOCK, this.init), elem.getA(), elem.getB());
             }
         }
         return null;

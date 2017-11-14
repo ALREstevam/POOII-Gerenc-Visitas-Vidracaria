@@ -40,9 +40,6 @@ public class Controller implements Serializable{
     private transient final ControlHelper<Vehicle> helpVeh = new  ControlHelper<>();
     private transient final ControlHelper<Visit> helpVis = new ControlHelper<>();
     
-    private long universalId;
-
-
     /**
      * Instantiates a new controller
      */
@@ -105,7 +102,6 @@ public class Controller implements Serializable{
      */
     public void append(Vehicle vehicle){
         this.vehicles.put(vehicle.describe(), vehicle);
-        this.universalId++;
     }
     
     /**
@@ -116,7 +112,6 @@ public class Controller implements Serializable{
      */
     public void append(Visit visit){
         this.visits.put(visit.describe(),visit);
-        this.universalId++;
     }
     
     /**

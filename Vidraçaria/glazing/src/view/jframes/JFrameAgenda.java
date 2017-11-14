@@ -21,6 +21,9 @@ import visit.Project;
 import visit.Vehicle;
 import visit.Visit;
 import agenda.neow.agenda.TimeAnswer;
+import agenda.neow.util.TimeUtil;
+import agenda.neow.agenda.AllocatorConsts;
+import control.Controller;
 
 /**
  *
@@ -31,7 +34,6 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private Vehicle selectedVehicle;
     private Project selectedProject;
     private Map<String, Driver> selectedDrivers;
-    private Visit visit;
     private LocalDate dateChoosen;
     private int hours = 0;
     private int minutes = 0;
@@ -39,6 +41,8 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private LocalDateTime allocatedTo = null;
     private Integer initalBlock = null;
     private Integer blocksQtd = null;
+    
+    private Controller ctrl;
     
     private boolean projectValid = false;
     private boolean vehicleValid = false;
@@ -64,7 +68,9 @@ public class JFrameAgenda extends javax.swing.JFrame {
      * @param veh a vehicle
      * @param proj a project
      */
-    public JFrameAgenda(Map<String, Driver> drv, Map<String,Vehicle> veh, Map<String,Project> proj) {
+    public JFrameAgenda(Map<String, Driver> drv, Map<String,Vehicle> veh, Map<String,Project> proj, Controller ctrl) {
+        this.ctrl = ctrl;
+
         //Initialize selected
         this.selectedDrivers = new TreeMap<>();
 
@@ -129,6 +135,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButtonAllocate = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jLabelAllocatedTo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabelProject = new javax.swing.JLabel();
@@ -139,6 +146,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
         jButtonClean = new javax.swing.JButton();
         jButtonValidate = new javax.swing.JButton();
         jLabelDuration = new javax.swing.JLabel();
+        jTextFieldVisitDescription = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -323,7 +331,8 @@ public class JFrameAgenda extends javax.swing.JFrame {
 
         jLabel11.setText("A tarefa pode ser alocada para: ");
 
-        //jLabelAllocatedTo.setText("--");
+        jLabelAllocatedTo.setText("---");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -338,14 +347,10 @@ public class JFrameAgenda extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonAllocate)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(167, 167, 167)
-                                //.addComponent(jLabelAllocatedTo))
-                            .addComponent(jLabel11))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-                            //.addComponent(jButton6)
-                            .addComponent(jLabel11)
-                        //.addGap(0, 665, Short.MAX_VALUE)))
-                            )
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelAllocatedTo)))
+                        .addGap(0, 621, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,11 +358,10 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
-                .addGap(5, 5, 5)
-                //.addComponent(jLabelAllocatedTo)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabelAllocatedTo))
+                .addGap(25, 25, 25)
                 .addComponent(jButtonAllocate)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
@@ -389,6 +393,8 @@ public class JFrameAgenda extends javax.swing.JFrame {
 
         jLabelDuration.setText("Duração:");
 
+        jTextFieldVisitDescription.setBorder(javax.swing.BorderFactory.createTitledBorder("Descrição da visita"));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -396,6 +402,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldVisitDescription)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -421,7 +428,9 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 .addComponent(jLabelProject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelDuration)
-                .addGap(54, 54, 54)
+                .addGap(23, 23, 23)
+                .addComponent(jTextFieldVisitDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -583,14 +592,26 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private void jButtonAllocateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAllocateActionPerformed
 
         if(this.allocatedTo != null && this.initalBlock != null && blocksQtd != null && selectedDrivers != null && selectedVehicle != null && this.selectedProject != null){
-            
-            
-        
+            try{
+                LocalDateTime end = TimeUtil.add(this.blocksQtd * AllocatorConsts.MIN_PER_BLOCK, allocatedTo);
+
+                Visit v = new Visit(this.allocatedTo, end, this.jTextFieldVisitDescription.getText(), lstDrivers, this.selectedProject.getClient(), selectedVehicle);
+
+                System.out.println(v);
+                
+                this.selectedVehicle.getAgd().allocate(this.blocksQtd, this.initalBlock, v);
+
+                this.ctrl.append(v);
+
+                for(Driver drv : this.selectedDrivers.values()){
+                     this.selectedVehicle.getAgd().allocate(this.blocksQtd, this.initalBlock, v);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }else{
             JOptionPane.showMessageDialog(this.jPanelDateChoose,"Não foi possível fazer essa alocação.","Erro ao alocar", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
     }//GEN-LAST:event_jButtonAllocateActionPerformed
 
     private Integer getHoursFromjSpinner(){
@@ -620,6 +641,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelAllocatedTo;
     private javax.swing.JLabel jLabelDuration;
     private javax.swing.JLabel jLabelProject;
     private javax.swing.JList<String> jListDrivers;
@@ -640,6 +662,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSpinner jSpinnerHours;
     private javax.swing.JSpinner jSpinnerMinutes;
+    private javax.swing.JTextField jTextFieldVisitDescription;
     // End of variables declaration//GEN-END:variables
 
     private class FreeTimeSearch extends SwingWorker<Void, Void>{
@@ -676,6 +699,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 Agenda sumAgds = Agenda.sum(agendas);
                 
                 TimeAnswer tma = sumAgds.whenIsAvaliable(blocks);
+                
                 System.out.println(TimeUtil.toCompleteString(tma.time));
                 jLabelAllocatedTo.setText(TimeUtil.toCompleteString(tma.time));
                 allocatedTo = tma.time;

@@ -1,6 +1,7 @@
 package visit;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,8 +12,8 @@ import view.tableModel.Arrayable;
 
 public class Visit implements Serializable, Descriptible, Arrayable{
 
-    private Date start;
-    private Date finish;
+    private LocalDateTime start;
+    private LocalDateTime finish;
     private int status;
     private String description;
     private String name;
@@ -21,7 +22,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     private Client client;
     private Vehicle vehicle;
 
-    public Visit(Date start, Date finish, String name, List<Driver> visitor, Client client, Vehicle vehicle) {
+    public Visit(LocalDateTime start, LocalDateTime finish, String name, List<Driver> visitor, Client client, Vehicle vehicle) {
         this.start = start;
         this.finish = finish;
         this.name = name;
@@ -34,19 +35,19 @@ public class Visit implements Serializable, Descriptible, Arrayable{
         this.name = name;
     }
     
-    public Date getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public Date getFinish() {
+    public LocalDateTime getFinish() {
         return finish;
     }
 
-    public void setFinish(Date finish) {
+    public void setFinish(LocalDateTime finish) {
         this.finish = finish;
     }
 
