@@ -90,25 +90,25 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
         int rspCount = 0;
         for (String s : order) {
             switch (s) {
-                case "nome:":
+                case "nome":
                     rsp[rspCount] = this.getName();
                     break;
-                case "email:":
+                case "email":
                     rsp[rspCount] = this.getEmail();
                     break;
-                case "contato:":
+                case "contato":
                     rsp[rspCount] = this.getContact();
                     break;
-                case "endereco:":
+                case "endereco":
                     rsp[rspCount] = this.getAddress();
                     break;
-                case "cnpj:":
+                case "cnpj":
                     rsp[rspCount] = this.getCnpj();
                     break;
-                case "tipo de empresa:":
+                case "tipo de empresa":
                     rsp[rspCount] = this.getCompanyType();
                     break;    
-                case "descrição da empresa:":
+                case "descrição da empresa":
                     rsp[rspCount] = this.getConpanyDescription();
                     break;    
                 default:

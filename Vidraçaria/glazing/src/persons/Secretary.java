@@ -47,19 +47,19 @@ public class Secretary extends Employee implements Serializable, Cloneable, Arra
         int rspCount = 0;
         for (String s : order) {
             switch (s) {
-                case "nome:":
+                case "nome":
                     rsp[rspCount] = this.getName();
                     break;
-                case "email:":
+                case "email":
                     rsp[rspCount] = this.getEmail();
                     break;
-                case "contato:":
+                case "contato":
                     rsp[rspCount] = this.getContact();
                     break;
-                case "registro:":
+                case "registro":
                     rsp[rspCount] = this.getRegistration();
                     break;
-                case "numeroPessoa:":
+                case "numeroPessoa":
                     rsp[rspCount] = this.getPersonalNumber();
                     break;
                 default:

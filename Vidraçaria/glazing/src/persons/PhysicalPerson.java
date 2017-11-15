@@ -36,19 +36,19 @@ public class PhysicalPerson extends Client implements Serializable, Cloneable, A
         int rspCount = 0;
         for (String s : order) {
             switch (s) {
-                case "nome:":
+                case "nome":
                     rsp[rspCount] = this.getName();
                     break;
-                case "email:":
+                case "email":
                     rsp[rspCount] = this.getEmail();
                     break;
-                case "contato:":
+                case "contato":
                     rsp[rspCount] = this.getContact();
                     break;
-                case "endereco:":
+                case "endereco":
                     rsp[rspCount] = this.getAddress();
                     break;
-                case "cpf:":
+                case "cpf":
                     rsp[rspCount] = this.getCpf();
                     break;
                 default:
