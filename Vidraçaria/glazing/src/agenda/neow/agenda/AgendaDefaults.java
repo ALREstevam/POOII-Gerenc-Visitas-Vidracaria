@@ -30,6 +30,16 @@ public interface AgendaDefaults extends AllocatorConsts{
      * in use
      */
     public boolean allocate(int blocks, int init, Visit elem);
+    /**
+     * Remove a certain amount of blocks 
+     * @param block Amount of blocks to allocate
+     */
+    
     public void free(int block);
+    /**
+     * Remove a certain amount of blocks from the initial position
+     * @param blocks Amount of blocks to allocate
+     * @param init Fist block of the allocation
+     */
     public void free(int init, int blocks);
 }

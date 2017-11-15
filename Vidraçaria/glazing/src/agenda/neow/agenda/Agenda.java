@@ -156,8 +156,11 @@ public class Agenda implements AgendaDefaults, Serializable{
         }
         return supAgenda;
     }
-    
-    
+    /**
+     * Sums agendas in list form
+     * @param agds Agenda
+     * @return the sum of the agendas
+     */
     
     public static Agenda sum(List<Agenda> agds){
         List<NoWorkPattern> patterns = new ArrayList<>(agds.size());
@@ -213,8 +216,11 @@ public class Agenda implements AgendaDefaults, Serializable{
             this.agd.advanceHead();
         }
     }
-    
-    
+    /**
+     * Method that checks when an employee will be available
+     * @param blocks are the blocks
+     * @return TimeAnswer 
+     */    
 
     @Override
     public TimeAnswer whenIsAvaliable(int blocks) {
@@ -257,7 +263,12 @@ public class Agenda implements AgendaDefaults, Serializable{
         }
         return rsp;
     }
-    
+    /**
+     * allocate the blocks to a visit
+     * @param blocks are the blocks
+     * @param init is the initial
+     * @param elem is an object of Visit
+     */    
     @Override
     public synchronized boolean allocate(int blocks, int init, Visit elem) {
          for(int i = init; i <= blocks; i++){//Percorrer todos os blocos
@@ -272,12 +283,18 @@ public class Agenda implements AgendaDefaults, Serializable{
          }
          return true;
     }
-
+    /**
+     * clears a block
+     * @param block is the block 
+     */    
     @Override
     public void free(int block) {
         this.agd.get(block).setFree();
     }
-    
+    /**
+     * clears the blocks of an object
+     * @param o is an bject of Object 
+     */    
     public void free(Object o){
         for(int i = 0; i < BLOCKS; i++){
             TimeBlock elem = this.agd.get(i);
@@ -286,18 +303,29 @@ public class Agenda implements AgendaDefaults, Serializable{
             }
         }
     }
-    
+    /**
+     * clear the blocks
+     * @param init is the initial
+     * @param blocks are the blocks 
+     */    
     @Override
     public void free(int init, int blocks) {
         this.cleanBetween(init, init+blocks);
     }
-
+    /**
+     * clear between an initial position and a final position
+     * @param init is the initial
+     * @param end is the final
+     */    
     public void cleanBetween(int init, int end) {
         for (int i = init; i < end; i++) {
             this.free(i);
         }
     }
-
+    /**
+     * This method return a representation of object String 
+     * @return String
+     */    
     @Override
     public String toString() {
         String rsp = "";
