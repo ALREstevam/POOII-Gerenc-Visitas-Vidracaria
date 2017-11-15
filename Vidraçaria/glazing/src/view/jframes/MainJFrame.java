@@ -214,7 +214,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         JDialog windowAdmin = new JDialog();
-        windowAdmin.add(new JPanelAdministrator());
+        windowAdmin.add(new JPanelAdministrator(ctrl));
         windowAdmin.pack();
         windowAdmin.setModal(true);
         windowAdmin.setVisible(true);

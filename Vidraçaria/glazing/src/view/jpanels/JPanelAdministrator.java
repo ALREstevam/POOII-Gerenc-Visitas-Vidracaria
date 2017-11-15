@@ -28,10 +28,15 @@ public class JPanelAdministrator extends javax.swing.JPanel {
     /**
      * Creates new form JPanelAdministrator
      */
-    public JPanelAdministrator() {
+    public JPanelAdministrator(Controller ctrl) {
+        this.ctrl = ctrl;
+        this.admMp = ctrl.getAdministrator();
+        this.updateDescriptions();
         initComponents();
+        this.updateTable();
+    
     }
-
+    
     private void updateTable(){
         String[] columns = new String[6];
         
