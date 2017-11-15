@@ -9,7 +9,9 @@ import control.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import persons.Administrator;
+import view.comboboxModel.GeneralComboboxModel;
 import view.tableModel.GeneralTableModel;
 
 /**
@@ -42,6 +44,44 @@ public class JPanelAdministrator extends javax.swing.JPanel {
         this.admLst = new ArrayList<>(this.admMp.values());
         this.admTb =  new GeneralTableModel<Administrator>(columns, admLst, ctrl);
         this.jTable1.setModel(admTb);
+    }
+    
+    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {                                     
+        // TODO add your handling code here:
+        
+        int selected = this.jTable1.getSelectedRow();
+        Administrator a = this.admLst.get(selected);
+        
+        if(a == null){
+            return;
+        }
+        
+        List<Administrator> lstSelected = new ArrayList<>();
+        lstSelected.add(a);
+        
+        this.jList1.setModel(new GeneralComboboxModel<Administrator>().getComboBoxModelUsingDescription(lstSelected));
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:        
+        this.jList1.setSelectedIndex(0);
+        String description = (String) this.jList1.getSelectedValue();
+        
+        if(description == null){
+            JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        
+        Administrator admToDelete = this.admMp.get(description);
+        
+        if(admToDelete == null){
+            JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        this.ctrl.remove(admToDelete);
+        this.updateTable();
     }
     /**
      * This method is called from within the constructor to initialize the form.
