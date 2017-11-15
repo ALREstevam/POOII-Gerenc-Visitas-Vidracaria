@@ -197,7 +197,7 @@ public class JPanelAdministrator extends javax.swing.JPanel {
 
         jFormattedTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Número"));
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -270,7 +270,7 @@ public class JPanelAdministrator extends javax.swing.JPanel {
         jLabel4.setText("Selecionado");
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { " ", " ", " ", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
