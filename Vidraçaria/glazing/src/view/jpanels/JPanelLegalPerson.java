@@ -5,10 +5,12 @@
  */
 package view.jpanels;
 
+import agenda.neow.nowork.NoWorkPattern;
 import control.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import persons.LegalPerson;
 import view.tableModel.GeneralTableModel;
 
@@ -63,6 +65,7 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -103,6 +106,13 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton3.setText("Confirmar alteração");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -111,7 +121,8 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jButton3))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,8 +131,9 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3))
         );
 
         jLabel1.setText("Pessoa Jurídica");
@@ -145,6 +157,11 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
         jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
 
         jButton1.setText("Cadastrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -273,10 +290,61 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        for(int i = 0; i < this.lpersonTb.getRowCount(); i++){
+            LegalPerson newLperson = this.lpersonTb.getObjectAt(i);
+            
+            String description = this.descriptions.get(i);
+            if(!newLperson.describe().equals(description)){
+                this.ctrl.update(newLperson, description);
+            }
+        }
+        this.lpersonMp = ctrl.getLegalPerson();
+        this.lpersonLst = new ArrayList<>(lpersonMp.values());
+        this.updateDescriptions();
+        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            String cnpj = this.jFormattedTextField1.getText();
+            String name = this.jTextField1.getText();
+            String type = this.jComboBox1.getSelectedItem().toString();
+            String description = this.jTextField2.getText();
+            String contact = this.jFormattedTextField2.getText();
+            String email = this.jTextField3.getText();
+            String address = this.jTextField4.getText();
+            
+            if(name == null || cnpj == null || type == null || email == null || contact == null ||
+              address.equals("") || type.equals("")){
+                throw new Exception();
+            }
+            int cnpjL = 0;
+            try {
+            cnpjL = Integer.parseInt(cnpj); 
+            } catch (NumberFormatException e) {
+                System.out.println("Numero com formato errado!");
+            }
+            
+            NoWorkPattern nwp = new NoWorkPattern();
+            LegalPerson legalp = new LegalPerson(cnpjL, type, description, address, name, email, contact);
+            ctrl.append(legalp);
+            this.updateTable();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
