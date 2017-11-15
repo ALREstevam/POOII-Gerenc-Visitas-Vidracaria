@@ -51,6 +51,7 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePPerson = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanelAdd = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -89,6 +90,13 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTablePPerson);
 
+        jButton1.setText("Confirmar alteração");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelConsultEditLayout = new javax.swing.GroupLayout(jPanelConsultEdit);
         jPanelConsultEdit.setLayout(jPanelConsultEditLayout);
         jPanelConsultEditLayout.setHorizontalGroup(
@@ -96,10 +104,12 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
             .addGroup(jPanelConsultEditLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelConsultEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                     .addGroup(jPanelConsultEditLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE))
+                        .addGroup(jPanelConsultEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jButton1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelConsultEditLayout.setVerticalGroup(
@@ -108,8 +118,9 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
 
         jLabel1.setText("Pessoa Física");
@@ -257,11 +268,11 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelConsultEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanelRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanelRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelConsultEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -323,6 +334,23 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_BtnAddActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        for(int i = 0; i < this.ppersonTb.getRowCount(); i++){
+            PhysicalPerson newPperson = this.ppersonTb.getObjectAt(i);
+            
+            String description = this.descriptions.get(i);
+            if(!newPperson.describe().equals(description)){
+                this.ctrl.update(newPperson, description);
+            }
+        }
+        this.ppersonMp = ctrl.getPhysicalPerson();
+        this.ppersonLst = new ArrayList<>(ppersonMp.values());
+        this.updateDescriptions();
+        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void updateTable(){
         String[] columns = new String[5];
         
@@ -345,6 +373,7 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
     private javax.swing.JTextField TextEndereco;
     private javax.swing.JTextField TextName;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

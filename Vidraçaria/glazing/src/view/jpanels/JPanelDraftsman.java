@@ -414,23 +414,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
             } catch (NumberFormatException e) {
                 System.out.println("Numero com formato errado!");
             }
-           /* int license = 0;
-            
-            switch (licenseType) {
-            case "A":
-                license=1;
-                break;
-            case "B":
-                license=2;
-                break;
-            case "C":
-                license=3;
-                break;
-            case "D":
-                license=4;
-                break;
-        }
-*/
+           
             if(name == null || email == null || contact == null || pnb == null || registration == null ||
                 licenseT.equals("")
             ){
