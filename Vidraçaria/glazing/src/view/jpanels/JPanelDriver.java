@@ -11,6 +11,7 @@ import control.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import persons.Driver;
 import view.comboboxModel.GeneralComboboxModel;
 import view.tableModel.GeneralTableModel;
@@ -371,8 +372,8 @@ public class JPanelDriver extends javax.swing.JPanel {
         }
         this.drvMp = ctrl.getDrivers();
         this.drvLst = new ArrayList<>(drvMp.values());
-        //this.updateDescriptions();
-        //JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        this.updateDescriptions();
+        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
@@ -444,7 +445,7 @@ public class JPanelDriver extends javax.swing.JPanel {
             ctrl.append(dr);
             this.updateTable();
         }catch(Exception e){
-            //JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_jButton4ActionPerformed

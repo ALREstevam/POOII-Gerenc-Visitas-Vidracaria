@@ -11,6 +11,7 @@ import control.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import persons.Draftsman;
 import view.comboboxModel.GeneralComboboxModel;
 import view.tableModel.GeneralTableModel;
@@ -28,6 +29,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
 
     /**
      * Creates new form JPanelDraftsman
+     * @param ctrl
      */
 
     public JPanelDraftsman(Controller ctrl) {
@@ -389,8 +391,8 @@ public class JPanelDraftsman extends javax.swing.JPanel {
         }
         this.draftmMp = ctrl.getDraftsman();
         this.draftmLst = new ArrayList<>(draftmMp.values());
-       //this.updateDescriptions();
-        //JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        this.updateDescriptions();
+        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -427,7 +429,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
             ctrl.append(drf);
             this.updateTable();
         }catch(Exception e){
-            //JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -455,14 +457,14 @@ public class JPanelDraftsman extends javax.swing.JPanel {
         String description = this.jList1.getSelectedValue();
 
         if(description == null){
-           // JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         Draftsman drfToDelete = this.draftmMp.get(description);
 
         if(drfToDelete == null){
-            //JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
 

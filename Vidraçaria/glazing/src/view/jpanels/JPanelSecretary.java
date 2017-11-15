@@ -449,15 +449,12 @@ public class JPanelSecretary extends javax.swing.JPanel {
             reg = Integer.parseInt(registration);
         
             } catch (NumberFormatException e) {
-                System.out.println("Numero com formato errado!");
+                JOptionPane.showMessageDialog(this,"Numero com formato errado!","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             }         
 
             if(name == null || email == null || contact == null || personalnb == null || registration == null){
                 throw new Exception();
             }
-
-            NoWorkPattern nwp = new NoWorkPattern();
-            Agenda agd = new Agenda(nwp);
             Secretary sec = new Secretary(nb, reg, name, email, contact);
             ctrl.append(sec);
             this.updateTable();
@@ -477,16 +474,16 @@ public class JPanelSecretary extends javax.swing.JPanel {
         /*
         System.out.println("-------------");
         System.out.println("VALUES");
-        for(Vehicle v : this.vehiclesMp.values()){
+        for(Secretary v : this.secretaryMp.values()){
             System.out.println(v.describe());
         }
         System.out.println("KEYS");
-        for ( String key : vehiclesMp.keySet() ) {
+        for ( String key : secretaryMp.keySet() ) {
             System.out.println( key );
         }
         System.out.println("-------------");
-        */
-
+        
+*/
         this.jList1.setSelectedIndex(0);
         String description = this.jList1.getSelectedValue();
 

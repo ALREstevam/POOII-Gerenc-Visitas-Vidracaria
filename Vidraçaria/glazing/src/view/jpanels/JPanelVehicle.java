@@ -352,6 +352,7 @@ public class JPanelVehicle extends javax.swing.JPanel {
               plate.equals("") || strVehicleLicense.equals("") || strVehicleType.equals("")
                     ){
                 throw new Exception();
+                
             }
             
             NoWorkPattern nwp = new NoWorkPattern();
