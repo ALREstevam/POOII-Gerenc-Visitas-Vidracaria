@@ -57,7 +57,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
     
     /**
-     *
+     * Starts a date
      * @return LocalDateTime
      */
     public LocalDateTime getStart() {
@@ -65,7 +65,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Sets a initial date
      * @param start is the first date
      */
     public void setStart(LocalDateTime start) {
@@ -73,7 +73,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Gets a finish date
      * @return LocalDateTime
      */
     public LocalDateTime getFinish() {
@@ -81,7 +81,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Sets a finish date
      * @param finish is the last date 
      */
     public void setFinish(LocalDateTime finish) {
@@ -89,7 +89,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Gets the status
      * @return int 
      */
     public int getStatus() {
@@ -97,7 +97,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Sets the status
      * @param status is the status from Visit
      */
     public void setStatus(int status) {
@@ -105,7 +105,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Sets a description
      * @return String
      */
     public String getDescription() {
@@ -113,7 +113,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Sets a description
      * @param description is the description of Visit realized 
      */
     public void setDescription(String description) {
@@ -121,7 +121,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Gets a project 
      * @return Project
      */
     public Project getProject() {
@@ -129,7 +129,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Sets a project
      * @param project is the Project
      */
     public void setProject(Project project) {
@@ -137,7 +137,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Gets a list of drivers
      * @return List
      */
     public List<Driver> getVisitor() {
@@ -145,7 +145,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Sets a list of drivers
      * @param visitor is the person that visit the client
      */
     public void setVisitor(List<Driver> visitor) {
@@ -153,7 +153,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Gets a client
      * @return Client
      */
     public Client getClient() {
@@ -161,7 +161,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Sets a client
      * @param client is the client
      */
     public void setClient(Client client) {
@@ -169,7 +169,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Gets a vehicle
      * @return Vehicle
      */
     public Vehicle getVehicle() {
@@ -177,7 +177,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Sets a vehicle
      * @param vehicle is the vehicle of Glazing
      */
     public void setVehicle(Vehicle vehicle) {
@@ -185,7 +185,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Gets a name
      * @return String
      */
     public String getName() {
@@ -193,7 +193,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     }
 
     /**
-     *
+     * Sets a name
      * @param name is the name of vehicle
      */
     public void setName(String name) {

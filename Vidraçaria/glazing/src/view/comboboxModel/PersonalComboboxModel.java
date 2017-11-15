@@ -12,8 +12,8 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
 /**
- *
- * @author andre
+ * This class is a comboboxModel
+ * @author Pedro
  */
 public class PersonalComboboxModel<E extends Descriptible> extends AbstractListModel implements ComboBoxModel {
     private List<E> elemList;

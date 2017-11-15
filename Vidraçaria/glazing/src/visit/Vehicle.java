@@ -48,7 +48,7 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
         D;
 
         /**
-         *
+         * Get name of license type
          * @param name is a name
          * @return licenseTypes
          */
@@ -218,7 +218,7 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
     }
 
     /**
-     *
+     * Get licence of drivers
      * @return licenseTypes
      */
     public licenseTypes getLicence() {
@@ -226,7 +226,7 @@ public class Vehicle implements Serializable, view.comboboxModel.Descriptible, v
     }
 
     /**
-     *
+     * Get the vehicle type
      * @return vehicleTypes
      */
     public vehicleTypes getVehType() {

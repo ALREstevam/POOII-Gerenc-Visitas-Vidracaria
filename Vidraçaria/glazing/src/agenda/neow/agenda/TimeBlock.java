@@ -245,8 +245,13 @@ public class TimeBlock implements Serializable{
     public boolean isBlocked(){
         return this.status.equals(StatusEnum.NOT_ALLOCATE);
     }
-
+     /**
+     * Convert an object to String. Gets a textual
+     * representation of a specific object.
+     * @return String
+     */
     @Override
+
     public String toString() {
         return "{" + "task: " + task + ", status: " + status + ", day: " + day.getShortNamePt() + "}, ";
     }

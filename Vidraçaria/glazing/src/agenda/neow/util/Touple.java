@@ -110,7 +110,11 @@ public class Touple<I, J> implements Serializable{
     public boolean ispartiallyEmpty(){
         return a == null || b == null;
     }
-
+    /**
+     * Convert an object to String. Gets a textual representation 
+     * of a specific object.
+     * @return String
+     */
     @Override
     public String toString() {
         String first = (a == null) ? "null" : a.toString();

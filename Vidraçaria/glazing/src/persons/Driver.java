@@ -50,7 +50,7 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
         D;
 
         /**
-         *
+         * obtains the name. Type String
          * @param name name of licence Types
          * @return licenseTypes
          */
@@ -130,7 +130,8 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
     }
 
     /**
-     *
+     * Convert an object to String. Gets a textual representation
+     * of a specific object.
      * @return String
      */
     @Override
