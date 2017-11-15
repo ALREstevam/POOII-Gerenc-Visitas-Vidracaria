@@ -370,7 +370,7 @@ public class JPanelDriver extends javax.swing.JPanel {
                 this.ctrl.update(newDrv, description);
             }
         }
-        this.drvMp = ctrl.getDrivers();
+        this.drvMp = ctrl.getDriver();
         this.drvLst = new ArrayList<>(drvMp.values());
         this.updateDescriptions();
         JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
