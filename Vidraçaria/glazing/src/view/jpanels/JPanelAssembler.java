@@ -17,7 +17,7 @@ import view.comboboxModel.GeneralComboboxModel;
 import view.tableModel.GeneralTableModel;
 
 /**
- *
+ *This Jpanel represents the Assembler screen
  * @author Pedro
  */
 public class JPanelAssembler extends javax.swing.JPanel {
@@ -28,6 +28,7 @@ public class JPanelAssembler extends javax.swing.JPanel {
     private List<String> descriptions;
     /**
      * Creates new form JPanelAssembler
+     * @param ctrl  is an object from Controller
      */
 
     public JPanelAssembler(Controller ctrl) {

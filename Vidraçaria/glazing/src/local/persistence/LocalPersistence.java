@@ -62,8 +62,8 @@ public final class LocalPersistence<E extends Serializable>{
     /**
      * Method that can raise the exception 
      * FileCouldNotBeCreatetException
-     * @param elem
-     * @param objectName
+     * @param elem represent an element
+     * @param objectName represent an object
      * @throws my.exceptions.FileCouldNotBeCreatetException if the file could not be creared
      * Allows an object to be loaded or saved without mentining its name or its 
      * class, must be used only for one file in the hole project
@@ -91,7 +91,7 @@ public final class LocalPersistence<E extends Serializable>{
     /**
      * Persists the given elemnt
      * @param elem an object
-     * @param objName
+     * @param objName is an object Name
      */
     
     public void persist(E elem, String objName){

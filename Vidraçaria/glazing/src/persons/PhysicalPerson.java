@@ -14,11 +14,11 @@ public class PhysicalPerson extends Client implements Serializable, Cloneable, A
     /**
      * This is the constructor of the PhysicalPerson class. This constructor
      * has five parameters
-     * @param cpf
-     * @param address
-     * @param name
-     * @param email
-     * @param contact
+     * @param cpf this is a cpf of PhysicalPerson
+     * @param address this is a address of PhysicalPerson
+     * @param name this is a name of PhysicalPerson
+     * @param email this is a email of PhysicalPerson
+     * @param contact this is a contact of PhysicalPerson
      */
     public PhysicalPerson(int cpf, String address, String name, String email, String contact) {
         super(address, name, email, contact);
@@ -94,7 +94,7 @@ public class PhysicalPerson extends Client implements Serializable, Cloneable, A
 
     /**
      * This method set the PhysicalPerson's cpf
-     * @param cpf
+     * @param cpf this is a cpf
      */
     public void setCpf(int cpf) {
         this.cpf = cpf;

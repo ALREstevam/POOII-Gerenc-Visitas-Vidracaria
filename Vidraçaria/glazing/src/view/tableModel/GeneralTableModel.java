@@ -79,7 +79,7 @@ public class GeneralTableModel<E extends Arrayable> extends AbstractTableModel{
     }
     /**
     * Gets the tObjectAt using as parameter the line
-    * @param row
+    * @param row this is the rows
     * @return E
      */
     public E getObjectAt(int row){

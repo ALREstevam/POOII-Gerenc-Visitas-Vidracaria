@@ -22,6 +22,7 @@ public class FileDoesNotExistException extends FileNotFoundException{
     }
     /**
  * Another constructor of class
+ * @param  message this is a message from Exception
  */
     public FileDoesNotExistException(String message){
         super(message);

@@ -22,10 +22,10 @@ public class Project implements Serializable, Descriptible, Arrayable{
     /**
      * This is the constructor of the Project class. This constructor
      * has four parameters
-     * @param title
-     * @param description
-     * @param file
-     * @param client
+     * @param title is a title of Project
+     * @param description is a description of project
+     * @param file is a file
+     * @param client is a client
      */
     public Project(String title, String description, String file, Client client) {
         this.title = title;
@@ -44,7 +44,7 @@ public class Project implements Serializable, Descriptible, Arrayable{
 
     /**
      * This method set the Project's title
-     * @param title
+     * @param title is the title of Project
      */
     public void setTitle(String title) {
         this.title = title;
@@ -60,7 +60,7 @@ public class Project implements Serializable, Descriptible, Arrayable{
 
     /**
      * This method set the Project's description
-     * @param description
+     * @param description references to Project's description 
      */
     public void setDescription(String description) {
         this.description = description;
@@ -76,7 +76,7 @@ public class Project implements Serializable, Descriptible, Arrayable{
 
     /**
      * This method set the Project's file
-     * @param file
+     * @param file is an object of String
      */
     public void setFile(String file) {
         this.file = file;
@@ -93,7 +93,7 @@ public class Project implements Serializable, Descriptible, Arrayable{
 
     /**
      * This method set the Project's client
-     * @param client
+     * @param client is a client of Project
      */
     public void setClient(Client client) {
         this.client = client;

@@ -40,8 +40,8 @@ public class ControlHelper<E extends Descriptible>{
 
     /**
     * This method get an object from Map 
-    * @param m
-    * @return Map<String,E>
+    * @param m this is an object from class Map
+    * @return Map
     */ 
     public Map<String,E> get(Map m) {
         Map<String,E> rsp = Collections.unmodifiableMap(m);
@@ -49,9 +49,9 @@ public class ControlHelper<E extends Descriptible>{
     }
     /**
     * This method updates a description Map 
-    * @param m
-    * @param oldDescription
-    * @param newElem
+    * @param m this is an object from class Map
+    * @param oldDescription this is an object from class String
+    * @param newElem this is an object from class E
     * @return boolean
     */     
     public boolean update(Map m, String oldDescription, E newElem){
@@ -65,9 +65,9 @@ public class ControlHelper<E extends Descriptible>{
     
     /**
     * This method updates a element from Map 
-    * @param m
-    * @param oldElem
-    * @param newElem
+    * @param m this is an object from class Map
+    * @param oldElem this is an object from class E
+    * @param newElem this is an object from class E
     * @return boolean
     */     
     

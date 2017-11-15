@@ -15,13 +15,13 @@ public class Draftsman extends Driver implements Serializable, Descriptible, Arr
 
     /**
      * This is the class constructor (there is only one), which has 7 parameters
-     * @param driverLicenseType
-     * @param personalNumber
-     * @param registration
-     * @param name
-     * @param email
-     * @param contact
-     * @param agd
+     * @param driverLicenseType this is an object from licensetypes
+     * @param personalNumber this is an personalNumber of type int
+     * @param registration this is an registration of type int
+     * @param name this is the name of Draftsman
+     * @param email this is the email of Draftsman
+     * @param contact this is the contact of Draftsman
+     * @param agd this is an Object from Agenda
      */
     public Draftsman(licenseTypes driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(driverLicenseType, personalNumber, registration, name, email, contact, agd);

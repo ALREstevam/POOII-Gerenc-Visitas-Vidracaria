@@ -19,7 +19,7 @@ import visit.Vehicle;
 import visit.Vehicle.licenseTypes;
 
 /**
- *
+ * This Jpanel represents the screen of the Driver
  * @author Pedro
  */
 public class JPanelDriver extends javax.swing.JPanel {
@@ -30,6 +30,7 @@ public class JPanelDriver extends javax.swing.JPanel {
     private List<String> descriptions;
     /**
      * Creates new form JPanelDriver
+     * @param ctrl is an object from Controller
      */
     public JPanelDriver(Controller ctrl) {
        this.ctrl = ctrl;

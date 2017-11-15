@@ -15,7 +15,7 @@ import persons.LegalPerson;
 import view.tableModel.GeneralTableModel;
 
 /**
- *
+ * This Jpanel represents the screen of the LegalPerson
  * @author Pedro
  */
 public class JPanelLegalPerson extends javax.swing.JPanel {
@@ -26,6 +26,7 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
     private List<String> descriptions;
     /**
      * Creates new form JPanelLegalPerson
+     * @param ctrl is an object from Controller
      */
 
     public JPanelLegalPerson(Controller ctrl) {
@@ -36,7 +37,13 @@ public class JPanelLegalPerson extends javax.swing.JPanel {
        this.updateTable();
         
     }
-
+    
+    /*
+    *This method is responsible for updating the table after insertions,
+    *deletions and updates have been made
+    */
+    
+    
     private void updateTable(){
         String[] columns = new String[7];
         

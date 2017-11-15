@@ -20,6 +20,7 @@ public class FileCouldNotBeCreatetException extends FileDoesNotExistException{
     }
 /**
  * Another constructor of class
+ * @param message this is a message of Exception
  */    
     public FileCouldNotBeCreatetException(String message) {
         super(message);

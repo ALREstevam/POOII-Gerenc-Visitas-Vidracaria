@@ -24,14 +24,15 @@ import view.jpanels.JPanelSecretary;
 import view.jpanels.JPanelVehicle;
 
 /**
- *
- * @author andre
+ * This is the MainFrame. He is responsible for interfacing with the JpanelsS
+ * @author Pedro
  */
 public class MainJFrame extends javax.swing.JFrame {
 
     private Controller ctrl;
     /**
      * Creates new form MainJFrame
+     * @param ctrl an Object from Class Control
      */
     public MainJFrame(Controller ctrl) {
         this.ctrl = ctrl;

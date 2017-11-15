@@ -20,8 +20,8 @@ public interface Arrayable {
     public Object[] attributesToArray(String[] order);
     /**
      * It gets the name and value and returns a reference to the object itself
-     * @param variable
-     * @param value
+     * @param variable this is an variable String
+     * @param value this is an object from Object
      * @return Object
      */
     public Object setValue(String variable, Object value);

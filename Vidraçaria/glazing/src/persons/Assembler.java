@@ -14,13 +14,13 @@ public class Assembler extends Driver implements Serializable, Cloneable, Descri
 
     /**
      * This is the constructor of the Assembler class
-     * @param driverLicenseType
-     * @param personalNumber
-     * @param registration
-     * @param name
-     * @param email
-     * @param contact
-     * @param agd
+     * @param driverLicenseType this is the driverLicenseType of Assembler
+     * @param personalNumber this is the personalNumber of Assembler
+     * @param registration this is the registration of Assembler
+     * @param name this is the name of Assembler
+     * @param email this is the email of Assembler
+     * @param contact this is the contact of Assembler
+     * @param agd this is an object from AgendaS
      */
     public Assembler(licenseTypes driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(driverLicenseType, personalNumber, registration, name, email, contact, agd);

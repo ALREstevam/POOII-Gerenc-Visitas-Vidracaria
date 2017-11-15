@@ -27,8 +27,9 @@ import control.Controller;
 import java.lang.reflect.Array;
 
 /**
- *
- * @author andre
+ * This is FrameAgenda. He is responsible for the agenda of the officials 
+ * who carry out the technical visit;
+ * @author Pedro
  */
 public class JFrameAgenda extends javax.swing.JFrame {
     //Selected values
@@ -68,6 +69,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
      * @param drv a driver
      * @param veh a vehicle
      * @param proj a project
+     * @param ctrl a object from class Control
      */
     public JFrameAgenda(Map<String, Driver> drv, Map<String,Vehicle> veh, Map<String,Project> proj, Controller ctrl) {
         this.ctrl = ctrl;

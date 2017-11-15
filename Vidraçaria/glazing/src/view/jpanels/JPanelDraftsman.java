@@ -17,8 +17,8 @@ import view.comboboxModel.GeneralComboboxModel;
 import view.tableModel.GeneralTableModel;
 
 /**
- *
- * @author Marcus
+ * This Jpanel represents the screen of the Draftsman
+ * @author Pedro
  */
 public class JPanelDraftsman extends javax.swing.JPanel {
     private Map<String, Draftsman> draftmMp;
@@ -29,7 +29,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
 
     /**
      * Creates new form JPanelDraftsman
-     * @param ctrl
+     * @param ctrl is an object from Controller
      */
 
     public JPanelDraftsman(Controller ctrl) {

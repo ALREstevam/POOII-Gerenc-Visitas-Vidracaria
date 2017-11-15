@@ -32,12 +32,12 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     /**
      * This is the constructor of the Visit class. This constructor
      * has six parameters
-     * @param start
-     * @param finish
-     * @param name
-     * @param visitor
-     * @param client
-     * @param vehicle
+     * @param start this is an object from class LocalDateTime
+     * @param finish this is an object from class LocalDateTime
+     * @param name this is an object from class String
+     * @param visitor this is an object from List
+     * @param client this is an object from Client
+     * @param vehicle this is an object from Vehicle
      */
     public Visit(LocalDateTime start, LocalDateTime finish, String name, List<Driver> visitor, Client client, Vehicle vehicle) {
         this.start = start;
@@ -50,7 +50,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      * This method set the Visit's name
-     * @param name
+     * @param name this is a name
      */
     public Visit(String name) {
         this.name = name;
@@ -58,7 +58,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
     
     /**
      *
-     * @return
+     * @return LocalDateTime
      */
     public LocalDateTime getStart() {
         return start;
@@ -66,7 +66,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @param start
+     * @param start is the first date
      */
     public void setStart(LocalDateTime start) {
         this.start = start;
@@ -74,7 +74,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @return
+     * @return LocalDateTime
      */
     public LocalDateTime getFinish() {
         return finish;
@@ -82,7 +82,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @param finish
+     * @param finish is the last date 
      */
     public void setFinish(LocalDateTime finish) {
         this.finish = finish;
@@ -90,7 +90,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @return
+     * @return int 
      */
     public int getStatus() {
         return status;
@@ -98,7 +98,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @param status
+     * @param status is the status from Visit
      */
     public void setStatus(int status) {
         this.status = status;
@@ -106,7 +106,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @return
+     * @return String
      */
     public String getDescription() {
         return description;
@@ -114,7 +114,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @param description
+     * @param description is the description of Visit realized 
      */
     public void setDescription(String description) {
         this.description = description;
@@ -122,7 +122,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @return
+     * @return Project
      */
     public Project getProject() {
         return project;
@@ -130,7 +130,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @param project
+     * @param project is the Project
      */
     public void setProject(Project project) {
         this.project = project;
@@ -138,7 +138,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @return
+     * @return List
      */
     public List<Driver> getVisitor() {
         return visitor;
@@ -146,7 +146,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @param visitor
+     * @param visitor is the person that visit the client
      */
     public void setVisitor(List<Driver> visitor) {
         this.visitor = visitor;
@@ -154,7 +154,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @return
+     * @return Client
      */
     public Client getClient() {
         return client;
@@ -162,7 +162,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @param client
+     * @param client is the client
      */
     public void setClient(Client client) {
         this.client = client;
@@ -170,7 +170,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @return
+     * @return Vehicle
      */
     public Vehicle getVehicle() {
         return vehicle;
@@ -178,7 +178,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @param vehicle
+     * @param vehicle is the vehicle of Glazing
      */
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
@@ -186,7 +186,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @return
+     * @return String
      */
     public String getName() {
         return name;
@@ -194,7 +194,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     /**
      *
-     * @param name
+     * @param name is the name of vehicle
      */
     public void setName(String name) {
         this.name = name;

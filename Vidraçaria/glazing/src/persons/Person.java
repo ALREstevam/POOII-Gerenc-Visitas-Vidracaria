@@ -18,9 +18,9 @@ public abstract class Person implements Serializable, Descriptible{
     /**
      * This is the constructor of the abstract Person class. This constructor
      * has three parameters
-     * @param name
-     * @param email
-     * @param contact
+     * @param name this is a name of Person
+     * @param email this is a email of person
+     * @param contact this is a contact of Person
      */
     public Person(String name, String email, String contact) {
         this.name = name;
@@ -31,7 +31,7 @@ public abstract class Person implements Serializable, Descriptible{
     /**
      * This is another constructor of the abstract Person class. This 
      * constructor has one parameter
-     * @param name
+     * @param name this is a name of Person
      */
     public Person(String name) {
         this.name = name;
@@ -47,7 +47,7 @@ public abstract class Person implements Serializable, Descriptible{
 
     /**
      * This method set the Employee's personalNumber
-     * @param name
+     * @param name this is a name
      */
     public void setName(String name) {
         this.name = name;
@@ -63,7 +63,7 @@ public abstract class Person implements Serializable, Descriptible{
 
     /**
      * This method set the Person's email
-     * @param email
+     * @param email this is a Person's email
      */
     public void setEmail(String email) {
         this.email = email;
@@ -79,7 +79,7 @@ public abstract class Person implements Serializable, Descriptible{
 
     /**
      * This method set the Person's contact
-     * @param contact
+     * @param contact this is a Person's contact
      */
     public void setContact(String contact) {
         this.contact = contact;

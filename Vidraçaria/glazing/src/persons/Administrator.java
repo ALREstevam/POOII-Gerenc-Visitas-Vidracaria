@@ -16,12 +16,12 @@ public class Administrator extends Employee implements Serializable, Descriptibl
 
     /**
      * This is the constructor of the administrator class
-     * @param type
-     * @param personalNumber
-     * @param registration
-     * @param name
-     * @param email
-     * @param contact
+     * @param type this is the type of Administrator
+     * @param personalNumber this is the personalNumber of Administrator
+     * @param registration this is the registration of Administrator
+     * @param name this is the name of Administrator
+     * @param email this is the email of Administrator
+     * @param contact this is the contact of Administrator
      */
     public Administrator(String type, int personalNumber, int registration, String name, String email, String contact) {
         super(personalNumber, registration, name, email, contact);
@@ -38,7 +38,7 @@ public class Administrator extends Employee implements Serializable, Descriptibl
 
     /**
      * This method set the Administrator's type
-     * @param type
+     * @param type this is the type of Administrator
      */
     public void setType(String type) {
         this.type = type;

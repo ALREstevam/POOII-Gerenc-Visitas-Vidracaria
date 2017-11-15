@@ -16,8 +16,8 @@ import view.comboboxModel.GeneralComboboxModel;
 import view.tableModel.GeneralTableModel;
 
 /**
- *
- * @author Marcus
+ * This Jpanel represents the Administrator screen
+ * @author Pedro
  */
 public class JPanelAdministrator extends javax.swing.JPanel {
     private Map<String, Administrator> admMp;
@@ -27,6 +27,7 @@ public class JPanelAdministrator extends javax.swing.JPanel {
     private List<String> descriptions;
     /**
      * Creates new form JPanelAdministrator
+     * @param ctrl  is an object from Controller
      */
     public JPanelAdministrator(Controller ctrl) {
         this.ctrl = ctrl;

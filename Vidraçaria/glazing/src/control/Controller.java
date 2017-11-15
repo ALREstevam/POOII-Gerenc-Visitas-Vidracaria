@@ -266,8 +266,8 @@ public class Controller implements Serializable{
     
     /**
      * Updates a Project using the old one's description
-     * @param elem
-     * @param oldDesc
+     * @param elem this is an object from class Project
+     * @param oldDesc this is an object from class String
      * @return a boolean
      */
     public boolean update(Project elem, String oldDesc){

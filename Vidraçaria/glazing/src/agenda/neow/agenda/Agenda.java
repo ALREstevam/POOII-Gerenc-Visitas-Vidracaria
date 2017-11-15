@@ -235,9 +235,7 @@ public class Agenda implements AgendaDefaults, Serializable{
     }
     /**
      * Method responsible for calculating all blocks that have free positions
-     *@param emptyCount
-     *@param firstNull  
-     *@return Set<Touple<Integer, Integer>>; 
+     *@return Set 
      */
     
     public Set<Touple<Integer, Integer>> calculateFreeBlocks(){

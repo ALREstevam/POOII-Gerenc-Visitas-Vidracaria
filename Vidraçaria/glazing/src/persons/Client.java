@@ -13,12 +13,12 @@ public abstract class Client extends Person implements Serializable, Descriptibl
     private String address;
         
     /**
-     * This is the constructor of the abstract Assembler class. This constructor
+     * This is the constructor of the abstract Client class. This constructor
      * has four parameters
-     * @param address
-     * @param name
-     * @param email
-     * @param contact
+     * @param address this is the address of client
+     * @param name this is the name of client
+     * @param email this is the email of client
+     * @param contact this is the contact of client
      */
     public Client(String address, String name, String email, String contact) {
         super(name, email, contact);
@@ -26,10 +26,10 @@ public abstract class Client extends Person implements Serializable, Descriptibl
     }
 
     /**
-     *This is another constructor of the abstract Assembler class. This 
+     *This is another constructor of the abstract Client class. This 
      * constructor has two parameters
-     * @param address
-     * @param name
+     * @param address this is the address of client 
+     * @param name this is the name of client
      */
     public Client(String address, String name) {
         super(name);
@@ -51,7 +51,7 @@ public abstract class Client extends Person implements Serializable, Descriptibl
 
     /**
      * This method set the Client's address
-     * @param address
+     * @param address this is the address of client
      */
     public void setAddress(String address) {
         this.address = address;

@@ -19,6 +19,7 @@ public class InvalidFileNameStringException extends IllegalArgumentException{
     }
  /**
  * Another constructor of class
+ * @param message this is a Exception message
  */   
     public InvalidFileNameStringException(String message) {
         super(message);

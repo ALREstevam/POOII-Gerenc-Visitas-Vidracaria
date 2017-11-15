@@ -28,6 +28,7 @@ public class JPanelPhysicalPerson extends javax.swing.JPanel {
     private List<String> descriptions;
     /**
      * Creates new form JPanelPhysicalPerson
+     * @param ctrl is an object from Controller
      */
 
     public JPanelPhysicalPerson(Controller ctrl) {

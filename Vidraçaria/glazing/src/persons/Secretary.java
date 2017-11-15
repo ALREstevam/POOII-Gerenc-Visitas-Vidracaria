@@ -16,11 +16,11 @@ public class Secretary extends Employee implements Serializable, Cloneable, Arra
     /**
      * This is the constructor of the Secretary class. This constructor
      * has five parameters
-     * @param personalNumber
-     * @param registration
-     * @param name
-     * @param email
-     * @param contact
+     * @param personalNumber is a personal number
+     * @param registration is a number registration
+     * @param name is a name
+     * @param email is an email
+     * @param contact is a contact
      */
     public Secretary(int personalNumber, int registration, String name, String email, String contact) {
         super(personalNumber, registration, name, email, contact);
@@ -29,8 +29,8 @@ public class Secretary extends Employee implements Serializable, Cloneable, Arra
     /**
      * This method is responsible for marking the technical visits that 
      * are made to customers
-     * @param drivers
-     * @param vehicles
+     * @param drivers this is a list with all the drivers
+     * @param vehicles this is a list with all the vehicles
      */
     public void markVisit(List<Driver> drivers, List<Vehicle> vehicles){
 

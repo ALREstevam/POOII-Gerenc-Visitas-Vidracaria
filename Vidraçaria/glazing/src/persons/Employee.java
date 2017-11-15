@@ -15,11 +15,11 @@ public abstract class Employee extends Person implements Serializable, Descripti
     /**
      * This is the constructor of the abstract Employee class. This constructor
      * has five parameters
-     * @param personalNumber
-     * @param registration
-     * @param name
-     * @param email
-     * @param contact
+     * @param personalNumber this is a personalNumber of Employee
+     * @param registration this is a registration of Employee
+     * @param name this is a name of Employee
+     * @param email this is a email of Employee
+     * @param contact this is a contact of Employee
      */
     public Employee(int personalNumber, int registration, String name, String email, String contact) {
         super(name, email, contact);
@@ -30,9 +30,9 @@ public abstract class Employee extends Person implements Serializable, Descripti
     /**
      * This is another constructor of the abstract Employee class. This 
      * constructor has three parameters
-     * @param personalNumber
-     * @param registration
-     * @param name
+     * @param personalNumber this is a personal number of type int
+     * @param registration this is a registration of type int
+     * @param name this is an object from String
      */
     public Employee(int personalNumber, int registration, String name) {
         super(name);
@@ -50,7 +50,7 @@ public abstract class Employee extends Person implements Serializable, Descripti
 
     /**
      * This method set the Employee's personalNumber
-     * @param personalNumber
+     * @param personalNumber  this is the personalNumber of Employee
      */
     public void setPersonalNumber(int personalNumber) {
         this.personalNumber = personalNumber;
@@ -66,7 +66,7 @@ public abstract class Employee extends Person implements Serializable, Descripti
 
     /**
      * This method set the Employee's registration
-     * @param registration
+     * @param registration this is the registration of Employee
      */
     public void setRegistration(int registration) {
         this.registration = registration;

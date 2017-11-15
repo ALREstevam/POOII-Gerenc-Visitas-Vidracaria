@@ -71,7 +71,7 @@ public class NoWorkPattern implements AllocatorConsts, Serializable{
     }
     /**
      * Appends a element to the pattern
-     * @param e
+     * @param e is an object
      */
     
     public void appendNwe(NoWorkElement e){

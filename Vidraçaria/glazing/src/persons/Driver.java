@@ -51,8 +51,8 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
 
         /**
          *
-         * @param name
-         * @return
+         * @param name name of licence Types
+         * @return licenseTypes
          */
         public static licenseTypes getFromName(String name) {
             for (licenseTypes type : licenseTypes.values()) {
@@ -67,13 +67,13 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
     /**
      * This is the constructor of the Driver class. This constructor
      * has seven parameters
-     * @param driverLicenseType
-     * @param personalNumber
-     * @param registration
-     * @param name
-     * @param email
-     * @param contact
-     * @param agd
+     * @param driverLicenseType this is a driverLicenseType of Driver
+     * @param personalNumber this is a personalNumber of Driver
+     * @param registration this is a registration of Driver
+     * @param name this is a name of Driver
+     * @param email this is a email of Driver
+     * @param contact this is a contact of Driver
+     * @param agd this is an object from Agenda of Driver
      */
     public Driver(licenseTypes driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(personalNumber, registration, name, email, contact);
@@ -84,7 +84,7 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
 
     /**
      *
-     * @return 
+     * @return licenseTypes 
      */
     public licenseTypes getDriverLicenseType() {
         return driverLicenseType;
@@ -131,7 +131,7 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
 
     /**
      *
-     * @return
+     * @return String
      */
     @Override
     public String toString() {

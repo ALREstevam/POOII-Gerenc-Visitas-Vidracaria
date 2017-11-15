@@ -16,13 +16,14 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
     /**
      * This is the constructor of the LegalPerson class. This constructor
      * has seven parameters
-     * @param cnpj
-     * @param companyType
-     * @param conpanyDescription
-     * @param address
-     * @param name
-     * @param email
-     * @param contact
+     * @param cnpj this is a cnpj of LegalPerson class 
+     * @param companyType this is a companyType of LegalPerson class
+     * @param conpanyDescription this is a conpanyDescription of LegalPerson
+     * class
+     * @param address this is an address of LegalPerson
+     * @param name this is a name of LegalPerson
+     * @param email this is an email of LegalPerson
+     * @param contact this is a contact of LegalPerson
      */
     public LegalPerson(int cnpj, String companyType, String conpanyDescription, String address, String name, String email, String contact) {
         super(address, name, email, contact);
@@ -41,7 +42,7 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
 
     /**
      * This method set the LegalPerson's cnpj
-     * @param cnpj
+     * @param cnpj this is a cnpj of LegalPerson
      */
     public void setCnpj(int cnpj) {
         this.cnpj = cnpj;
@@ -57,7 +58,7 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
 
     /**
      * This method set the LegalPerson's companyType
-     * @param companyType
+     * @param companyType this is a companyType of LegalPerson
      */
     public void setCompanyType(String companyType) {
         this.companyType = companyType;
@@ -73,7 +74,7 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
 
     /**
      * This method set the LegalPerson's companyDescription
-     * @param conpanyDescription
+     * @param conpanyDescription this is a companyDescription of LegalPerson
      */
     public void setConpanyDescription(String conpanyDescription) {
         this.conpanyDescription = conpanyDescription;
