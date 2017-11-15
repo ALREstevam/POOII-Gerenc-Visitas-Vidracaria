@@ -464,7 +464,7 @@ public class JPanelDraftsman extends javax.swing.JPanel {
         Draftsman drfToDelete = this.draftmMp.get(description);
 
         if(drfToDelete == null){
-            JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Projetista não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
 

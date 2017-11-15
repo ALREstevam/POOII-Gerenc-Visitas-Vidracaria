@@ -495,7 +495,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
         Secretary secToDelete = this.secretaryMp.get(description);
 
         if(secToDelete == null){
-            JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Secretária não encontrada.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
 

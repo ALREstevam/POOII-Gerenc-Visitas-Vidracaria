@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import persons.Assembler;
+import javax.swing.JOptionPane;
 import view.comboboxModel.GeneralComboboxModel;
 import view.tableModel.GeneralTableModel;
 
@@ -379,10 +380,10 @@ public class JPanelAssembler extends javax.swing.JPanel {
                 this.ctrl.update(newAssembler, description);
             }
         }
-       // this.assMp = ctrl.
+        this.assMp = ctrl.getAssembler();
         this.assLst = new ArrayList<>(assMp.values());
-//        this.updateDescriptions();
-  //      JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        this.updateDescriptions();
+        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -434,7 +435,7 @@ public class JPanelAssembler extends javax.swing.JPanel {
             ctrl.append(ass);
             this.updateTable();
         }catch(Exception e){
-          //  JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+           JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -462,14 +463,14 @@ public class JPanelAssembler extends javax.swing.JPanel {
         String description = this.jList1.getSelectedValue();
 
         if(description == null){
-         //   JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
+           JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         Assembler assToDelete = this.assMp.get(description);
 
         if(assToDelete == null){
-            //JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+           JOptionPane.showMessageDialog(this,"Montador não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
 

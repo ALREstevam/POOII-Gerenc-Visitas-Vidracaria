@@ -346,14 +346,14 @@ public class JPanelDriver extends javax.swing.JPanel {
         String description = this.jList1.getSelectedValue();
 
         if(description == null){
-           // JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
+           JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         Driver drvToDelete = this.drvMp.get(description);
 
         if(drvToDelete == null){
-            //JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Motorista não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
