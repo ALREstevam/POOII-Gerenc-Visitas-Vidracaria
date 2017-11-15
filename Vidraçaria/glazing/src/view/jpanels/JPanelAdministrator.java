@@ -5,6 +5,7 @@
  */
 package view.jpanels;
 
+import agenda.neow.nowork.NoWorkPattern;
 import control.Controller;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,28 +62,40 @@ public class JPanelAdministrator extends javax.swing.JPanel {
         
         this.jList1.setModel(new GeneralComboboxModel<Administrator>().getComboBoxModelUsingDescription(lstSelected));
     }
+ 
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:        
-        this.jList1.setSelectedIndex(0);
-        String description = (String) this.jList1.getSelectedValue();
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
         
-        if(description == null){
-            JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
+        try{
+            String name = this.jTextField1.getText();
+            String number = this.jFormattedTextField1.getText();
+            String type = this.jComboBox1.getSelectedItem().toString();
+            String registration = this.jFormattedTextField2.getText();
+            String email = this.jTextField2.getText();
+            String contact = this.jFormattedTextField3.getText();
+                        
+            if(name == null || number == null || registration == null || email == null || type == null ||
+              contact.equals("") || type.equals("")){
+                throw new Exception();
+            }
+            int nb = 0, reg = 0;
+            try {
+            nb = Integer.parseInt(number); 
+            reg = Integer.parseInt(registration);
+        
+            } catch (NumberFormatException e) {
+                System.out.println("Numero com formato errado!");
+            }
+            NoWorkPattern nwp = new NoWorkPattern();
+            Administrator admin = new Administrator(type, nb, reg, name, email, contact);
+            ctrl.append(admin);
+            this.updateTable();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-        
-        Administrator admToDelete = this.admMp.get(description);
-        
-        if(admToDelete == null){
-            JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
-        this.ctrl.remove(admToDelete);
-        this.updateTable();
-    }
+    } 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -182,6 +195,11 @@ public class JPanelAdministrator extends javax.swing.JPanel {
         jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
 
         jButton1.setText("Cadastrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -308,6 +326,28 @@ public class JPanelAdministrator extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.jList1.setSelectedIndex(0);
+        String description = (String) this.jList1.getSelectedValue();
+        
+        if(description == null){
+            JOptionPane.showMessageDialog(this,"O campo está vazio, impossível deletar.","Campo vazio", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        
+        Administrator admToDelete = this.admMp.get(description);
+        
+        if(admToDelete == null){
+            JOptionPane.showMessageDialog(this,"Administrador não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        this.ctrl.remove(admToDelete);
+        this.updateTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -331,4 +371,5 @@ public class JPanelAdministrator extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
 }
