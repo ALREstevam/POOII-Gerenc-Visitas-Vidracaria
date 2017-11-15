@@ -83,7 +83,7 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
     }
 
     /**
-     *
+     * Gets the license Type pf a driver
      * @return licenseTypes 
      */
     public licenseTypes getDriverLicenseType() {
