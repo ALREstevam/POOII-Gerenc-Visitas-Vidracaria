@@ -221,7 +221,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        JFrameAgenda agd = new JFrameAgenda(this.ctrl.getDrivers(), this.ctrl.getVehicles(), this.ctrl.getProjects(), ctrl);
+        JFrameAgenda agd = new JFrameAgenda(this.ctrl.getDriver(), this.ctrl.getVehicles(), this.ctrl.getProjects(), ctrl);
         agd.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
