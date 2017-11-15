@@ -8,13 +8,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import my.exceptions.FileCouldNotBeCreatetException;
 import visit.Vehicle;
-import persons.Client;
+import persons.PhysicalPerson;
 import persons.Driver;
 import persons.LegalPerson;
 import persons.PhysicalPerson;
 import view.jframes.MainJFrame;
 import visit.Project;
 import agenda.neow.agenda.Agenda;
+
 /**
  * This class contains the principal Main of the java application
  * @author andre
@@ -27,15 +28,15 @@ public class Glazing {
         
         Controller ctrl = new Controller(Controller.loadIt());
         
-        
-        Client[] clis = new Client[3];
+        PhysicalPerson[] pp = new PhysicalPerson[2];
+        LegalPerson[] lp = new LegalPerson[1];
         Driver[] drvs = new Driver[3];
         Project[] prjs = new Project[3];
         Vehicle[] vehs = new Vehicle[3];
         
-        clis[0] = new PhysicalPerson(1, "Rua 3", "Adamastor", "ada@mastor", "123-456");
-        clis[1] = new PhysicalPerson(2, "Rua 2", "Maria Antonieta", "ada@mastor", "123-456");
-        clis[2] = new LegalPerson(3, "Unk", "Unk", "Rua 3", "Mastor Ado", "ada@mastor", "123-456");
+        pp[0] = new PhysicalPerson(1, "Rua 3", "Adamastor", "ada@mastor", "123-456");
+        pp[1] = new PhysicalPerson(2, "Rua 2", "Maria Antonieta", "ada@mastor", "123-456");
+        lp[0] = new LegalPerson(3, "Unk", "Unk", "Rua 3", "Mastor Ado", "ada@mastor", "123-456");
         
         
         //TODO: atualizar (criar agendas dos funcionários)
@@ -59,13 +60,18 @@ public class Glazing {
         vehs[1] = new Vehicle(Vehicle.licenseTypes.A, Vehicle.vehicleTypes.MOTORCYCLE, "ABC-1238", "infos", agd);
         vehs[2] = new Vehicle(Vehicle.licenseTypes.D, Vehicle.vehicleTypes.TRUCK, "ABC-3123", "infos", agd);
         
-        prjs[0] = new Project("Prj1", "D-prj1", "", clis[0]);
-        prjs[1] = new Project("Prj2", "D-prj2", "", clis[2]);
-        prjs[2] = new Project("Prj3", "D-prj3", "", clis[0]);
+        prjs[0] = new Project("Prj1", "D-prj1", "", pp[0]);
+        prjs[1] = new Project("Prj2", "D-prj2", "", pp[1]);
+        prjs[2] = new Project("Prj3", "D-prj3", "", lp[0]);
 
-        for(Client cli : clis){
+        for(PhysicalPerson cli : pp){
             ctrl.append(cli);
         }
+        
+        for(LegalPerson cli : lp){
+            ctrl.append(cli);
+        }
+        
         
         for(Driver drv : drvs){
             ctrl.append(drv);

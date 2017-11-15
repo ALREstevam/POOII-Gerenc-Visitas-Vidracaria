@@ -31,28 +31,34 @@ import persons.Secretary;
 public class Controller implements Serializable{
 
     //Maps
-    private Map<String, Client> clients;
-    private Map<String, Employee> employees;
-    private Map<String, Project> projects;
-    private Map<String, Vehicle> vehicles;
-    private Map<String, Visit> visits;
+    private Map<String, PhysicalPerson>                 phisicalPersons;
+    private Map<String, LegalPerson>                    legalPerson;
+    private Map<String, Administrator>                  administrators;
+    private Map<String, Assembler>                      assemblers;
+    private Map<String, Draftsman> 						draftsman;
+    private Map<String, Driver> 						drivers;
+    private Map<String, Secretary> 						secretaries;
+    private Map<String, Project> 						projects;
+    private Map<String, Vehicle> 						vehicles;
+    private Map<String, Visit> 							visits;
     
-    //Control Helpers
-    private transient final ControlHelper<Client> helpCli = new ControlHelper<>();
-    private transient final ControlHelper<Employee> helpEmp = new ControlHelper<>();
-    private transient final ControlHelper<Project> helpProj= new ControlHelper<>();
-    private transient final ControlHelper<Vehicle> helpVeh = new  ControlHelper<>();
-    private transient final ControlHelper<Visit> helpVis = new ControlHelper<>();
+    
+    
     
     /**
      * Instantiates a new controller
      */
     public Controller() {
-        this.clients = new TreeMap<>();
-        this.employees = new TreeMap<>();
-        this.projects = new TreeMap<>();
-        this.vehicles = new TreeMap<>();
-        this.visits = new TreeMap<>();
+        this.phisicalPersons	= new TreeMap<>();
+		this.legalPerson 		= new TreeMap<>();
+		this.administrators 	= new TreeMap<>();
+		this.assemblers 		= new TreeMap<>();
+		this.draftsman 			= new TreeMap<>();
+		this.drivers 			= new TreeMap<>();
+		this.secretaries 		= new TreeMap<>();
+		this.projects 			= new TreeMap<>();
+		this.vehicles 			= new TreeMap<>();
+		this.visits 			= new TreeMap<>();
     }
     
     /**
@@ -61,32 +67,48 @@ public class Controller implements Serializable{
      */
     public Controller(Controller copy) {
         this();
-        this.clients = copy.clients;
-        this.employees = copy.employees;
-        this.projects = copy.projects;
-        this.vehicles = copy.vehicles;
-        this.visits = copy.visits;
+        this.phisicalPersons = copy.phisicalPersons;
+		this.legalPerson 	 = copy.legalPerson;
+		this.administrators  = copy.administrators;
+		this.assemblers 	 = copy.assemblers;
+		this.draftsman 		 = copy.draftsman;
+		this.drivers 		 = copy.drivers;
+		this.secretaries 	 = copy.secretaries;
+		this.projects 		 = copy.projects;
+		this.vehicles 		 = copy.vehicles;
+		this.visits 		 = copy.visits;
     }
     
-    /**
-     * 
-     * Adds the submitted object to the clients list 
-     * @param client instance of Client class
-     * @see Client
-     */
-    public void append(Client client){
-        this.helpCli.insert(clients, client);
+
+    public void append(PhysicalPerson client){
+        this.phisicalPersons.put(client.describe(),client);
     }
     
-    /**
-     * 
-     * Adds the submitted object to the employees list 
-     * @param employee instance of Employee class
-     * @see Employee
-     */
-    public void append(Employee employee){
-        this.employees.put(employee.describe(),employee);
+    public void append(LegalPerson client){
+        this.legalPerson.put(client.describe(),client);
     }
+
+    public void append(Administrator employee){
+        this.administrators.put(employee.describe(),employee);
+    }
+
+    public void append(Assembler employee){
+        this.assemblers.put(employee.describe(),employee);
+    }
+
+
+    public void append(Draftsman employee){
+        this.draftsman.put(employee.describe(),employee);
+    }
+
+    public void append(Driver employee){
+        this.drivers.put(employee.describe(),employee);
+    }
+
+    public void append(Secretary employee){
+        this.secretaries.put(employee.describe(),employee);
+    }
+
     
     /**
      * 
@@ -118,25 +140,7 @@ public class Controller implements Serializable{
         this.visits.put(visit.describe(),visit);
     }
     
-    /**
-     * Removes the given object of clients list if it exists on it
-     * @return <tt>true</tt> if the given object was found in clients list and successfully removed
-     * @param client instance of class Client
-     * @see Client
-     */
-   public boolean remove(Client client){
-        return this.clients.remove(client.describe(),client);
-    }
-    
-   /**
-     * Removes the given object of employees list if it exists on it
-     * @return <tt>true</tt> if the given object was found in employees list and successfully removed
-     * @param employee instance of class Employee
-     * @see Employee
-     */
-    public boolean remove(Employee employee){
-         return this.employees.remove(employee.describe(), employee);
-    }
+
     
     /**
      * Removes the given object of projects list if it exists on it
@@ -168,26 +172,71 @@ public class Controller implements Serializable{
         return this.visits.remove(visit.describe(), visit);
     }  
 
-    /**
-     * Returns a unmodifiableMap of clients
-     * @return a client map
-     * @see Client
-     */
-    public Map<String, Client> getClients() {
-        Map<String, Client> rsp = Collections.unmodifiableMap(this.clients);
+    public void remove(PhysicalPerson client){
+        this.phisicalPersons.remove(client.describe());
+    }
+    
+    public void remove(LegalPerson client){
+        this.legalPerson.remove(client.describe());
+    }
+
+    public void remove(Administrator employee){
+        this.administrators.remove(employee.describe());
+    }
+
+    public void remove(Assembler employee){
+        this.assemblers.remove(employee.describe());
+    }
+
+
+    public void remove(Draftsman employee){
+        this.draftsman.remove(employee.describe());
+    }
+
+    public void remove(Driver employee){
+        this.drivers.remove(employee.describe());
+    }
+
+    public void remove(Secretary employee){
+        this.secretaries.remove(employee.describe());
+    }
+    
+    public Map<String, PhysicalPerson> getPhysicalPerson(){
+        Map<String, PhysicalPerson> rsp = Collections.unmodifiableMap(this.phisicalPersons);
+        return rsp;
+    }
+    
+    public Map<String, LegalPerson> getLegalPerson(){
+        Map<String, LegalPerson> rsp = Collections.unmodifiableMap(this.legalPerson);
         return rsp;
     }
 
-    /**
-     * Returns a unmodifiableMap of
-     * @return  a map of employees
-     */
-    public Map<String,Employee> getEmployees() {
-        Map<String,Employee> rsp = Collections.unmodifiableMap(this.employees);
+    public Map<String, Administrator> getAdministrator(){
+        Map<String, Administrator> rsp = Collections.unmodifiableMap(this.administrators);
         return rsp;
     }
 
-    /**
+    public Map<String, Assembler> getAssembler(){
+        Map<String, Assembler> rsp = Collections.unmodifiableMap(this.assemblers);
+        return rsp;
+    }
+
+    public Map<String, Draftsman> getDraftsman(){
+        Map<String, Draftsman> rsp = Collections.unmodifiableMap(this.draftsman);
+        return rsp;
+    }
+
+    public Map<String, Driver> getDriver(){
+        Map<String, Driver> rsp = Collections.unmodifiableMap(this.drivers);
+        return rsp;
+    }
+
+    public Map<String, Secretary> getSecretary(){
+        Map<String, Secretary> rsp = Collections.unmodifiableMap(this.secretaries);
+        return rsp;
+    }
+
+    /*
      * Returns a unmodifiableMap of projects
      * @return a project map
      */
@@ -213,55 +262,16 @@ public class Controller implements Serializable{
         Map<String,Visit> rsp = Collections.unmodifiableMap(this.visits);
         return rsp;
     }
-    
-    /**
-     * Returns a unmodifiableMap of drivers
-     * @return a drivers map
-     */
-    public Map<String,Driver> getDrivers(){
-        Map<String,Driver> drivers = new TreeMap<>();
-       
-       
-        Iterator it = this.employees.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
-            drivers.put((String)pair.getKey(), (Driver)pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
-        }
-       
-        Map<String, Driver> rsp = Collections.unmodifiableMap(drivers);
-        return rsp;
-    }
-    
-    
-    /**
-     * Updates a Client using the old one's description
-     * @param newCli a client
-     * @param oldCliDescription a description
-     * @return a boolean
-     */
-    public boolean update(Client newCli, String oldCliDescription){
-        return helpCli.update(this.clients, oldCliDescription, newCli);
-    }
-    
-    /**
-     * Updates a employee using the old one's description
-     * @param newEmp a employee 
-     * @param oldEmpDescription a description
-     * @return a boolean
-     */
-    public boolean update(Employee newEmp, String oldEmpDescription){
-        return helpEmp.update(this.employees, oldEmpDescription, newEmp);
-    }
+   
     
     /**
      * Updates a Project using the old one's description
-     * @param newProj a project
-     * @param oldProjDescription a description
+     * @param elem
+     * @param oldDesc
      * @return a boolean
      */
-    public boolean update(Project newProj, String oldProjDescription){
-        return helpProj.update(this.projects, oldProjDescription, newProj);
+    public boolean update(Project elem, String oldDesc){
+        return new ControlHelper<>().update(this.projects, oldDesc, elem);
     }
     
     /**
@@ -271,7 +281,7 @@ public class Controller implements Serializable{
      * @return a boolean
      */
     public boolean update(Vehicle newVeh, String oldVehDescription){
-        return helpVeh.update(this.vehicles, oldVehDescription, newVeh);
+        return new ControlHelper<Vehicle>().update(this.vehicles, oldVehDescription, newVeh);
     }
     
     /**
@@ -281,7 +291,35 @@ public class Controller implements Serializable{
      * @return a boolean
      */
     public boolean update(Visit newVis, String oldVisDescription){
-        return helpVis.update(this.visits, oldVisDescription, newVis);
+        return new ControlHelper<Visit>().update(this.visits, oldVisDescription, newVis);
+    }
+    
+    public boolean update(PhysicalPerson elem, String oldDesc){
+        return new ControlHelper<PhysicalPerson>().update(this.phisicalPersons, oldDesc, elem);
+    }
+    
+    public boolean update(LegalPerson elem, String oldDesc){
+        return new ControlHelper<LegalPerson>().update(this.legalPerson, oldDesc, elem);
+    }
+    
+    public boolean update(Administrator elem, String oldDesc){
+        return new ControlHelper<Administrator>().update(this.administrators, oldDesc, elem);
+    }
+    
+    public boolean update(Assembler elem, String oldDesc){
+        return new ControlHelper<Assembler>().update(this.assemblers, oldDesc, elem);
+    }
+    
+    public boolean update(Draftsman elem, String oldDesc){
+        return new ControlHelper<Draftsman>().update(this.draftsman, oldDesc, elem);
+    }
+    
+    public boolean update(Driver elem, String oldDesc){
+        return new ControlHelper<Driver>().update(this.drivers, oldDesc, elem);
+    }
+    
+    public boolean update(Secretary elem, String oldDesc){
+        return new ControlHelper<Secretary>().update(this.secretaries, oldDesc, elem);
     }
     
     /*===================================================================*/
@@ -314,131 +352,5 @@ public class Controller implements Serializable{
             }
             return ctrl;
         }
-    }
-
-    public Map<String, Secretary> getSecretary() {
-        Map<String,Secretary> secs = new TreeMap<>();
-       
-       
-        Iterator it = this.employees.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
-        if(!(pair.getKey()instanceof Secretary)){
-            continue;
-        }
-            secs.put((String)pair.getKey(), (Secretary)pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
-        }
-       
-        Map<String, Secretary> rsp = Collections.unmodifiableMap(secs);
-        return rsp;
-    }
-
-    public Map<String, Draftsman> getDraftsman() {
-         Map<String,Draftsman> drafts = new TreeMap<>();
-       
-       
-        Iterator it = this.employees.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
-            if(!(pair.getKey()instanceof Draftsman)){
-            continue;
-        }
-            drafts.put((String)pair.getKey(), (Draftsman)pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
-        }
-       
-        Map<String, Draftsman> rsp = Collections.unmodifiableMap(drafts);
-        return rsp;
-    }
-    
-    public Map<String, LegalPerson> getLegalPerson() {
-        Map<String,LegalPerson> lperson = new TreeMap<>();
-       
-       
-        Iterator it = this.clients.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
-            if(!(pair.getKey()instanceof LegalPerson)){
-            continue;
-        }
-            lperson.put((String)pair.getKey(), (LegalPerson)pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
-        }
-       
-        Map<String, LegalPerson> rsp = Collections.unmodifiableMap(lperson);
-        return rsp;
-    }
-    
-    public Map<String, PhysicalPerson> getPhysicalPerson() {
-        Map<String,PhysicalPerson> pperson = new TreeMap<>();
-       
-       
-        Iterator it = this.clients.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
-            if(!(pair.getKey()instanceof PhysicalPerson)){
-            continue;
-        }
-            pperson.put((String)pair.getKey(), (PhysicalPerson)pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
-        }
-       
-        Map<String, PhysicalPerson> rsp = Collections.unmodifiableMap(pperson);
-        return rsp;
-    }
-
-    public Map<String, Administrator> getAdministrator() {
-        Map<String,Administrator> adm = new TreeMap<>();
-       
-       
-        Iterator it = this.employees.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
-            if(!(pair.getKey()instanceof Administrator)){
-            continue;
-        }
-            adm.put((String)pair.getKey(), (Administrator)pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
-        }
-       
-        Map<String, Administrator> rsp = Collections.unmodifiableMap(adm);
-        return rsp;
-    }
-
-    public Map<String, Assembler> getAssembler() {
-        Map<String,Assembler> ass = new TreeMap<>();
-       
-       
-        Iterator it = this.employees.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
-            if(!(pair.getKey()instanceof Assembler)){
-            continue;
-        }
-            ass.put((String)pair.getKey(), (Assembler)pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
-        }
-       
-        Map<String, Assembler> rsp = Collections.unmodifiableMap(ass);
-        return rsp;
-    }
-
-    public Map<String, Driver> getDriver() {
-        Map<String,Driver> drv = new TreeMap<>();
-       
-       
-        Iterator it = this.employees.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
-            if(!(pair.getKey()instanceof Driver)){
-            continue;
-        }
-            drv.put((String)pair.getKey(), (Driver)pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
-        }
-       
-        Map<String, Driver> rsp = Collections.unmodifiableMap(drv);
-        return rsp;
     }
 }
