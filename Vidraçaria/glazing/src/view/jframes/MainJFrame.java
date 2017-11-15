@@ -168,6 +168,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenu6.setText("Projeto");
 
         jMenuItem9.setText("Criar e editar");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem9);
 
         jMenuBar1.add(jMenu6);
@@ -266,7 +271,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         JDialog windowSecretary = new JDialog();
-        windowSecretary.add(new JPanelSecretary());
+        windowSecretary.add(new JPanelSecretary(ctrl));
         windowSecretary.pack();
         windowSecretary.setModal(true);
         windowSecretary.setVisible(true);
@@ -298,6 +303,10 @@ public class MainJFrame extends javax.swing.JFrame {
         windowLPerson.setModal(true);
         windowLPerson.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
