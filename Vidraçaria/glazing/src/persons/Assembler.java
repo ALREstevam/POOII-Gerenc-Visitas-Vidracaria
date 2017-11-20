@@ -1,7 +1,6 @@
 package persons;
 
 import java.io.Serializable;
-import visit.Visit;
 import agenda.neow.agenda.Agenda;
 import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
@@ -20,10 +19,14 @@ public class Assembler extends Driver implements Serializable, Cloneable, Descri
      * @param name this is the name of Assembler
      * @param email this is the email of Assembler
      * @param contact this is the contact of Assembler
-     * @param agd this is an object from AgendaS
+     * @param agd this is an object from Agenda
      */
     public Assembler(licenseTypes driverLicenseType, int personalNumber, int registration, String name, String email, String contact, Agenda agd) {
         super(driverLicenseType, personalNumber, registration, name, email, contact, agd);
+    }
+    @Override
+    public String describe() {
+        return "ASS" + sep + this.getName() + sep + this.getEmail()+ sep + this.getContact()+ sep + this.getPersonalNumber()+ sep + this.getRegistration() + sep + this.getDriverLicenseType();
     }
     @Override
     public Object[] attributesToArray(String[] order) {
@@ -37,17 +40,17 @@ public class Assembler extends Driver implements Serializable, Cloneable, Descri
                 case "email":
                     rsp[rspCount] = this.getEmail();
                     break;
-                case "carteira":
-                    rsp[rspCount] = this.getDriverLicenseType();
-                    break;
                 case "contato":
                     rsp[rspCount] = this.getContact();
+                    break;
+                case "personal number":
+                    rsp[rspCount] = this.getPersonalNumber();
                     break;
                 case "registro":
                     rsp[rspCount] = this.getRegistration();
                     break;
-                case "telefone":
-                    rsp[rspCount] = this.getPersonalNumber();
+                case "licenca":
+                    rsp[rspCount] = this.getDriverLicenseType();
                     break;
                 default:
                     rsp[rspCount] = "";
@@ -66,17 +69,17 @@ public class Assembler extends Driver implements Serializable, Cloneable, Descri
             case "email":
                 this.setEmail((String) value);
                 break;
-            case "carteira":
-                this.setDriverLicenseType(licenseTypes.getFromName((String) value));
-                break;
             case "contato":
                 this.setContact((String) value);
+                break;
+            case "personal number":
+                this.setPersonalNumber((int) value);
                 break;
             case "registro":
                 this.setRegistration((int) value);
                 break;
-            case "telefone":
-                this.setPersonalNumber((int) value);
+            case "licenca":
+                this.setDriverLicenseType(licenseTypes.getFromName((String) value));
                 break;
                 
             default:

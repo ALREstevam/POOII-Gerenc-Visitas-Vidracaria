@@ -4,7 +4,6 @@ import agenda.neow.agenda.Agenda;
 import java.io.Serializable;
 import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
-import visit.Visit;
 
 /**
  * The Draftsman class is derived from the Driver class.
@@ -27,28 +26,33 @@ public class Draftsman extends Driver implements Serializable, Descriptible, Arr
         super(driverLicenseType, personalNumber, registration, name, email, contact, agd);
     }
     @Override
+    public String describe() {
+        return "DRAFT" + sep + this.getName() + sep + this.getEmail() + sep + this.getContact() + sep + this.getPersonalNumber() + sep + this.getRegistration() + sep + this.getDriverLicenseType();
+    }
+    @Override
     public Object[] attributesToArray(String[] order) {
         Object[] rsp = new Object[6];
         int rspCount = 0;
         for (String s : order) {
             switch (s) {
+
                 case "nome":
                     rsp[rspCount] = this.getName();
                     break;
                 case "email":
                     rsp[rspCount] = this.getEmail();
                     break;
-                case "carteira":
-                    rsp[rspCount] = this.getDriverLicenseType();
-                    break;
                 case "contato":
                     rsp[rspCount] = this.getContact();
+                    break;
+                case "personal number":
+                    rsp[rspCount] = this.getPersonalNumber();
                     break;
                 case "registro":
                     rsp[rspCount] = this.getRegistration();
                     break;
-                case "telefone":
-                    rsp[rspCount] = this.getPersonalNumber();
+                case "carteira":
+                    rsp[rspCount] = this.getDriverLicenseType();
                     break;
                 default:
                     rsp[rspCount] = "";
@@ -60,6 +64,7 @@ public class Draftsman extends Driver implements Serializable, Descriptible, Arr
     }
      @Override
         public Object setValue(String variable, Object value) {
+
         switch (variable) {
             case "nome":
                 this.setName((String) value);
@@ -67,17 +72,18 @@ public class Draftsman extends Driver implements Serializable, Descriptible, Arr
             case "email":
                 this.setEmail((String) value);
                 break;
-            case "carteira":
-                this.setDriverLicenseType(licenseTypes.getFromName((String) value));
-                break;
             case "contato":
                 this.setContact((String) value);
+                break;
+            case "personal number":
+                this.setPersonalNumber((int) value);
                 break;
             case "registro":
                 this.setRegistration((int) value);
                 break;
-            case "telefone":
-                this.setPersonalNumber((int) value);
+            case "carteira":
+                this.setDriverLicenseType(licenseTypes.getFromName((String) value));
+                
                 break;
                 
             default:

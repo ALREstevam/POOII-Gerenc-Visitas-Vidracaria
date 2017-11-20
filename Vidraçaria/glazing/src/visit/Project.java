@@ -101,27 +101,24 @@ public class Project implements Serializable, Descriptible, Arrayable{
 
     @Override
     public String describe() {
-        return this.title + sep + this.client.getName() + sep + this.description;
+        return this.title + sep + this.getDescription()+ sep + this.getFile();
     }
 
     @Override
     public Object[] attributesToArray(String[] order) {
-        Object[] rsp = new Object[4];
+        Object[] rsp = new Object[3];
 
         int rspCount = 0;
         for (String s : order) {
             switch (s) {
-                case "título:":
+                case "titulo":
                     rsp[rspCount] = this.getTitle();
                     break;
-                case "descrição:":
+                case "descricao":
                     rsp[rspCount] = this.getDescription();
                     break;
-                case "arquivo:":
+                case "arquivo":
                     rsp[rspCount] = this.getFile();
-                    break;
-                case "cliente:":
-                    rsp[rspCount] = this.client.getName();
                     break;
                 default:
                     rsp[rspCount] = "";
@@ -143,8 +140,6 @@ public class Project implements Serializable, Descriptible, Arrayable{
                 break;
             case "arquivo":
                 this.setFile((String) value);
-                break;
-            case "cliente":
                 break;
             default:
                 break;

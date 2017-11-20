@@ -12,6 +12,10 @@ import agenda.neow.agenda.Agenda;
  */
 public class Vehicle implements Serializable, view.comboboxModel.Descriptible, view.tableModel.Arrayable {
 
+    public Vehicle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This is the enum that contains the possible license types that 
      * a driver can have

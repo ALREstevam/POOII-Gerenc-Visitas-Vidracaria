@@ -4,7 +4,6 @@ import java.io.Serializable;
 import agenda.neow.agenda.Agenda;
 import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
-import visit.Vehicle;
 
 /**
  * This is the Driver class, derived from the Employee class
@@ -93,7 +92,7 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
     
     @Override
     public String describe() {
-        return "DRV" + sep + this.getName() + sep + this.getEmail();
+        return "DRV" + sep + this.getName() + sep + this.getEmail() + sep + this.getContact()+ sep + this.getPersonalNumber()+ sep + this.getRegistration()+ sep + this.getDriverLicenseType();
     }
 
     @Override
@@ -108,17 +107,17 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
                 case "email":
                     rsp[rspCount] = this.getEmail();
                     break;
-                case "carteira":
-                    rsp[rspCount] = this.getDriverLicenseType().toString();
-                    break;
                 case "contato":
                     rsp[rspCount] = this.getContact();
+                    break;
+                case "personal number":
+                    rsp[rspCount] = this.getPersonalNumber();
                     break;
                 case "registro":
                     rsp[rspCount] = this.getRegistration();
                     break;
-                case "telefone":
-                    rsp[rspCount] = this.getPersonalNumber();
+                case "licenca":
+                    rsp[rspCount] = this.getDriverLicenseType().toString();
                     break;
                 default:
                     rsp[rspCount] = "";
@@ -158,17 +157,17 @@ public class Driver extends Employee implements Serializable, Descriptible, Arra
             case "email":
                 this.setEmail((String) value);
                 break;
-            case "carteira":
-                this.setDriverLicenseType(licenseTypes.getFromName((String) value));
-                break;
             case "contato":
-                this.setContact((String) value);
+                this.setContact((String) value);   
+                break;
+            case "personal number":
+                this.setPersonalNumber((int) value);
                 break;
             case "registro":
                 this.setRegistration((int) value);
                 break;
-            case "telefone":
-                this.setPersonalNumber((int) value);
+            case "licenca":
+                this.setDriverLicenseType(licenseTypes.getFromName((String) value));
                 break;
                 
             default:

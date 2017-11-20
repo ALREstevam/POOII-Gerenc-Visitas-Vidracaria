@@ -15,8 +15,6 @@ import javax.swing.JOptionPane;
 import persons.Driver;
 import view.comboboxModel.GeneralComboboxModel;
 import view.tableModel.GeneralTableModel;
-import visit.Vehicle;
-import visit.Vehicle.licenseTypes;
 
 /**
  * This Jpanel represents the screen of the Driver
@@ -52,10 +50,9 @@ public class JPanelDriver extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -78,14 +75,8 @@ public class JPanelDriver extends javax.swing.JPanel {
         jList1 = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jLabel2.setText("Consultar e alterar");
 
-            },
-            new String [] {
-
-            }
-        ));
         jTable1.setColumnSelectionAllowed(true);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -100,15 +91,6 @@ public class JPanelDriver extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel2.setText("Consultar e alterar");
-
-        jButton3.setText("Confirmar alteração");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -116,16 +98,11 @@ public class JPanelDriver extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -133,11 +110,9 @@ public class JPanelDriver extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addGap(191, 191, 191))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(225, 225, 225))
         );
 
         jLabel1.setText("Motoristas");
@@ -330,18 +305,6 @@ public class JPanelDriver extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        /*
-        System.out.println("-------------");
-        System.out.println("VALUES");
-        for(Vehicle v : this.vehiclesMp.values()){
-            System.out.println(v.describe());
-        }
-        System.out.println("KEYS");
-        for ( String key : vehiclesMp.keySet() ) {
-            System.out.println( key );
-        }
-        System.out.println("-------------");
-        */
 
         this.jList1.setSelectedIndex(0);
         String description = this.jList1.getSelectedValue();
@@ -361,41 +324,6 @@ public class JPanelDriver extends javax.swing.JPanel {
         this.ctrl.remove(drvToDelete);
         this.updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for(int i = 0; i < this.drvTb.getRowCount(); i++){
-            Driver newDrv = this.drvTb.getObjectAt(i);
-
-            String description = this.descriptions.get(i);
-            if(!newDrv.describe().equals(description)){
-                this.ctrl.update(newDrv, description);
-            }
-        }
-        this.drvMp = ctrl.getDriver();
-        this.drvLst = new ArrayList<>(drvMp.values());
-        this.updateDescriptions();
-        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
-
-    }//GEN-LAST:event_jTable1KeyPressed
-
-    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
-        // TODO add your handling code here:
-
-        int selected = this.jTable1.getSelectedRow();
-        Driver d = this.drvLst.get(selected);
-
-        if(d == null){
-            return;
-        }
-
-        List<Driver> lstSelected = new ArrayList<>();
-        lstSelected.add(d);
-
-        this.jList1.setModel(new GeneralComboboxModel<Driver>().getComboBoxModelUsingDescription(lstSelected));
-    }//GEN-LAST:event_jTable1MousePressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -417,23 +345,7 @@ public class JPanelDriver extends javax.swing.JPanel {
             } catch (NumberFormatException e) {
                 System.out.println("Numero com formato errado!");
             }
-            
-            
-          /*  switch (licenseType) {
-            case "A":
-                license=1;
-                break;
-            case "B":
-                license=2;
-                break;
-            case "C":
-                license=3;
-                break;
-            case "D":
-                license=4;
-                break;
-        }
-            */
+
             if(name == null || email == null || contact == null || pnumber == null || licenseType == null ||
                 registration.equals("")){
                 throw new Exception();
@@ -459,10 +371,29 @@ public class JPanelDriver extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField3ActionPerformed
 
+    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
+        // TODO add your handling code here:
+
+        int selected = this.jTable1.getSelectedRow();
+        Driver s = this.drvLst.get(selected);
+
+        if(s == null){
+            return;
+        }
+
+        List<Driver> lstSelected = new ArrayList<>();
+        lstSelected.add(s);
+
+        this.jList1.setModel(new GeneralComboboxModel<Driver>().getComboBoxModelUsingDescription(lstSelected));
+    }//GEN-LAST:event_jTable1MousePressed
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+
+    }//GEN-LAST:event_jTable1KeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JFormattedTextField jFormattedTextField4;
@@ -495,10 +426,10 @@ public class JPanelDriver extends javax.swing.JPanel {
         
         columns[0] = "nome";
         columns[1] = "email";
-        columns[2] = "carteira";
-        columns[3] = "contato";
+        columns[2] = "contato";
+        columns[3] = "personal number";
         columns[4] = "registro";
-        columns[5] = "telefone";
+        columns[5] = "licenca";
         this.drvLst = new ArrayList<>(this.drvMp.values());
         this.drvTb =  new GeneralTableModel<Driver>(columns, drvLst, ctrl);
         this.jTable1.setModel(drvTb);

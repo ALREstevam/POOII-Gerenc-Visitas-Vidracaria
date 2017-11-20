@@ -1,7 +1,6 @@
 package persons;
 
 import java.io.Serializable;
-import java.util.List;
 import view.comboboxModel.Descriptible;
 import view.tableModel.Arrayable;
 
@@ -47,8 +46,7 @@ public class Administrator extends Employee implements Serializable, Descriptibl
     
     @Override
     public String describe() { 
-        this.describe();
-        return "ADM" + sep + this.getName() + sep + this.getEmail();
+        return "ADM" + sep + this.getName() + sep + this.getEmail() + sep + this.getContact() + sep + this.getPersonalNumber() + sep + this.getRegistration() + sep + this.getType();
     }
 
     @Override
@@ -63,17 +61,17 @@ public class Administrator extends Employee implements Serializable, Descriptibl
                 case "email":
                     rsp[rspCount] = this.getEmail();
                     break;
-                case "tipo":
-                    rsp[rspCount] = this.getType();
-                    break;
                 case "contato":
                     rsp[rspCount] = this.getContact();
+                    break;
+                case "personal number":
+                    rsp[rspCount] = this.getPersonalNumber();
                     break;
                 case "registro":
                     rsp[rspCount] = this.getRegistration();
                     break;
-                case "telefone":
-                    rsp[rspCount] = this.getPersonalNumber();
+                case "licenca":
+                    rsp[rspCount] = this.getType();
                     break;
                 default:
                     rsp[rspCount] = "";
@@ -94,17 +92,17 @@ public class Administrator extends Employee implements Serializable, Descriptibl
             case "email":
                 this.setEmail((String) value);
                 break;
-            case "tipo":
-                this.setType((String) value);
-                break;    
             case "contato":
                 this.setContact((String) value);
+                break;    
+            case "personal number":
+                this.setPersonalNumber((int) value);
                 break;
             case "registro":
                 this.setRegistration((int) value);
                 break;
-            case "telefone":
-                this.setPersonalNumber((int) value);
+            case "licenca":
+                this.setType((String) value);
                 break;
                 
             default:

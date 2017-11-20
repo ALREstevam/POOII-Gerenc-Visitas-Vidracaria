@@ -2,7 +2,6 @@ package persons;
 
 import java.io.Serializable;
 import view.comboboxModel.Descriptible;
-import visit.Visit;
 
 /**
  * This is the abstract Client class, derived from the Person class

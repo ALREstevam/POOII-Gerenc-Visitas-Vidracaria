@@ -1,19 +1,11 @@
 package control;
 
-import com.sun.javafx.UnmodifiableArrayList;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import persons.Employee;
-import persons.Client;
 import visit.Visit;
 import visit.Vehicle;
 import visit.Project;
@@ -180,6 +172,8 @@ public class Controller implements Serializable{
      * @see Vehicle
      */
     public boolean remove(Vehicle vehicle){
+        //System.out.println(vehicle.getLicence());
+        //new ControlHelper<Vehicle>().delete(this.vehicles, vehicle);
         return this.vehicles.remove(vehicle.describe(), vehicle);
     }
     
@@ -451,4 +445,9 @@ public class Controller implements Serializable{
             return ctrl;
         }
     }
+
+    public Map<String, Project> getProject() {
+           Map<String,Project> rsp = Collections.unmodifiableMap(this.projects);
+        return rsp;
+}
 }

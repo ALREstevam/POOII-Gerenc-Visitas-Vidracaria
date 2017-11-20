@@ -5,7 +5,6 @@
  */
 package my.exceptions;
 
-import java.io.NotActiveException;
 
 /**
  * Exception

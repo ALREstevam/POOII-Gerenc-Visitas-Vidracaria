@@ -14,6 +14,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import view.tableModel.GeneralTableModel;
 import javax.swing.table.*;
@@ -58,7 +60,6 @@ public class JPanelVehicle extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -74,18 +75,13 @@ public class JPanelVehicle extends javax.swing.JPanel {
         jList1 = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
         jTable1.setColumnSelectionAllowed(true);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTable1MousePressed(evt);
             }
@@ -96,15 +92,9 @@ public class JPanelVehicle extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jLabel2.setText("Consultar e alterar");
-
-        jButton3.setText("Confirmar alteração");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,10 +110,6 @@ public class JPanelVehicle extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +118,7 @@ public class JPanelVehicle extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addGap(191, 191, 191))
+                .addGap(225, 225, 225))
         );
 
         jLabel1.setText("Veículos");
@@ -289,6 +273,7 @@ public class JPanelVehicle extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         int selected = this.jTable1.getSelectedRow();
+        //System.out.println(selected);
         Vehicle v = this.vehiclesLst.get(selected);
         
         if(v == null){
@@ -315,8 +300,8 @@ public class JPanelVehicle extends javax.swing.JPanel {
             System.out.println( key );
         }
         System.out.println("-------------");
-        */
         
+        */
         this.jList1.setSelectedIndex(0);
         String description = this.jList1.getSelectedValue();
         
@@ -326,21 +311,25 @@ public class JPanelVehicle extends javax.swing.JPanel {
         }
         
         
-        Vehicle vehicleToDelete = this.vehiclesMp.get(description);
+        Vehicle vehicleToDelete = this.vehTb.getObjectAt(this.selected);
+        //System.out.println(vehicleToDelete.describe());
         
         if(vehicleToDelete == null){
             JOptionPane.showMessageDialog(this,"Veículo não encontrado.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
-        this.ctrl.remove(vehicleToDelete);
-        this.updateTable();
+        if(this.ctrl.remove(vehicleToDelete)){
+            JOptionPane.showMessageDialog(this, "Deletado com suceso ");
+            this.updateTable();
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        try{
+        //try{
             String plate = this.jFormattedTextField1.getText();
             String strVehicleLicense = this.jComboBoxLicense.getSelectedItem().toString();
             String info = this.jTextPane1.getText();
@@ -351,19 +340,24 @@ public class JPanelVehicle extends javax.swing.JPanel {
             if(vehicleType == null || licenseType == null || plate == null || strVehicleLicense == null || strVehicleType == null ||
               plate.equals("") || strVehicleLicense.equals("") || strVehicleType.equals("")
                     ){
-                throw new Exception();
+                try {
+                    throw new Exception();
+                } catch (Exception ex) {
+                    Logger.getLogger(JPanelVehicle.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
             
             NoWorkPattern nwp = new NoWorkPattern();
             Agenda agd = new Agenda(nwp);
             Vehicle veh = new Vehicle(licenseType, vehicleType, plate, info, agd);
+            //this.vehiclesMp.put(veh.describe(), veh);
             ctrl.append(veh);
             this.updateTable();
-        }catch(Exception e){
+       /* }catch(Exception e){
             JOptionPane.showMessageDialog(this,"Algo errado com os dados inseridos.","Dados inconsistentes", JOptionPane.WARNING_MESSAGE);
             return;
-        }
+        }*/
         
        
         
@@ -373,25 +367,27 @@ public class JPanelVehicle extends javax.swing.JPanel {
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
     }//GEN-LAST:event_jTable1KeyPressed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for(int i = 0; i < this.vehTb.getRowCount(); i++){
-            Vehicle newVehicle = this.vehTb.getObjectAt(i);
-            
-            String description = this.descriptions.get(i);
-            if(!newVehicle.describe().equals(description)){
-                this.ctrl.update(newVehicle, description);
-            }
-        }
-        this.vehiclesMp = ctrl.getVehicles();
-        this.vehiclesLst = new ArrayList<>(vehiclesMp.values());
-        this.updateDescriptions();
-        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jComboBoxLicenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLicenseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxLicenseActionPerformed
+  private int selected;
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        
+        String s = (String) jTable1.getValueAt(jTable1.getSelectedRow(),jTable1.getSelectedColumn());
+          this.selected = this.jTable1.getSelectedRow();
+        Vehicle v = this.vehiclesLst.get(this.selected);
+        
+        if(v == null){
+            return;
+        }
+        
+        List<Vehicle> lstSelected = new ArrayList<>();
+        lstSelected.add(v);
+        
+        this.jList1.setModel(new GeneralComboboxModel<Vehicle>().getComboBoxModelUsingDescription(lstSelected));
+      
+    }//GEN-LAST:event_jTable1MouseClicked
     
     private void updateDescriptions(){
         this.descriptions = new ArrayList<>();
@@ -411,13 +407,13 @@ public class JPanelVehicle extends javax.swing.JPanel {
         this.vehiclesLst = new ArrayList<>(this.vehiclesMp.values());
         this.vehTb =  new GeneralTableModel<Vehicle>(columns, vehiclesLst, ctrl);
         this.jTable1.setModel(vehTb);
+        
         //this.jTable1.
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBoxLicense;
     private javax.swing.JComboBox<String> jComboBoxType;
     private javax.swing.JFormattedTextField jFormattedTextField1;

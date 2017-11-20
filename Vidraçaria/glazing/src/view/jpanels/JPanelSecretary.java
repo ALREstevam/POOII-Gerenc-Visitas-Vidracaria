@@ -47,10 +47,6 @@ public class JPanelSecretary extends javax.swing.JPanel {
         this.updateTable();
     }
 
-    public JPanelSecretary() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,8 +59,8 @@ public class JPanelSecretary extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jComboBoxLicense = new javax.swing.JComboBox<String>();
-        jComboBoxType = new javax.swing.JComboBox<String>();
+        jComboBoxLicense = new javax.swing.JComboBox<>();
+        jComboBoxType = new javax.swing.JComboBox<>();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
@@ -72,7 +68,6 @@ public class JPanelSecretary extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        btnConfirm = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -90,7 +85,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<String>();
+        jList1 = new javax.swing.JList<>();
         btnRemove = new javax.swing.JButton();
 
         jLabel4.setText("Inserir");
@@ -102,11 +97,11 @@ public class JPanelSecretary extends javax.swing.JPanel {
             }
         });
 
-        jComboBoxLicense.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "B", "C", "D" }));
+        jComboBoxLicense.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
         jComboBoxLicense.setToolTipText("");
         jComboBoxLicense.setBorder(javax.swing.BorderFactory.createTitledBorder("Carteira Requerida"));
 
-        jComboBoxType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CAR", "MOTORCYCLE", "TRUCK" }));
+        jComboBoxType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CAR", "MOTORCYCLE", "TRUCK" }));
         jComboBoxType.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de veículo"));
 
         jFormattedTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Placa"));
@@ -162,14 +157,6 @@ public class JPanelSecretary extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
         jTable1.setColumnSelectionAllowed(true);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -183,15 +170,9 @@ public class JPanelSecretary extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jLabel2.setText("Consultar e alterar");
-
-        btnConfirm.setText("Confirmar alteração");
-        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Secretária");
 
@@ -204,9 +185,6 @@ public class JPanelSecretary extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnConfirm))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -223,9 +201,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnConfirm)
-                .addGap(191, 191, 191))
+                .addGap(220, 220, 220))
         );
 
         jLabel5.setText("Inserir");
@@ -412,22 +388,6 @@ public class JPanelSecretary extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jTable1KeyPressed
 
-    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        for(int i = 0; i < this.secTb.getRowCount(); i++){
-            Secretary newSecretary = this.secTb.getObjectAt(i);
-
-            String description = this.descriptions.get(i);
-            if(!newSecretary.describe().equals(description)){
-                this.ctrl.update(newSecretary, description);
-            }
-        }
-        this.secretaryMp = ctrl.getSecretary();
-        this.secretaryLst = new ArrayList<>(secretaryMp.values());
-        this.updateDescriptions();
-        JOptionPane.showMessageDialog(this,"Dados atualizados.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-    }//GEN-LAST:event_btnConfirmActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //
 
@@ -471,19 +431,7 @@ public class JPanelSecretary extends javax.swing.JPanel {
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
-        /*
-        System.out.println("-------------");
-        System.out.println("VALUES");
-        for(Secretary v : this.secretaryMp.values()){
-            System.out.println(v.describe());
-        }
-        System.out.println("KEYS");
-        for ( String key : secretaryMp.keySet() ) {
-            System.out.println( key );
-        }
-        System.out.println("-------------");
         
-*/
         this.jList1.setSelectedIndex(0);
         String description = this.jList1.getSelectedValue();
 
@@ -514,7 +462,6 @@ public class JPanelSecretary extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnConfirm;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBoxLicense;

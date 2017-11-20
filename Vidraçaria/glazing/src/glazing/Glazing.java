@@ -7,13 +7,7 @@ import java.time.LocalTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import my.exceptions.FileCouldNotBeCreatetException;
-import visit.Vehicle;
-import persons.PhysicalPerson;
-import persons.Driver;
-import persons.LegalPerson;
-import persons.PhysicalPerson;
 import view.jframes.MainJFrame;
-import visit.Project;
 import agenda.neow.agenda.Agenda;
 
 /**
@@ -28,21 +22,21 @@ public class Glazing {
         
         Controller ctrl = new Controller(Controller.loadIt());
         
-        PhysicalPerson[] pp = new PhysicalPerson[2];
-        LegalPerson[] lp = new LegalPerson[1];
-        Driver[] drvs = new Driver[3];
-        Project[] prjs = new Project[3];
-        Vehicle[] vehs = new Vehicle[3];
+  //      PhysicalPerson[] pp = new PhysicalPerson[2];
+  //      LegalPerson[] lp = new LegalPerson[1];
+  //      Driver[] drvs = new Driver[3];
+  //      Project[] prjs = new Project[3];
+  //      Vehicle[] vehs = new Vehicle[3];
         
-        pp[0] = new PhysicalPerson(1, "Rua 3", "Adamastor", "ada@mastor", "123-456");
-        pp[1] = new PhysicalPerson(2, "Rua 2", "Maria Antonieta", "ada@mastor", "123-456");
-        lp[0] = new LegalPerson(3, "Unk", "Unk", "Rua 3", "Mastor Ado", "ada@mastor", "123-456");
+  //      pp[0] = new PhysicalPerson(1, "Rua 3", "Adamastor", "ada@mastor", "123-456");
+  //      pp[1] = new PhysicalPerson(2, "Rua 2", "Maria Antonieta", "ada@mastor", "123-456");
+  //      lp[0] = new LegalPerson(3, "Unk", "Unk", "Rua 3", "Mastor Ado", "ada@mastor", "123-456");
         
         
         //TODO: atualizar (criar agendas dos funcionários)
         
         
-        NoWorkPattern nwp = new NoWorkPattern();
+       NoWorkPattern nwp = new NoWorkPattern();
         
         
         nwp.appendPatternEveryDayWithFromTo(LocalTime.of(18, 0), LocalTime.of(6, 0));
@@ -52,40 +46,40 @@ public class Glazing {
         
         Agenda agd = new Agenda(nwp);
         
-        drvs[0] = new Driver(Driver.licenseTypes.A, 123, 125, "Josué", "josu@e.josue", "Rua3", agd);
-        drvs[1] = new Driver(Driver.licenseTypes.A, 123, 125, "Josefa", "josu@efa", "Rua3", agd);
-        drvs[2] = new Driver(Driver.licenseTypes.A, 123, 125, "Cleusa", "cleu@sa", "Rua88", agd);
+  //      drvs[0] = new Driver(Driver.licenseTypes.A, 123, 125, "Josué", "josu@e.josue", "Rua3", agd);
+  //      drvs[1] = new Driver(Driver.licenseTypes.A, 123, 125, "Josefa", "josu@efa", "Rua3", agd);
+  //      drvs[2] = new Driver(Driver.licenseTypes.A, 123, 125, "Cleusa", "cleu@sa", "Rua88", agd);
         
-        vehs[0] = new Vehicle(Vehicle.licenseTypes.C, Vehicle.vehicleTypes.CAR, "ABC-4567", "infos", agd);
-        vehs[1] = new Vehicle(Vehicle.licenseTypes.A, Vehicle.vehicleTypes.MOTORCYCLE, "ABC-1238", "infos", agd);
-        vehs[2] = new Vehicle(Vehicle.licenseTypes.D, Vehicle.vehicleTypes.TRUCK, "ABC-3123", "infos", agd);
+  //      vehs[0] = new Vehicle(Vehicle.licenseTypes.C, Vehicle.vehicleTypes.CAR, "ABC-4567", "infos", agd);
+  //      vehs[1] = new Vehicle(Vehicle.licenseTypes.A, Vehicle.vehicleTypes.MOTORCYCLE, "ABC-1238", "infos", agd);
+  //      vehs[2] = new Vehicle(Vehicle.licenseTypes.D, Vehicle.vehicleTypes.TRUCK, "ABC-3123", "infos", agd);
         
-        prjs[0] = new Project("Prj1", "D-prj1", "", pp[0]);
-        prjs[1] = new Project("Prj2", "D-prj2", "", pp[1]);
-        prjs[2] = new Project("Prj3", "D-prj3", "", lp[0]);
+  //      prjs[0] = new Project("Prj1", "D-prj1", "", pp[0]);
+  //      prjs[1] = new Project("Prj2", "D-prj2", "", pp[1]);
+  //      prjs[2] = new Project("Prj3", "D-prj3", "", lp[0]);
 
-        for(PhysicalPerson cli : pp){
-            ctrl.append(cli);
-        }
-        
-        for(LegalPerson cli : lp){
-            ctrl.append(cli);
-        }
-        
-        
-        for(Driver drv : drvs){
-            ctrl.append(drv);
-        }
-        
-        for(Vehicle veh : vehs){
-            ctrl.append(veh);
-        }
-        
-        for(Project proj : prjs){
-            ctrl.append(proj);
-        }
-        
-        
+  //      for(PhysicalPerson cli : pp){
+  //          ctrl.append(cli);
+  //      }
+  //      
+  //      for(LegalPerson cli : lp){
+  //          ctrl.append(cli);
+  //      }
+  //      
+  //      
+  //      for(Driver drv : drvs){
+  //          ctrl.append(drv);
+  //      }
+  //      
+  //      for(Vehicle veh : vehs){
+  //          ctrl.append(veh);
+  //      }
+  //      
+  //      for(Project proj : prjs){
+  //          ctrl.append(proj);
+  //      }
+  //      
+  //      
         MainJFrame iniframe = new MainJFrame(ctrl);
         iniframe.setVisible(true);
         

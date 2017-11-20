@@ -3,8 +3,6 @@ package persons;
 import java.io.Serializable;
 import java.util.List;
 import visit.Vehicle;
-import visit.Visit;
-import agenda.neow.agenda.Agenda;
 import view.tableModel.Arrayable;
 
 /**
@@ -38,7 +36,7 @@ public class Secretary extends Employee implements Serializable, Cloneable, Arra
 
     @Override
     public String describe() {
-        return "SEC" + sep + this.getName() + sep + this.getEmail();
+        return "SEC" + sep + this.getName() + sep + this.getEmail()+ sep + this.getContact()+ sep + this.getRegistration()+ sep + this.getPersonalNumber();
     }
 
     @Override

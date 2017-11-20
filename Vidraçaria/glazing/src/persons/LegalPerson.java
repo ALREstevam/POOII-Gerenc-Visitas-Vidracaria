@@ -82,7 +82,7 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
 
     @Override
     public String describe() {
-        return this.getName() + sep + this.getEmail() + sep + this.cnpj;
+        return this.getName() + sep + this.getEmail() + sep + this.getAddress() + sep + this.getCnpj() + sep + this.getCompanyType()+ sep + this.getConpanyDescription()+ sep + this.getContact();
     }
 
     @Override
@@ -97,20 +97,20 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
                 case "email":
                     rsp[rspCount] = this.getEmail();
                     break;
-                case "contato":
-                    rsp[rspCount] = this.getContact();
-                    break;
                 case "endereco":
                     rsp[rspCount] = this.getAddress();
                     break;
                 case "cnpj":
                     rsp[rspCount] = this.getCnpj();
                     break;
-                case "tipo de empresa":
+                case "tipo":
                     rsp[rspCount] = this.getCompanyType();
-                    break;    
-                case "descrição da empresa":
+                    break;
+                case "descricao":
                     rsp[rspCount] = this.getConpanyDescription();
+                    break;    
+                case "contato":
+                    rsp[rspCount] = this.getContact();
                     break;    
                 default:
                     rsp[rspCount] = "";
@@ -130,20 +130,20 @@ public class LegalPerson extends Client implements Serializable, Cloneable, Arra
             case "email":
                 this.setEmail(((String) value));
                 break;
-            case "contato":
-                this.setContact((String) value);
-                break;
             case "endereco":
-                this.setAddress(((String) value));
+                this.setAddress((String) value);
                 break;
             case "cnpj":
-                this.setCnpj((int) value);
+                this.setCnpj(((int) value));
                 break;
-            case "tipo de empresa":
+            case "tipo":
                 this.setCompanyType((String) value);
                 break;
-            case "descrição da empresa":
+            case "descricao":
                 this.setConpanyDescription((String) value);
+                break;
+            case "contato":
+                this.setContact((String) value);
                 break;
             default:
                 break;

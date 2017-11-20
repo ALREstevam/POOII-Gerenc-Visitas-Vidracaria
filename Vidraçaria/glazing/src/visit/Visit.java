@@ -215,13 +215,13 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     @Override
     public Object[] attributesToArray(String[] order) {
-        Object[] rsp = new Object[4];
+        Object[] rsp = new Object[3];
 
         int rspCount = 0;
         for (String s : order) {
                 
                 switch (s) {
-                case "name:":
+                case "name":
                     rsp[rspCount] = this.getName();
                     break;
                     

@@ -83,6 +83,7 @@ public class GeneralTableModel<E extends Arrayable> extends AbstractTableModel{
     * @return E
      */
     public E getObjectAt(int row){
+        System.out.println(row);
         return this.list.get(row);
     }
 

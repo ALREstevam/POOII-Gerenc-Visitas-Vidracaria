@@ -20,6 +20,7 @@ import view.jpanels.JPanelDraftsman;
 import view.jpanels.JPanelDriver;
 import view.jpanels.JPanelLegalPerson;
 import view.jpanels.JPanelPhysicalPerson;
+import view.jpanels.JPanelProject;
 import view.jpanels.JPanelSecretary;
 import view.jpanels.JPanelVehicle;
 
@@ -307,6 +308,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
+                // TODO add your handling code here:
+        JDialog windowLProject = new JDialog();
+        windowLProject.add(new JPanelProject(ctrl));
+        windowLProject.pack();
+        windowLProject.setModal(true);
+        windowLProject.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

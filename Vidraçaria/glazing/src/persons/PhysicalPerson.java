@@ -27,7 +27,7 @@ public class PhysicalPerson extends Client implements Serializable, Cloneable, A
 
     @Override
     public String describe() {
-        return getName() + sep + getEmail() + sep + this.cpf;
+        return getName() + sep + this.getEmail() + sep + this.getAddress() + sep + this.getCpf() + sep + this.getContact();
     }
 
     @Override
@@ -42,14 +42,14 @@ public class PhysicalPerson extends Client implements Serializable, Cloneable, A
                 case "email":
                     rsp[rspCount] = this.getEmail();
                     break;
-                case "contato":
-                    rsp[rspCount] = this.getContact();
-                    break;
                 case "endereco":
                     rsp[rspCount] = this.getAddress();
                     break;
                 case "cpf":
                     rsp[rspCount] = this.getCpf();
+                    break;
+                case "contato":
+                    rsp[rspCount] = this.getContact();
                     break;
                 default:
                     rsp[rspCount] = "";
@@ -69,14 +69,14 @@ public class PhysicalPerson extends Client implements Serializable, Cloneable, A
             case "email":
                 this.setEmail((String) value);
                 break;
-            case "contato":
-                this.setContact((String) value);
-                break;
             case "endereco":
                 this.setAddress((String) value);
                 break;
             case "cpf":
                 this.setCpf((int) value);
+                break;
+            case "contato":
+                this.setContact((String) value);
                 break;
             default:
                 break;
