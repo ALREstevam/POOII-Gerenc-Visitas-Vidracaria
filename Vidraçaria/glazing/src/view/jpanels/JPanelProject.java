@@ -244,12 +244,12 @@ public class JPanelProject extends javax.swing.JPanel {
             String name="";
             String email="";
             String contact="";
-            Client client = new Client(address, name, email, contact){};
+            //Client client = new Client(address, name, email, contact){};
 
             if(title == null || description == null || file == null){
                 throw new Exception();
             }
-            Project p = new Project(title, description, file, client);
+            Project p = new Project(title, description, file, null);
             ctrl.append(p);
             this.updateTable();
         }catch(Exception e){

@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package agenda.neow.util;
-
+import java.io.Serializable;
 /**
  * This class represents the days of a week
  * @author andre
  */
-public class WeekDays {
+public class WeekDays implements Serializable {
     public enum WeekDaysEnum{
         SUNDAY      (0, true,   "SUN", "DOM"),
         MONDAY      (1, false,  "MON", "SEG"),

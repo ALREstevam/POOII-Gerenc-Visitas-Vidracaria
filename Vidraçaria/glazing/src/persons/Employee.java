@@ -9,8 +9,8 @@ import view.comboboxModel.Descriptible;
  */
 public abstract class Employee extends Person implements Serializable, Descriptible{
 
-	private int personalNumber;
-	private int registration;
+	private long personalNumber;
+	private long registration;
 
     /**
      * This is the constructor of the abstract Employee class. This constructor
@@ -21,7 +21,7 @@ public abstract class Employee extends Person implements Serializable, Descripti
      * @param email this is a email of Employee
      * @param contact this is a contact of Employee
      */
-    public Employee(int personalNumber, int registration, String name, String email, String contact) {
+    public Employee(long personalNumber, long registration, String name, String email, String contact) {
         super(name, email, contact);
         this.personalNumber = personalNumber;
         this.registration = registration;
@@ -34,7 +34,7 @@ public abstract class Employee extends Person implements Serializable, Descripti
      * @param registration this is a registration of type int
      * @param name this is an object from String
      */
-    public Employee(int personalNumber, int registration, String name) {
+    public Employee(long personalNumber, long registration, String name) {
         super(name);
         this.personalNumber = personalNumber;
         this.registration = registration;
@@ -44,7 +44,7 @@ public abstract class Employee extends Person implements Serializable, Descripti
      * This method get the Employee's personalNumber
      * @return int
      */
-    public int getPersonalNumber() {
+    public long getPersonalNumber() {
         return personalNumber;
     }
 
@@ -52,7 +52,7 @@ public abstract class Employee extends Person implements Serializable, Descripti
      * This method set the Employee's personalNumber
      * @param personalNumber  this is the personalNumber of Employee
      */
-    public void setPersonalNumber(int personalNumber) {
+    public void setPersonalNumber(long personalNumber) {
         this.personalNumber = personalNumber;
     }
 
@@ -60,7 +60,7 @@ public abstract class Employee extends Person implements Serializable, Descripti
      * This method get the Employee's registration
      * @return int
      */
-    public int getRegistration() {
+    public long getRegistration() {
         return registration;
     }
 
@@ -68,7 +68,7 @@ public abstract class Employee extends Person implements Serializable, Descripti
      * This method set the Employee's registration
      * @param registration this is the registration of Employee
      */
-    public void setRegistration(int registration) {
+    public void setRegistration(long registration) {
         this.registration = registration;
     }
 }

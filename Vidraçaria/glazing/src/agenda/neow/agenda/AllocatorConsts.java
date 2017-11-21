@@ -6,7 +6,6 @@
 package agenda.neow.agenda;
 
 import agenda.neow.util.TimeUtil;
-
 /**
  *
  * @author andre

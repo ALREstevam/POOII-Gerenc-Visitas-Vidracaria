@@ -90,10 +90,12 @@ public class nLocalPersistence<E extends Serializable> implements ObjectKeeper<E
      */
     private boolean serialize(E elem, Path serializedFile) throws FileCouldNotBeCreatetException{
         try {
+            //System.out.println(serializedFile.getFileName());
             ObjectOutputStream os = new ObjectOutputStream(Files.newOutputStream(serializedFile));
             
             synchronized(lock){
                 os.writeObject(elem);
+                //os.close();
             }
            
             return true;

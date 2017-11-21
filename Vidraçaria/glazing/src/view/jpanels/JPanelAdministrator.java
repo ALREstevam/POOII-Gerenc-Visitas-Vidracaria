@@ -359,7 +359,7 @@ import view.tableModel.GeneralTableModel;
             String registration = this.jFormattedTextField4.getText();
             String type = this.jTextField4.getText();
 
-            int nb = 0, reg = 0;
+            long nb = 0, reg = 0;
             try {
                 nb = Integer.parseInt(personalnb);
                 reg = Integer.parseInt(registration);

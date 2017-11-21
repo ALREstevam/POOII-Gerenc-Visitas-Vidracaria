@@ -202,7 +202,7 @@ public class Visit implements Serializable, Descriptible, Arrayable{
 
     @Override
     public String describe() {
-        String cli = (this.getClient().getName() == null)? "null" : this.client.getName();
+       // String cli = (this.getClient().getName() == null)? "null" : this.client.getName();
         String proj = (this.project == null || this.getProject().getTitle() == null) ? "null" : this.project.getTitle();
         String rsp = "";
         rsp = this.name + sep 

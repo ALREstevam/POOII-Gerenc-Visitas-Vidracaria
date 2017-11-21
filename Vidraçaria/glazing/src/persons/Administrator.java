@@ -22,7 +22,7 @@ public class Administrator extends Employee implements Serializable, Descriptibl
      * @param email this is the email of Administrator
      * @param contact this is the contact of Administrator
      */
-    public Administrator(String type, int personalNumber, int registration, String name, String email, String contact) {
+    public Administrator(String type, long personalNumber, long registration, String name, String email, String contact) {
         super(personalNumber, registration, name, email, contact);
         this.type = type;
     }
@@ -96,10 +96,10 @@ public class Administrator extends Employee implements Serializable, Descriptibl
                 this.setContact((String) value);
                 break;    
             case "personal number":
-                this.setPersonalNumber((int) value);
+                this.setPersonalNumber((long) value);
                 break;
             case "registro":
-                this.setRegistration((int) value);
+                this.setRegistration((long) value);
                 break;
             case "licenca":
                 this.setType((String) value);

@@ -598,8 +598,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
             try{
                 LocalDateTime end = TimeUtil.add(this.blocksQtd * AllocatorConsts.MIN_PER_BLOCK, allocatedTo);
                 Visit v = new Visit(this.allocatedTo, end, this.jTextFieldVisitDescription.getText(), new ArrayList<Driver>(selectedDrivers.values()), this.selectedProject.getClient(), selectedVehicle);
-                System.out.println(v);
-                System.out.println("//" + v.describe());
+                //System.out.println(this.selectedProject.getClient().describe());
                 this.selectedVehicle.getAgd().allocate(this.blocksQtd, this.initalBlock, v);
                 
                 this.ctrl.append(v);
@@ -608,11 +607,12 @@ public class JFrameAgenda extends javax.swing.JFrame {
                      this.selectedVehicle.getAgd().allocate(this.blocksQtd, this.initalBlock, v);
                 }
                 JOptionPane.showMessageDialog(this.jPanelDateChoose,"A tarefa foi alocada.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            }catch(Exception e){
+            }catch(NullPointerException e){
                 e.printStackTrace();
-            }   JOptionPane.showMessageDialog(this.jPanelDateChoose,"Não foi possível fazer essa alocação.","0 Erro ao alocar", JOptionPane.ERROR_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(this.jPanelDateChoose,"Não foi possível fazer essa alocação.","1 Erro ao alocar", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this.jPanelDateChoose,"A tarefa n  foi alocada.","Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        
+            }   }else{
+            JOptionPane.showMessageDialog(this.jPanelDateChoose,"A tarefa não foi alocada.","Fracasso", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAllocateActionPerformed
 
@@ -685,15 +685,15 @@ public class JFrameAgenda extends javax.swing.JFrame {
         
         @Override
         protected Void doInBackground() throws Exception {
-            System.out.println("Serarching...");
+            //System.out.println("Serarching...");
             
             try{
                 List<Agenda> agendas  = new ArrayList<>();
-                System.out.println(selectedVehicle.describe());
+               // System.out.println(selectedVehicle.describe());
                 agendas.add(selectedVehicle.getAgd());
 
                 for(Driver drv : selectedDrivers){
-                    System.out.println(drv.describe());
+                   // System.out.println(drv.describe());
                     agendas.add(drv.getAgd());
                 }
                 int blocks = TimeUtil.blocksIn(Agenda.MIN_PER_BLOCK, TimeUtil.toMinutes(hours, minutes));
@@ -702,7 +702,7 @@ public class JFrameAgenda extends javax.swing.JFrame {
                 
                 TimeAnswer tma = sumAgds.whenIsAvaliable(blocks);
                 
-                System.out.println(TimeUtil.toCompleteString(tma.time));
+                //System.out.println(TimeUtil.toCompleteString(tma.time));
                 jLabelAllocatedTo.setText(TimeUtil.toCompleteString(tma.time));
                 allocatedTo = tma.time;
                 initalBlock = tma.initialBlock;

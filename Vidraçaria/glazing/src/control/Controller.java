@@ -173,8 +173,8 @@ public class Controller implements Serializable{
      */
     public boolean remove(Vehicle vehicle){
         //System.out.println(vehicle.getLicence());
-        //new ControlHelper<Vehicle>().delete(this.vehicles, vehicle);
-        return this.vehicles.remove(vehicle.describe(), vehicle);
+        new ControlHelper<Vehicle>().delete(this.vehicles, vehicle);
+        return true;//this.vehicles.remove(vehicle.describe(), vehicle);
     }
     
     /**

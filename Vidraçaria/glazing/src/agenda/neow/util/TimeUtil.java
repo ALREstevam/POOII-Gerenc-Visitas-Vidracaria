@@ -13,12 +13,12 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-
+import java.io.Serializable;
 /**
  *
  * @author andre
  */
-public class TimeUtil {
+public class TimeUtil implements Serializable{
     public static final int minutesInAnHour = 60;
     public static final int minutesInADay = 24 * minutesInAnHour;
     public static final int minutesInAWeek = 7 * minutesInADay;
